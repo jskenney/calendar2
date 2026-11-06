@@ -53,32 +53,46 @@ final class Runner
                 $differences[] = "$id: not requested";
                 continue;
             }
-            $got = $actual[$id];
-            foreach (array_unique(array_merge(array_keys($want), array_keys($got))) as $field) {
-                $a = $want[$field] ?? null;
-                $b = $got[$field] ?? null;
-                if ($field === 'php_errors') {
-                    // Only the implementation under test must be free of PHP errors (v4 has known warnings)
-                    $b = array_values(array_filter((array) $b, static function (string $error) use ($knownWarnings): bool {
-                        foreach ($knownWarnings as $known) {
-                            if (str_contains($error, $known)) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }));
-                    if ($b !== []) {
-                        $differences[] = "$id: PHP errors " . self::short($b);
-                    }
-                    continue;
-                }
-                if ($a !== $b) {
-                    $differences[] = "$id: $field expected " . self::short($a) . ', got ' . self::short($b);
-                }
-            }
+            array_push($differences, ...self::compareOne((string) $id, $want, $actual[$id], $knownWarnings));
         }
         foreach (array_diff(array_keys($actual), array_keys($expected)) as $id) {
             $differences[] = "$id: no expected result recorded (run record)";
+        }
+        return $differences;
+    }
+
+    /**
+     * Differences for one request (an empty list means it matches).
+     *
+     * @param array<string, mixed> $want
+     * @param array<string, mixed> $got
+     * @param list<string> $knownWarnings
+     * @return list<string>
+     */
+    public static function compareOne(string $id, array $want, array $got, array $knownWarnings = []): array
+    {
+        $differences = [];
+        foreach (array_unique(array_merge(array_keys($want), array_keys($got))) as $field) {
+            $a = $want[$field] ?? null;
+            $b = $got[$field] ?? null;
+            if ($field === 'php_errors') {
+                // Only the implementation under test must be free of PHP errors (v4 has known warnings)
+                $b = array_values(array_filter((array) $b, static function (string $error) use ($knownWarnings): bool {
+                    foreach ($knownWarnings as $known) {
+                        if (str_contains($error, $known)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }));
+                if ($b !== []) {
+                    $differences[] = "$id: PHP errors " . self::short($b);
+                }
+                continue;
+            }
+            if ($a !== $b) {
+                $differences[] = "$id: $field expected " . self::short($a) . ', got ' . self::short($b);
+            }
         }
         return $differences;
     }

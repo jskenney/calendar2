@@ -119,7 +119,7 @@ foreach ($fixtures as $name) {
 
     $matching = 0;
     foreach ($expected as $id => $want) {
-        if (isset($actual[$id]) && $actual[$id] === $want) {
+        if (isset($actual[$id]) && Runner::compareOne($id, $want, $actual[$id], $fixture->meta['known_v4_warnings'] ?? []) === []) {
             $matching++;
         }
     }
