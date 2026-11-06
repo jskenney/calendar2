@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cal5\View;
 
 use Cal5\Access\AccessPolicy;
+use Cal5\Auth\AuthResult;
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LoadResult;
 use Cal5\Course;
@@ -23,6 +24,9 @@ final class InstalledPage
         private readonly ?Course $course,
         private readonly bool $libraryRequest,
         private readonly string $assetBase,
+        private readonly ?AuthResult $auth = null,
+        private readonly ?string $csrf = null,
+        private readonly bool $locked = false,
     ) {
     }
 
@@ -68,8 +72,11 @@ final class InstalledPage
             }
         }
 
+        $body .= $this->login();
+
         $title = Html::escape($title);
         $sourceValue = Html::escape($source->value);
+        $instructor = $this->auth?->instructor ? 'yes' : 'no';
         $state = $config !== null ? 'ok' : ($source === ConfigSource::None ? 'none' : 'error');
 
         return <<<HTML
@@ -84,7 +91,7 @@ final class InstalledPage
   <link rel="stylesheet" href="{$css}">
 </head>
 <body>
-  <main class="cal5-installed" data-cal5-version="{$version}" data-config-source="{$sourceValue}" data-config-state="{$state}">
+  <main class="cal5-installed" data-cal5-version="{$version}" data-config-source="{$sourceValue}" data-config-state="{$state}" data-instructor="{$instructor}">
     <h1>{$title}</h1>
     {$body}
     <p class="cal5-note">Cal5 {$version} is installed. This development build does not serve course content yet.</p>
@@ -93,6 +100,35 @@ final class InstalledPage
 </html>
 
 HTML;
+    }
+
+    /** Login state and the login / logout form (no secrets; the nonce is public by design). */
+    private function login(): string
+    {
+        if ($this->auth === null) {
+            return '';
+        }
+        $csrf = Html::escape((string) $this->csrf);
+        $html = '';
+        if ($this->locked && !$this->auth->instructor) {
+            $html .= '<p class="cal5-locked">This course site is locked.</p>';
+        }
+        $message = match ($this->auth->event) {
+            AuthResult::FAILED => '<p class="cal5-problems">The password was not accepted.</p>',
+            AuthResult::BLOCKED => '<p class="cal5-problems">Too many failed logins; try again in 15 minutes.</p>',
+            default => '',
+        };
+        if ($this->auth->instructor) {
+            return $html . '<form method="post" class="cal5-login"><p>Logged in as the instructor.</p>'
+                . '<input type="hidden" name="password" value="">'
+                . '<input type="hidden" name="csrf" value="' . $csrf . '">'
+                . '<button type="submit">Log out</button></form>';
+        }
+        $nonce = Html::escape((string) $this->auth->nonce);
+        return $html . $message . '<form method="post" class="cal5-login" data-nonce="' . $nonce . '">'
+            . '<label>Instructor password <input type="password" name="password" autocomplete="current-password"></label>'
+            . '<input type="hidden" name="csrf" value="' . $csrf . '">'
+            . '<button type="submit">Log in</button></form>';
     }
 
     private static function contentSummary(?Course $course): string

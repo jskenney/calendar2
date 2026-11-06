@@ -12,9 +12,10 @@ This repository is being built one milestone at a time. See `MILESTONES.md` (on 
 
 ## Status
 
-Milestone 4 (access rules): Cal5 reads the configuration (`calendar.ini.php`, or a translated
-v4 `calendar.php`), finds every event and file, builds the calendar, and decides what students
-may see, exactly as v4 does. It adds release times to the minute, re-lock ranges, and
+Milestone 5 (login): Cal5 reads the configuration (`calendar.ini.php`, or a translated
+v4 `calendar.php`), finds every event and file, builds the calendar, decides what students
+may see exactly as v4 does, and logs the instructor in with v4's password and login flow
+(a v4 login carries over when a course switches). It adds release times to the minute, re-lock ranges, and
 meeting-relative rules (`docs/design/access-rules.md`). It does not serve course pages yet.
 For a course, run these from its directory:
 

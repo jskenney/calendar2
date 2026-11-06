@@ -58,3 +58,9 @@ a { color: var(--cal5-accent); }
 .cal5-summary dd { margin: 0; }
 .cal5-problems { color: #b3261e; }
 @media (prefers-color-scheme: dark) { .cal5-problems { color: #ffb4ab; } }
+
+.cal5-login { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.cal5-login p { margin: 0; flex-basis: 100%; }
+.cal5-login input[type=password] { font: inherit; padding: 0.3rem 0.5rem; border: 1px solid var(--cal5-border); border-radius: 6px; background: var(--cal5-bg); color: var(--cal5-text); }
+.cal5-login button { font: inherit; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid var(--cal5-accent); background: var(--cal5-accent); color: #fff; cursor: pointer; }
+.cal5-locked { font-weight: 600; }
