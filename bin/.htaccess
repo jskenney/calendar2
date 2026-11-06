@@ -1,0 +1,2 @@
+# Not served to browsers (Apache 2.4).
+Require all denied

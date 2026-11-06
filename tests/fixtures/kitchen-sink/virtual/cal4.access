@@ -1,0 +1,12 @@
+# Kitchen-sink release rules (every v4 form)
+class -monday
+class_1/answers.html 1 1 1999
+class/homework-solution +7
+class_5 12 31 2099
+class_6 99 99 9999
+lab +0
+lab_2/notes +wednesday
+exam 99 99 9999
+exam/notes 1 1 1999
+*/instructor 99 99 9999
+final-exam 12 1
