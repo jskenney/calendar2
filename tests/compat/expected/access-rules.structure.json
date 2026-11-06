@@ -1,0 +1,426 @@
+{
+    "fixture": "access-rules",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "structure": {
+        "types": {
+            "class": [
+                {
+                    "number": 1,
+                    "dir": "01.Class1",
+                    "name": "Class1",
+                    "date": "2018-08-20",
+                    "boxes": {
+                        "homework": "homework.html",
+                        "homework-solution": "answers.html",
+                        "notes": "notes.html",
+                        "reading": "reading.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "answers.html": {
+                            "key": "5d66691969713a715d7d999094514efe61e94b15",
+                            "box": "homework-solution",
+                            "actual": "class/01.Class1/answers.html",
+                            "student_visible": true
+                        },
+                        "homework.html": {
+                            "key": "45fae9b817d5b9010e0c76049067145656b20bed",
+                            "box": "homework",
+                            "actual": "class/01.Class1/homework.html",
+                            "student_visible": true
+                        },
+                        "index.html": {
+                            "key": "9966999eb0509d4b5bf6aa00e03749bbd4f84ffc",
+                            "box": "title",
+                            "actual": "class/01.Class1/index.html",
+                            "student_visible": false
+                        },
+                        "notes.html": {
+                            "key": "de25077acf9b82a563507bf05c2aa7ad7b744f1b",
+                            "box": "notes",
+                            "actual": "class/01.Class1/notes.html",
+                            "student_visible": false
+                        },
+                        "reading.html": {
+                            "key": "90bc64239438bda6e288ae4396e6a1597b563e68",
+                            "box": "reading",
+                            "actual": "class/01.Class1/reading.html",
+                            "student_visible": false
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Class2",
+                    "name": "Class2",
+                    "date": "2018-08-27",
+                    "boxes": {
+                        "homework": "homework.html",
+                        "homework-solution": "answers.html",
+                        "notes": "notes.html",
+                        "reading": "reading.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "answers.html": {
+                            "key": "d1c302feb4512722212425c6e9e3b4b50fff8e5c",
+                            "box": "homework-solution",
+                            "actual": "class/02.Class2/answers.html",
+                            "student_visible": true
+                        },
+                        "homework.html": {
+                            "key": "82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5",
+                            "box": "homework",
+                            "actual": "class/02.Class2/homework.html",
+                            "student_visible": true
+                        },
+                        "index.html": {
+                            "key": "e2120e32faf21be94b5b2700b98403298536d0fc",
+                            "box": "title",
+                            "actual": "class/02.Class2/index.html",
+                            "student_visible": false
+                        },
+                        "notes.html": {
+                            "key": "e6fe0db4407c561378dc1feb9771488d9c184f1b",
+                            "box": "notes",
+                            "actual": "class/02.Class2/notes.html",
+                            "student_visible": true
+                        },
+                        "reading.html": {
+                            "key": "c10286264188474d3eab7ff347fbe9092e7d3afa",
+                            "box": "reading",
+                            "actual": "class/02.Class2/reading.html",
+                            "student_visible": false
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Class3",
+                    "name": "Class3",
+                    "date": "2018-09-03",
+                    "boxes": {
+                        "homework": "homework.html",
+                        "homework-solution": "answers.html",
+                        "notes": "notes.html",
+                        "reading": "reading.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "a.html": {
+                            "key": "eaf4b694cc68eaab64564a827516c47cda02d6c5",
+                            "box": null,
+                            "actual": "class/03.Class3/a.html",
+                            "student_visible": true
+                        },
+                        "answers.html": {
+                            "key": "372469c8a64ec28530231f3e8bd82ffb2c34239f",
+                            "box": "homework-solution",
+                            "actual": "class/03.Class3/answers.html",
+                            "student_visible": true
+                        },
+                        "b.html": {
+                            "key": "39debd9d2d40c59ee64a5c3315512c8bff9aba61",
+                            "box": null,
+                            "actual": "class/03.Class3/b.html",
+                            "student_visible": true
+                        },
+                        "c.html": {
+                            "key": "6bc7448576f67357dbb715970225ef0f1c540e6e",
+                            "box": null,
+                            "actual": "class/03.Class3/c.html",
+                            "student_visible": true
+                        },
+                        "d.html": {
+                            "key": "57105a923e7afe250c70a9e1bd3854e07a143bce",
+                            "box": null,
+                            "actual": "class/03.Class3/d.html",
+                            "student_visible": true
+                        },
+                        "e.html": {
+                            "key": "a879445e693bb376e9a922fab72d5f3067111e6a",
+                            "box": null,
+                            "actual": "class/03.Class3/e.html",
+                            "student_visible": true
+                        },
+                        "f.html": {
+                            "key": "f920cb7257920033cb4e5e9ed2b32bd1fd10e094",
+                            "box": null,
+                            "actual": "class/03.Class3/f.html",
+                            "student_visible": true
+                        },
+                        "g.html": {
+                            "key": "03017762aa5f8bd88b2ffcfe45bc779132642644",
+                            "box": null,
+                            "actual": "class/03.Class3/g.html",
+                            "student_visible": false
+                        },
+                        "h.html": {
+                            "key": "8d8731658e01fd7904367792b7a8139c74201617",
+                            "box": null,
+                            "actual": "class/03.Class3/h.html",
+                            "student_visible": true
+                        },
+                        "homework.html": {
+                            "key": "21b7b1893eb528cc0453895251d455e055169a8a",
+                            "box": "homework",
+                            "actual": "class/03.Class3/homework.html",
+                            "student_visible": true
+                        },
+                        "i.html": {
+                            "key": "45c3ad00ed59e78da81cb32b9a4291a3e519f192",
+                            "box": null,
+                            "actual": "class/03.Class3/i.html",
+                            "student_visible": true
+                        },
+                        "index.html": {
+                            "key": "227d599edb4a807e4283efca73ec120931bf8b59",
+                            "box": "title",
+                            "actual": "class/03.Class3/index.html",
+                            "student_visible": true
+                        },
+                        "j.html": {
+                            "key": "96eea50657355ce5177b253813cbf20e34ebf7e8",
+                            "box": null,
+                            "actual": "class/03.Class3/j.html",
+                            "student_visible": false
+                        },
+                        "k.html": {
+                            "key": "7de2827988228389aa88a4026486466fb98ced4a",
+                            "box": null,
+                            "actual": "class/03.Class3/k.html",
+                            "student_visible": true
+                        },
+                        "l.html": {
+                            "key": "e3a6130c67554a8daa675c912d799b2da0434e5e",
+                            "box": null,
+                            "actual": "class/03.Class3/l.html",
+                            "student_visible": false
+                        },
+                        "m.html": {
+                            "key": "4d8ed51c9f5cac3fa59ded07f48a772d24949c4a",
+                            "box": null,
+                            "actual": "class/03.Class3/m.html",
+                            "student_visible": true
+                        },
+                        "n.html": {
+                            "key": "7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a",
+                            "box": null,
+                            "actual": "class/03.Class3/n.html",
+                            "student_visible": true
+                        },
+                        "notes.html": {
+                            "key": "d5bee6983ca06155431985c724ea74b224fd3370",
+                            "box": "notes",
+                            "actual": "class/03.Class3/notes.html",
+                            "student_visible": false
+                        },
+                        "reading.html": {
+                            "key": "06f2eb186a34ce8e613d8a226a805657778a4960",
+                            "box": "reading",
+                            "actual": "class/03.Class3/reading.html",
+                            "student_visible": false
+                        },
+                        "sub/o.html": {
+                            "key": "da01bcb29449fcb708a75d8b226863cf55f76b9f",
+                            "box": null,
+                            "actual": "class/03.Class3/sub/o.html",
+                            "student_visible": false
+                        },
+                        "v.html": {
+                            "key": "cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2",
+                            "box": null,
+                            "actual": "shared/v.html",
+                            "student_visible": false
+                        }
+                    }
+                }
+            ],
+            "exam": [
+                {
+                    "number": 1,
+                    "dir": "01.Exam1",
+                    "name": "Exam1",
+                    "date": "2018-09-05",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "6c886b3a76783ae97599718b4dbd899e809348f0",
+                            "box": "title",
+                            "actual": "exam/01.Exam1/index.html",
+                            "student_visible": true
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Exam2",
+                    "name": "Exam2",
+                    "date": "2018-09-07",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "e29744eaf6947472e4cb53342053a0eb8b63f420",
+                            "box": "title",
+                            "actual": "exam/02.Exam2/index.html",
+                            "student_visible": true
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Exam3",
+                    "name": "Exam3",
+                    "date": null,
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "ebd0265ca89e44559ee8c09ac7e121a6031752b6",
+                            "box": "title",
+                            "actual": "exam/03.Exam3/index.html",
+                            "student_visible": false
+                        }
+                    }
+                }
+            ],
+            "lab": [
+                {
+                    "number": 1,
+                    "dir": "01.Lab1",
+                    "name": "Lab1",
+                    "date": "2018-08-22",
+                    "boxes": {
+                        "notes": "notes.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "79f18a0572200266d2feb83e60d448f4e0f1ad0a",
+                            "box": "title",
+                            "actual": "lab/01.Lab1/index.html",
+                            "student_visible": true
+                        },
+                        "notes.html": {
+                            "key": "57f6fe45dd3dd166a36602253d87bd336a75b97f",
+                            "box": "notes",
+                            "actual": "lab/01.Lab1/notes.html",
+                            "student_visible": false
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Lab2",
+                    "name": "Lab2",
+                    "date": "2018-08-24",
+                    "boxes": {
+                        "notes": "notes.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "9f1a985153dabbd047f5a03572b16aecc670b066",
+                            "box": "title",
+                            "actual": "lab/02.Lab2/index.html",
+                            "student_visible": true
+                        },
+                        "notes.html": {
+                            "key": "e0018ca015ead236dfd3a60f377e83e9d5dfa1f8",
+                            "box": "notes",
+                            "actual": "lab/02.Lab2/notes.html",
+                            "student_visible": false
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Lab3",
+                    "name": "Lab3",
+                    "date": "2018-08-29",
+                    "boxes": {
+                        "notes": "notes.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "a51a25a18e9d472b0954517ba761568430dfbc15",
+                            "box": "title",
+                            "actual": "lab/03.Lab3/index.html",
+                            "student_visible": true
+                        },
+                        "notes.html": {
+                            "key": "b164de04444e009187a8fe57ac0011b032cce016",
+                            "box": "notes",
+                            "actual": "lab/03.Lab3/notes.html",
+                            "student_visible": false
+                        }
+                    }
+                }
+            ]
+        },
+        "days": {
+            "2018-08-20": [
+                {
+                    "type": "class",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-22": [
+                {
+                    "type": "lab",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-24": [
+                {
+                    "type": "lab",
+                    "number": 2,
+                    "combined": false
+                }
+            ],
+            "2018-08-27": [
+                {
+                    "type": "class",
+                    "number": 2,
+                    "combined": false
+                }
+            ],
+            "2018-08-29": [
+                {
+                    "type": "lab",
+                    "number": 3,
+                    "combined": false
+                }
+            ],
+            "2018-09-03": [
+                {
+                    "type": "class",
+                    "number": 3,
+                    "combined": false
+                }
+            ],
+            "2018-09-05": [
+                {
+                    "type": "exam",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-09-07": [
+                {
+                    "type": "exam",
+                    "number": 2,
+                    "combined": false
+                }
+            ]
+        }
+    }
+}

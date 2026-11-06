@@ -12,14 +12,16 @@ This repository is being built one milestone at a time. See `MILESTONES.md` (on 
 
 ## Status
 
-Milestone 3 (content and schedule): Cal5 reads the configuration (`calendar.ini.php`, or a
-translated v4 `calendar.php`), finds every event and file of the course, and builds the
-calendar exactly as v4 does. It does not serve course pages yet. For a course, run these from
-its directory:
+Milestone 4 (access rules): Cal5 reads the configuration (`calendar.ini.php`, or a translated
+v4 `calendar.php`), finds every event and file, builds the calendar, and decides what students
+may see, exactly as v4 does. It adds release times to the minute, re-lock ranges, and
+meeting-relative rules (`docs/design/access-rules.md`). It does not serve course pages yet.
+For a course, run these from its directory:
 
 ```bash
 php calendar/bin/cal5 check        # validate and summarise the configuration
 php calendar/bin/cal5 events       # every event: date, directory, and the file in each box
+php calendar/bin/cal5 access       # what students can see now (or --at "2026-09-14 13:30")
 php calendar/bin/cal5 translate    # write calendar.ini.php from a v4 calendar.php
 php calendar/bin/cal5 hash-password
 ```

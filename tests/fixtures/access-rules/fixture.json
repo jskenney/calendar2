@@ -1,0 +1,12 @@
+{
+  "description": "Every v4 release-rule form (fixed dates including impossible ones, +N/-N, +weekday/-weekday, sentinels, duplicates) and every step of the rule precedence, each set up so a more specific target decides the opposite of a less specific one. Outcomes are fixed until January 2046 (2018, 2099, or +9999 days). A 5-digit day count is ignored, as v4 does. exam 3 is not on the calendar.",
+  "entry": "calendar.php",
+  "secret": "9876543210abcdef9876543210abcdef9876543210abcdef9876543210abcdef",
+  "password": "rulespass",
+  "types": ["class", "lab", "exam"],
+  "markers": { "pattern": "AR-[A-Za-z0-9-]+" },
+  "pages": ["home"],
+  "views": ["calendar_display"],
+  "searches": [],
+  "extra_requests": {}
+}

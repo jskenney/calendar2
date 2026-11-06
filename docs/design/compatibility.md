@@ -109,4 +109,5 @@ bug, unless it is added to this table and agreed in a PR.
 
 | Found in | Decision |
 |---|---|
+| Milestone 4 (access rules) | v4 checked a virtual file's rules under its virtual name for the calendar, but under its real path when serving it. Cal5 requires both to allow the file. This only matters when a rule names a virtual file, and Cal5 is then the stricter of the two. |
 | Milestone 1 recording (kitchen-sink) | v4 let students download the **source** of `.php` files in event directories (for example `<calphp>` scripts). Fixed in calendar-core 4.6.20261106 (jskenney/calendar-core#20): students get nothing, `<calphp>` still runs the script, and the instructor can still download it. Cal5 follows the fixed behaviour, and the recorded v4 results use that commit. |

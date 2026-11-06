@@ -19,12 +19,15 @@ Instructors always see everything. Their view shows each file's window ("opens M
 |---|---|
 | `target M D` | Opens on month `M`, day `D` of the course year (`$YEAR`). |
 | `target M D Y` | Opens on that date. `1 1 1999` = always visible; `99 99 9999` = never visible. |
+| | v4's own formula is kept: an impossible day of a real month (`2 30`) opens on the 1st of the next month, `0` as month or day means January / the 1st, and a month above 12 or a day above 31 never opens. |
 | `target +N` / `target -N` | Opens `N` days after / before the event's calendar date. `+0` = on the day. |
 | `target +monday` / `target -monday` | Opens on the next Monday after the event date / on the Monday on or before it. Full names or 3-letter abbreviations. |
 
-Dates open at **00:00** (v4 compared whole days). Blank lines and `#` comments are ignored
-(calendar-core 4.5). Lines are tab or whitespace separated. Use tabs for paths containing
-spaces.
+Dates open at **00:00** (v4 compared whole days; its `+N`/`-N` rules opened one second after
+midnight, which Cal5 rounds to midnight). Day counts have at most 4 digits (9999 days is
+about 27 years); v4 ignored longer ones, and so does Cal5. Blank lines and `#` comments are
+ignored (calendar-core 4.5). Lines are tab or whitespace separated. Use tabs for paths
+containing spaces.
 
 ### Targets and precedence
 
@@ -47,7 +50,13 @@ file decides:
 If the same target appears twice, the later line wins (v4 behaviour). If no target matches,
 the file is visible. Events that are not on the calendar are never shown to students
 (calendar-core 4.5 behaviour). Rules are checked whenever a file is served, not only when the
-calendar is drawn.
+calendar is drawn. If the access file exists but can not be read, students see nothing (v4).
+
+**Virtual files** are checked under their virtual name **and** under the path of their real
+file, and must be allowed by both. v4 used the virtual name for the calendar and the real path
+when serving, so a rule naming only one of them hid the link but still served the file (or the
+other way round). Cal5 applies the stricter result everywhere. The two only differ when a rule
+names a virtual file.
 
 ## Extended syntax (Cal5)
 
@@ -112,18 +121,35 @@ class/instructor            never
 Content inside `<postmeeting>...</postmeeting>` is shown to students once the event's meeting
 is over:
 
-- `features.postmeeting = end` (the default for new configs): at the meeting's end time.
+- `features.postmeeting = end` (the default for new configs): at the meeting's end time, or at
+  the end of the event's day when it has no meeting time.
+- `features.postmeeting = off`: always shown (v4 without `$REVEALHOUR`).
 - `features.postmeeting = 13:00`: at that time on the event's date. v4's `$REVEALHOUR = 13`
-  translates to this.
+  translates to this (`24:00` = the end of the day).
+- Events that are not on the calendar keep their `<postmeeting>` content hidden.
 
-## Implementation notes (Milestone 4)
+## Checking rules: `bin/cal5 access`
 
-- `AccessRuleParser` produces `Rule { target, open: When, close: ?When, line }`.
-  `AccessPolicy::window(File, Event)` returns `[open, close]` as `DateTimeImmutable`, and
-  `isVisible(File, Event, now)` decides.
-- The clock is injected (`Clock` interface), so tests can check minute boundaries
-  deterministically.
-- The compatibility suite runs every v4 rule form against both v4 and Cal5 at fixed dates.
-  Unit tests cover the new forms: minute boundaries, the end of a range, DST changes
-  (America/New_York in March and November), a year boundary, and `start`/`end` without
-  meeting times.
+```bash
+php calendar/bin/cal5 access                          # every file: visible/hidden now, its window and rule
+php calendar/bin/cal5 access --at "2026-09-14 13:30"  # as students would see it at that time
+php calendar/bin/cal5 access --json
+```
+
+## Implementation (milestone 4)
+
+- `AccessRuleParser` turns each line into a `Rule { target, open, close, line }`. `open` and
+  `close` are `When` objects: `AlwaysWhen`, `NeverWhen`, `LegacyDateWhen` (v4's formula),
+  `AbsoluteWhen`, `RelativeWhen`, `ForDurationWhen`.
+- `AccessPolicy` finds the rule for a file (v4 precedence) and gives a `Window`, which knows
+  whether it is open at a moment and describes itself for the instructor.
+  `visibleToStudents(event, file)` is the single decision used everywhere.
+- The clock is injected (`Clock`: `SystemClock`, `FixedClock`), so tests check exact minutes.
+- **Compared with v4:** the probe calls v4's own `get_file_security()` for every file of every
+  fixture, the way v4 calls it when serving. The `access-rules` fixture covers every v4 rule form
+  and every precedence step; Cal5 gives identical results for all five fixtures.
+- **Unit tests** (`tests/unit/AccessTest.php`) cover the new forms: minute boundaries, `until`
+  and `for` ranges, `start`/`end` with and without meeting times, weekday and time offsets,
+  daylight-saving changes (America/New_York in March and November), a year boundary, the v4
+  date formula, unmapped events, virtual files, an unreadable access file, `<postmeeting>`, and
+  3,000 fuzzed lines.

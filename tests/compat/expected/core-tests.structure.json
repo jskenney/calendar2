@@ -17,32 +17,38 @@
                         "homework.html": {
                             "key": "0b313da9c7e86bbd4a50371dd90a8ae8eebd3b89",
                             "box": "homework",
-                            "actual": "class/01.Intro/homework.html"
+                            "actual": "class/01.Intro/homework.html",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "0acfcc99967f69d68e75a834d580a4a44f1f88d9",
                             "box": "title",
-                            "actual": "class/01.Intro/index.html"
+                            "actual": "class/01.Intro/index.html",
+                            "student_visible": true
                         },
                         "inside-link.html": {
                             "key": "b5ebbbd102ee6fcfd6d5e40fdfa68ea26adb255e",
                             "box": null,
-                            "actual": "class/02.Second/index.html"
+                            "actual": "class/02.Second/index.html",
+                            "student_visible": true
                         },
                         "pic.png": {
                             "key": "07bc7563a24503f4f8ba6d9bf63c0f2ae52f2cd8",
                             "box": null,
-                            "actual": "class/01.Intro/pic.png"
+                            "actual": "class/01.Intro/pic.png",
+                            "student_visible": true
                         },
                         "sub/visible.txt": {
                             "key": "c22eff228b71f8de09a58b305388713473995628",
                             "box": null,
-                            "actual": "class/01.Intro/sub/visible.txt"
+                            "actual": "class/01.Intro/sub/visible.txt",
+                            "student_visible": true
                         },
                         "extra.html": {
                             "key": "e32ab91fd5edd177c2460b84195555120c89eb55",
                             "box": null,
-                            "actual": "shared docs/extra file.html"
+                            "actual": "shared docs/extra file.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -58,17 +64,20 @@
                         "homework.12.31.html": {
                             "key": "3f505cb96553c74637d8ddbf79cd1a0776ff0749",
                             "box": null,
-                            "actual": "class/02.Second/homework.12.31.html"
+                            "actual": "class/02.Second/homework.12.31.html",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "93c15681bb0ea8ca83007112d0ccf07b3ee6053f",
                             "box": "title",
-                            "actual": "class/02.Second/index.html"
+                            "actual": "class/02.Second/index.html",
+                            "student_visible": true
                         },
                         "pic.png": {
                             "key": "61658ee1e1c3beab539963d0b2517a7f32511dd5",
                             "box": null,
-                            "actual": "class/02.Second/pic.png"
+                            "actual": "class/02.Second/pic.png",
+                            "student_visible": true
                         }
                     }
                 },
@@ -84,7 +93,8 @@
                         "index.html": {
                             "key": "b75e2c7e92124d1d0ca49ca60604783dd1e78a7a",
                             "box": "title",
-                            "actual": "class/03.Intro.Part2/index.html"
+                            "actual": "class/03.Intro.Part2/index.html",
+                            "student_visible": false
                         }
                     }
                 },
@@ -101,32 +111,38 @@
                         "homework.md": {
                             "key": "09df39533dd1a2bf00de157496eedac80ff354b1",
                             "box": "homework",
-                            "actual": "class/04.Markdown/homework.md"
+                            "actual": "class/04.Markdown/homework.md",
+                            "student_visible": true
                         },
                         "index.md": {
                             "key": "a3c137b0d11d60b84f9b65908136c5aa8d9857eb",
                             "box": "title",
-                            "actual": "class/04.Markdown/index.md"
+                            "actual": "class/04.Markdown/index.md",
+                            "student_visible": true
                         },
                         "notes.md": {
                             "key": "f7eef30956733fb353863010d7d30a5633d727a4",
                             "box": null,
-                            "actual": "class/04.Markdown/notes.md"
+                            "actual": "class/04.Markdown/notes.md",
+                            "student_visible": true
                         },
                         "part.md": {
                             "key": "ed41e191d88f6838157a18bd4b3d7af1ee9fba74",
                             "box": null,
-                            "actual": "class/04.Markdown/part.md"
+                            "actual": "class/04.Markdown/part.md",
+                            "student_visible": true
                         },
                         "pic.png": {
                             "key": "3ee8700e8a0978defcef4c25f096fb57cc0431fd",
                             "box": null,
-                            "actual": "class/04.Markdown/pic.png"
+                            "actual": "class/04.Markdown/pic.png",
+                            "student_visible": true
                         },
                         "slides.pdf": {
                             "key": "723c3fbe0e3957188beb751f1714f39afe1aac20",
                             "box": "title",
-                            "actual": "class/04.Markdown/slides.pdf"
+                            "actual": "class/04.Markdown/slides.pdf",
+                            "student_visible": true
                         }
                     }
                 }
@@ -144,7 +160,8 @@
                         "index.html": {
                             "key": "4bb250e70f0068d906962deee7ac8b159083a241",
                             "box": "title",
-                            "actual": "exam/01.Mid/index.html"
+                            "actual": "exam/01.Mid/index.html",
+                            "student_visible": false
                         }
                     }
                 },
@@ -160,7 +177,8 @@
                         "index.html": {
                             "key": "bb6525506f016cb5d0ccc542a94df5e972a85475",
                             "box": "title",
-                            "actual": "exam/02.Mid2/index.html"
+                            "actual": "exam/02.Mid2/index.html",
+                            "student_visible": false
                         }
                     }
                 },
@@ -176,7 +194,8 @@
                         "index.html": {
                             "key": "dc9f1c54b0f2704622092f765b688a3784da80c2",
                             "box": "title",
-                            "actual": "exam/03.Secret/index.html"
+                            "actual": "exam/03.Secret/index.html",
+                            "student_visible": false
                         }
                     }
                 }
@@ -194,7 +213,8 @@
                         "index.html": {
                             "key": "d17926c1f60e3aa1be05965474a510c28fb780d5",
                             "box": "title",
-                            "actual": "final-exam/01.Final/index.html"
+                            "actual": "final-exam/01.Final/index.html",
+                            "student_visible": true
                         }
                     }
                 }
@@ -212,7 +232,8 @@
                         "index.html": {
                             "key": "4ab117feab252afc4b0a5260acc4e30b25e8a41a",
                             "box": "title",
-                            "actual": "lab/1.Alpha/index.html"
+                            "actual": "lab/1.Alpha/index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -228,7 +249,8 @@
                         "index.html": {
                             "key": "5399e6ecdd9682062757495d1e7e4ec2dcbb79c8",
                             "box": "title",
-                            "actual": "lab/2.Beta/index.html"
+                            "actual": "lab/2.Beta/index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -244,7 +266,8 @@
                         "index.html": {
                             "key": "36a2fa006d9c4bee6ab1a3eb144b7e42f39119f3",
                             "box": "title",
-                            "actual": "lab/10.Gamma/index.html"
+                            "actual": "lab/10.Gamma/index.html",
+                            "student_visible": true
                         }
                     }
                 }

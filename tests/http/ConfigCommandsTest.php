@@ -186,6 +186,32 @@ final class ConfigCommandsTest extends TestCase
         $this->assertContains('Not on the calendar (students never see these): exam 3 (03.Secret)', $out);
     }
 
+    public function testAccessCommand(): void
+    {
+        $course = $this->install('access-rules');
+        [$code, $out, $err] = self::cal5($course, 'access');
+        $this->assertSame(0, $code);
+        $this->assertContains('hidden  class          1  index.html               never opens   [class_1 99 99 9999]', $out);
+        $this->assertContains('visible class          1  homework.html            opens Fri 1 Jan 1999   [class/homework 1 1 1999]', $out);
+        $this->assertContains('hidden  exam           3  index.html               not on the calendar (students never see it)', $out);
+        $this->assertContains('cal4.access:37: can not understand "line is not a rule"', $err);
+
+        [$code, $out] = self::cal5($course, 'access --at="2046-02-01 00:00" --json');
+        $data = json_decode($out, true);
+        $this->assertSame(0, $code);
+        $rows = [];
+        foreach ($data['files'] ?? [] as $row) {
+            $rows[$row['type'] . ' ' . $row['event'] . ' ' . $row['file']] = $row;
+        }
+        $this->assertSame(true, $rows['class 2 index.html']['visible'] ?? null, '+9999 days has passed in 2046');
+        $this->assertTrue(str_starts_with((string) ($rows['class 2 index.html']['opens'] ?? ''), '2046-01-11T00:00:00'), 'opens 2018-08-27 + 9999 days');
+        $this->assertSame(false, $rows['class 1 index.html']['visible'] ?? null);
+
+        [$code, , $err] = self::cal5($course, 'access --at=whenever');
+        $this->assertSame(2, $code);
+        $this->assertContains('--at: expected a time', $err);
+    }
+
     public function testHashPassword(): void
     {
         [$code, $out] = self::cal5($this->install('sample'), 'hash-password --stdin', "s3cret!\n");

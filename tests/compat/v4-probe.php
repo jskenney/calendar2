@@ -22,7 +22,29 @@ ob_start();
 require getenv('CAL5_PROBE_ENTRY') ?: 'calendar.php';
 ob_end_clean();
 
+// What a student may see: v4's own get_file_security() for every file, called the way
+// v4 calls it when serving a file ($other): the event's calendar date, its number, the
+// file's category and "filename" (the real path for virtual files).  Events that are
+// not on the calendar are hidden from students (calendar-core 4.6).
+$studentVisible = [];
+foreach (($files ?? []) as $type => $dirs) {
+    $number = 0;
+    foreach ($dirs as $dir => $dirFiles) {
+        $number++;
+        $map = $events_list['map'][$type][$number] ?? null;
+        foreach ($dirFiles as $name => $info) {
+            if (!is_array($map)) {
+                $studentVisible[$type][$number][$name] = false;
+                continue;
+            }
+            $x = get_file_security($YEAR, $map[0], $map[1], $type, $number, $info['category'], $info['filename'], $access);
+            $studentVisible[$type][$number][$name] = (bool) $x[0];
+        }
+    }
+}
+
 echo json_encode([
+    'student_visible' => $studentVisible,
     'instructor' => $INSTRUCTOR ?? null,
     'year' => $YEAR ?? null,
     'files' => $files ?? null,

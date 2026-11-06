@@ -22,10 +22,11 @@ Each directory is a complete course used by the tests and by the compatibility r
 | `sample` | The v4 sample course from the `calendar` repository, using its 2018 `calendar.php`. Content is verbatim, apart from `SAMPLE-*` marker lines and a fixed secret (calendar-core 4.5+ refuses the published sample secret). |
 | `core-tests` | The course built by calendar-core 4.6's `tests/run_tests.php`, including its variant entry files. |
 | `kitchen-sink` | Sets every v4 variable and uses every tag, box type and release-rule form. Every piece of content carries a `KS-*` marker. |
+| `access-rules` | Every v4 release-rule form (including impossible dates, sentinels, duplicates and a too-long day count) and every step of the rule precedence, each arranged so a more specific target decides the opposite of a less specific one. Outcomes are fixed until January 2046. |
 | `edge-cases` | Schedule and scanner edge cases: chained `$COMBINE` rules and one for a type without material, overrides before the start / on a Sunday / on an invalid date, `04.` among `1.`-`10.`, an empty event directory, a type directory without events, files named `9` and `10`, hidden and symlinked subdirectories, a link outside the course, and virtual files that replace a file, miss an event or miss their file. |
 
-All semesters are in the past (2018), and release rules use either past dates or dates that
-never arrive (`12 31 2099`, `99 99 9999`). v4 has no way to fake the clock, so this keeps
+All semesters are in the past (2018-2019), and release rules use either past dates or dates far
+in the future (`12 31 2099`, `99 99 9999`, `+9999` days). v4 has no way to fake the clock, so this keeps
 the recorded v4 results identical no matter when the tests run. Time-dependent behaviour is
 tested against Cal5's injectable clock from milestone 4 on.
 

@@ -1,0 +1,2995 @@
+{
+    "fixture": "access-rules",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "requests": [
+        {
+            "id": "student calendar.php?",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?load=home",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "load=home",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?show=calendar_display",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "show=calendar_display",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=exam&event=1",
+                    "type=exam&event=2",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=class&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=class&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-answers"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-homework"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-answers"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-homework"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-notes"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-a"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-answers"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-b"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-c"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-d"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-e"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-f"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-h"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-homework"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-i"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-k"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-m"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-n"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab1-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab2-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab1-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab2-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam1-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam2-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam1-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam2-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?load=home",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "load=home",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?show=calendar_display",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "show=calendar_display",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1",
+                    "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=exam&event=1",
+                    "type=exam&event=2",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-index"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-index"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-index"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=class&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=class&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-answers"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-homework"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-index"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-notes"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class1-reading"
+                ],
+                "keyed_links": [
+                    "key=45fae9b817d5b9010e0c76049067145656b20bed&type=class&event=1",
+                    "key=5d66691969713a715d7d999094514efe61e94b15&type=class&event=1",
+                    "key=90bc64239438bda6e288ae4396e6a1597b563e68&type=class&event=1",
+                    "key=9966999eb0509d4b5bf6aa00e03749bbd4f84ffc&type=class&event=1",
+                    "key=de25077acf9b82a563507bf05c2aa7ad7b744f1b&type=class&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-answers"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-homework"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-index"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-notes"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class2-reading"
+                ],
+                "keyed_links": [
+                    "key=82ae71058b65543e4bcc5a8eaf3cf5c6374cb1d5&type=class&event=2",
+                    "key=c10286264188474d3eab7ff347fbe9092e7d3afa&type=class&event=2",
+                    "key=d1c302feb4512722212425c6e9e3b4b50fff8e5c&type=class&event=2",
+                    "key=e2120e32faf21be94b5b2700b98403298536d0fc&type=class&event=2",
+                    "key=e6fe0db4407c561378dc1feb9771488d9c184f1b&type=class&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-a"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-answers"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-b"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-c"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-d"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-e"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-f"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-g"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-h"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-homework"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-i"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-index"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-j"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-k"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-l"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-m"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-n"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-notes"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-reading"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-class3-sub-o"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab1-index"
+                ],
+                "keyed_links": [
+                    "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+                    "key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab2-index"
+                ],
+                "keyed_links": [
+                    "key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+                    "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab3-index"
+                ],
+                "keyed_links": [
+                    "key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+                    "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab1-index"
+                ],
+                "keyed_links": [
+                    "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+                    "key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab1-notes"
+                ],
+                "keyed_links": [
+                    "key=57f6fe45dd3dd166a36602253d87bd336a75b97f&type=lab&event=1",
+                    "key=79f18a0572200266d2feb83e60d448f4e0f1ad0a&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab2-index"
+                ],
+                "keyed_links": [
+                    "key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+                    "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab2-notes"
+                ],
+                "keyed_links": [
+                    "key=9f1a985153dabbd047f5a03572b16aecc670b066&type=lab&event=2",
+                    "key=e0018ca015ead236dfd3a60f377e83e9d5dfa1f8&type=lab&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab3-index"
+                ],
+                "keyed_links": [
+                    "key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+                    "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-lab3-notes"
+                ],
+                "keyed_links": [
+                    "key=a51a25a18e9d472b0954517ba761568430dfbc15&type=lab&event=3",
+                    "key=b164de04444e009187a8fe57ac0011b032cce016&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam1-index"
+                ],
+                "keyed_links": [
+                    "key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam2-index"
+                ],
+                "keyed_links": [
+                    "key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam3-index"
+                ],
+                "keyed_links": [
+                    "key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam1-index"
+                ],
+                "keyed_links": [
+                    "key=6c886b3a76783ae97599718b4dbd899e809348f0&type=exam&event=1"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam2-index"
+                ],
+                "keyed_links": [
+                    "key=e29744eaf6947472e4cb53342053a0eb8b63f420&type=exam&event=2"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-exam3-index"
+                ],
+                "keyed_links": [
+                    "key=ebd0265ca89e44559ee8c09ac7e121a6031752b6&type=exam&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "AR-virtual-v"
+                ],
+                "keyed_links": [
+                    "key=03017762aa5f8bd88b2ffcfe45bc779132642644&type=class&event=3",
+                    "key=06f2eb186a34ce8e613d8a226a805657778a4960&type=class&event=3",
+                    "key=21b7b1893eb528cc0453895251d455e055169a8a&type=class&event=3",
+                    "key=227d599edb4a807e4283efca73ec120931bf8b59&type=class&event=3",
+                    "key=372469c8a64ec28530231f3e8bd82ffb2c34239f&type=class&event=3",
+                    "key=39debd9d2d40c59ee64a5c3315512c8bff9aba61&type=class&event=3",
+                    "key=45c3ad00ed59e78da81cb32b9a4291a3e519f192&type=class&event=3",
+                    "key=4d8ed51c9f5cac3fa59ded07f48a772d24949c4a&type=class&event=3",
+                    "key=57105a923e7afe250c70a9e1bd3854e07a143bce&type=class&event=3",
+                    "key=6bc7448576f67357dbb715970225ef0f1c540e6e&type=class&event=3",
+                    "key=7de2827988228389aa88a4026486466fb98ced4a&type=class&event=3",
+                    "key=7f0c322a198ac2d5e6fb3fb65f55c773ba3d3c4a&type=class&event=3",
+                    "key=8d8731658e01fd7904367792b7a8139c74201617&type=class&event=3",
+                    "key=96eea50657355ce5177b253813cbf20e34ebf7e8&type=class&event=3",
+                    "key=a879445e693bb376e9a922fab72d5f3067111e6a&type=class&event=3",
+                    "key=cfa1f01a7af30cbe9a625c82f8034cc1362e6ac2&type=class&event=3",
+                    "key=d5bee6983ca06155431985c724ea74b224fd3370&type=class&event=3",
+                    "key=da01bcb29449fcb708a75d8b226863cf55f76b9f&type=class&event=3",
+                    "key=e3a6130c67554a8daa675c912d799b2da0434e5e&type=class&event=3",
+                    "key=eaf4b694cc68eaab64564a827516c47cda02d6c5&type=class&event=3",
+                    "key=f920cb7257920033cb4e5e9ed2b32bd1fd10e094&type=class&event=3"
+                ],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
+            }
+        }
+    ]
+}

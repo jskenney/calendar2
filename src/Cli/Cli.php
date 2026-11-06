@@ -47,6 +47,7 @@ final class Cli
                 'translate' => $this->translate($options, $arguments),
                 'check' => $this->check($options),
                 'events' => $this->events($options),
+                'access' => $this->access($options),
                 'hash-password' => $this->hashPassword($options),
                 default => $this->fail("Unknown command: $command\nRun: php calendar/bin/cal5 help", 2),
             };
@@ -77,6 +78,10 @@ Commands:
   events [--json] [--course DIR]
                  List every event: its directory, calendar date and the
                  file that fills each box (and content problems).
+  access [--at "YYYY-MM-DD HH:MM"] [--json] [--course DIR]
+                 When students can see each file (the release rule that
+                 applies, opening and locking times) and whether they can
+                 now, or at the --at time (course time zone).
   hash-password [--stdin]
                  Print a password hash for [security] password_hash.
   version        Print the Cal5 version
@@ -253,6 +258,64 @@ TXT);
             $this->say('Not on the calendar (students never see these): ' . implode(', ', $unscheduled));
         }
         foreach ($course->problems() as $problem) {
+            fwrite($this->err, 'warning: ' . $problem . "\n");
+        }
+        return 0;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function access(array $options): int
+    {
+        $courseDir = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        $result = $this->loadCourseConfig($courseDir);
+        if ($result->config === null) {
+            $this->problems($result);
+            return $this->fail('The configuration has errors (run: php calendar/bin/cal5 check).', 1);
+        }
+        $course = \Cal5\Course::load($courseDir, $result->config);
+        $clock = null;
+        if (is_string($options['at'] ?? null)) {
+            try {
+                $clock = \Cal5\Access\FixedClock::at((string) $options['at'], $result->config->course->timezone);
+            } catch (\Exception) {
+                return $this->fail('--at: expected a time such as "2026-09-14 13:30"', 2);
+            }
+        }
+        $policy = \Cal5\Access\AccessPolicy::forCourse($course, $clock);
+        $now = $policy->now();
+
+        $rows = [];
+        foreach ($course->content->types as $type => $events) {
+            foreach ($events as $event) {
+                foreach ($event->files as $name => $file) {
+                    $window = $policy->window($event, $file);
+                    $rows[] = [
+                        'type' => $type,
+                        'event' => $event->number,
+                        'file' => $name,
+                        'box' => $file->box,
+                        'rule' => $window->rule !== null ? (string) $window->rule : null,
+                        'line' => $window->rule?->line,
+                        'opens' => $window->opens()?->format(DATE_ATOM),
+                        'locks' => $window->closes()?->format(DATE_ATOM),
+                        'window' => $window->describe(),
+                        'visible' => $policy->visibleToStudents($event, $file, $now),
+                    ];
+                }
+            }
+        }
+
+        if (isset($options['json'])) {
+            $data = ['at' => $now->format(DATE_ATOM), 'files' => $rows, 'problems' => array_map('strval', $policy->problems())];
+            fwrite($this->out, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            return 0;
+        }
+        $this->say('Students, at ' . $now->setTimezone(new \DateTimeZone($result->config->course->timezone))->format('D j M Y H:i T') . ':');
+        foreach ($rows as $row) {
+            $this->say(sprintf('%-7s %-12s %3d  %-24s %s%s', $row['visible'] ? 'visible' : 'hidden', $row['type'], $row['event'], $row['file'],
+                $row['window'], $row['rule'] !== null ? "   [{$row['rule']}]" : ''));
+        }
+        foreach ($policy->problems() as $problem) {
             fwrite($this->err, 'warning: ' . $problem . "\n");
         }
         return 0;
