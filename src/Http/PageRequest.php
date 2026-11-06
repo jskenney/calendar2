@@ -37,6 +37,17 @@ final class PageRequest
         return new self($type, $event === null ? null : (int) $event, $key);
     }
 
+    /** A request for an event chosen by Cal5 (the start page's "today's lecture"). */
+    public static function forEvent(string $type, int $event): self
+    {
+        return new self($type, $event, null);
+    }
+
+    public static function none(): self
+    {
+        return new self(null, null, null);
+    }
+
     /** Was a parameter sent at all (also as an array, which counts as invalid)? */
     private static function sent(Request $request, string $name): bool
     {

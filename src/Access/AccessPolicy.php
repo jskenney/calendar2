@@ -47,6 +47,12 @@ final class AccessPolicy
         );
     }
 
+    /** The access file exists but can not be read (v4 then shows nothing: the error page). */
+    public function unreadable(): bool
+    {
+        return $this->rules->unreadable;
+    }
+
     /** @return list<Problem> */
     public function problems(): array
     {

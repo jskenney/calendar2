@@ -7,6 +7,10 @@ namespace Cal5\Config;
 /** Checks that apply to every configuration, however it was written. */
 final class ConfigChecks
 {
+    /** Advice shown by bin/cal5 check, not on every page (v4 courses can only store the password this way). */
+    public const PLAIN_TEXT_ADVICE = 'the instructor password is stored as plain text; consider password_hash '
+        . '(php calendar/bin/cal5 hash-password)';
+
     /**
      * @return array{errors: list<Problem>, warnings: list<Problem>}
      */
@@ -33,8 +37,7 @@ final class ConfigChecks
         if (!$security->loginEnabled()) {
             $warnings[] = new Problem('no instructor password is set, so the instructor login is disabled', $file);
         } elseif ($security->passwordHash === null) {
-            $warnings[] = new Problem('the instructor password is stored as plain text; consider password_hash '
-                . '(php calendar/bin/cal5 hash-password)', $file);
+            $warnings[] = new Problem(self::PLAIN_TEXT_ADVICE, $file);
         }
 
         if ($config->semester->end < $config->semester->start) {

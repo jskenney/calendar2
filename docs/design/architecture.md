@@ -33,9 +33,9 @@ calendar2/
 │   ├── Auth/                InstructorAuth, Session, Csrf, RateLimiter, LockMode
 │   ├── Render/              TagPipeline, PageContext, Markdown (converter), HeadingIndex,
 │   │                        CalphpRunner, LegacyScripts, Tags/ (one class per Cal4 tag)
-│   ├── Http/                Request, PageRequest (type/event/key), Download (streaming, Range)
-│   ├── View/                EventPage, CalendarPage/Model/View, Layout (head + header), Icons, CompatCss;
-│   │                        later: SearchView, StatusView
+│   ├── Http/                Request, PageRequest (type/event/key), Router/Route, Download, AccessLog
+│   ├── View/                EventPage, SitePage, CalendarModel/View, SearchView, StatusView,
+│   │                        DebugView, Layout (head + header), Icons, CompatCss, InstalledPage (set-up)
 │   ├── Audit/               CourseAudit (bin/cal5 audit)
 │   ├── Cli/                 bin/cal5 commands
 │   └── Support/             Html escaping, paths, natural sort, …
@@ -44,6 +44,7 @@ calendar2/
 │   ├── css/compat.css       Bootstrap/Skeleton classes and glyphicons for legacy course pages
 │   ├── js/cal5.js           menus, login hashing, highlight.js start (no dependencies, < 10 KB)
 │   └── vendor/              mathjax/ (+ its fonts), highlight/, ace/, legacy/ (jquery, datatables, chartjs)
+├── pages/                   Cal5's own ?load= pages: error, instructor (the guide)
 ├── images/web-icon.png      kept at the v4 path
 ├── docs/                    design documents, instructor guide, migration guide
 └── tests/

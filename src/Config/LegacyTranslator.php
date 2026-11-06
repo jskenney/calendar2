@@ -111,7 +111,9 @@ final class LegacyTranslator
         $checks = ConfigChecks::check($config, self::FILE);
         $errors = array_merge($this->errors, $checks['errors']);
         $warnings = array_merge($this->warnings, $checks['warnings']);
-        return new LoadResult(ConfigSource::Legacy, $errors === [] ? $config : null, $errors, $warnings);
+        // a configuration that was read but fails a check can still show the error page (v4)
+        $draft = $errors !== [] && $this->errors === [] ? $config->withSecret('cal5-refused-' . bin2hex(random_bytes(16))) : null;
+        return new LoadResult(ConfigSource::Legacy, $errors === [] ? $config : null, $errors, $warnings, $draft);
     }
 
     // ------------------------------------------------------------ settings

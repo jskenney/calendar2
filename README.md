@@ -12,20 +12,21 @@ This repository is being built one milestone at a time. See `MILESTONES.md` (on 
 
 ## Status
 
-Milestone 8 (legacy content): Cal5 reads the configuration (`calendar.ini.php`, or a translated
-v4 `calendar.php`), finds every event and file, builds the calendar, decides what students
-may see exactly as v4 does, logs the instructor in with v4's password and login flow, and
-serves event pages and their files (`.html`, `.md` and `.txt` pages with every Cal4 tag,
-MathJax and highlight.js; `.pdf`, `.ppt`, `.pptx` and other files as downloads). It has a
-new look: light and dark themes, a phone layout, menus that work without JavaScript, and
-**month, list and agenda calendars** that show the same events and links as v4, with today
-marked and release times for the instructor (`docs/design/ui.md`). Course pages written for
-v4's Bootstrap, Skeleton, glyphicons, jQuery, DataTables or Chart.js keep working
-(`docs/design/legacy-content.md`), and `bin/cal5 audit` reports what a course uses. Every event page, file
-and calendar view of the test courses matches v4. It adds release times to the minute,
-re-lock ranges, and meeting-relative rules (`docs/design/access-rules.md`). The home page,
-search and the instructor's status page arrive in milestone 9; until then those URLs show a
-summary page.
+Milestone 9 (every v4 URL): Cal5 is a complete drop-in replacement for a v4 course. It
+reads the configuration (`calendar.ini.php`, or a translated v4 `calendar.php`), finds every
+event and file, builds the calendar, decides what students may see exactly as v4 does, and
+logs the instructor in with v4's password and login flow. It serves:
+- event pages and files: `.html`, `.md` and `.txt` pages with every Cal4 tag, MathJax and
+  highlight.js; `.pdf`, `.ppt`, `.pptx` and other files as downloads;
+- the start page, `?load=` pages, and month, list and agenda calendars;
+- search and keyword search, and the instructor's status page with "view as a student";
+- error and lock pages, the debug view and the access log (`docs/design/routing.md`).
+
+**Every request of every test course gives what v4 gives** (602 requests). The new look has
+light and dark themes and a phone layout (`docs/design/ui.md`). Course pages written for
+v4's Bootstrap, Skeleton, jQuery, DataTables or Chart.js keep working
+(`docs/design/legacy-content.md`). New: release times to the minute, re-lock ranges and
+meeting-relative rules (`docs/design/access-rules.md`).
 For a course, run these from its directory:
 
 ```bash
@@ -42,10 +43,9 @@ php calendar/bin/cal5 hash-password
 ```bash
 php tests/run.php                                        # tests (PHP 8.3, no dependencies)
 tests/compat/fetch-v4.sh                                 # fetch v4 for the compatibility runner
-php tests/compat/compat.php check --impl=cal5 --scope=events     # event pages and files: must match v4
-php tests/compat/compat.php check --impl=cal5 --scope=calendars  # calendar views: must match v4
+php tests/compat/compat.php check --impl=cal5                    # every request: must match v4
+php tests/compat/compat.php check --impl=cal5 --scope=events     # only event pages and files (or --scope=calendars)
 node tests/browser/check.js [--screenshots=DIR]          # pages in Chromium (Playwright): no errors, no Bootstrap/jQuery
-php tests/compat/compat.php check --impl=cal5 --report   # Cal5 progress against v4 (all pages)
 ```
 
 See `CONTRIBUTING.md` for the workflow and coding standards.

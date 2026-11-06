@@ -175,16 +175,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Page ---------- */
 .cal5-page { flex: 1; width: 100%; max-width: var(--width); margin: 0 auto; padding: 1.75rem 1rem 3rem; overflow-wrap: break-word; }
 .cal5-page:focus { outline: none; }
-.cal5-page-event { max-width: min(var(--width), 62rem); }
+.cal5-page-event, .cal5-page-content { max-width: min(var(--width), 62rem); }
 .cal5-footer { max-width: var(--width); width: 100%; margin: 0 auto; padding: 1.25rem 1rem 2rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
 
 /* Course content.  Zero specificity (:where), so a course's own stylesheet and compat.css
    always win; tables with a class of their own are left to those styles, except the
    Markdown converter's (v4 gave them Bootstrap's "table table-bordered"). */
-:where(.cal5-page-event) :is(h1, h2, h3, h4) { line-height: 1.25; margin: 1.6em 0 0.6em; }
-:where(.cal5-page-event) h1 { font-size: 2rem; margin-top: 0.2em; }
-:where(.cal5-page-event) h2 { font-size: 1.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
-:where(.cal5-page-event) h3 { font-size: 1.2rem; }
+:where(.cal5-page-event, .cal5-page-content) :is(h1, h2, h3, h4) { line-height: 1.25; margin: 1.6em 0 0.6em; }
+:where(.cal5-page-event, .cal5-page-content) h1 { font-size: 2rem; margin-top: 0.2em; }
+:where(.cal5-page-event, .cal5-page-content) h2 { font-size: 1.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+:where(.cal5-page-event, .cal5-page-content) h3 { font-size: 1.2rem; }
 :where(.cal5-page) pre { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 0.85rem 1rem; overflow-x: auto; line-height: 1.45; }
 /* highlight.js themes pad code blocks themselves; the <pre> already has the padding */
 .cal5-page pre code.hljs { background: none; padding: 0; }
@@ -206,6 +206,38 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 .cal5-warnings ul { margin: 0.25rem 0 0; padding-left: 1.2rem; }
 .cal5-unlock { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1rem 0; padding: 0.85rem 1rem; border: 1px dashed var(--border-strong); border-radius: var(--radius); background: var(--surface); }
 .cal5-unlock button { padding: 0.45rem 0.9rem; border-radius: var(--radius-s); border: 1px solid var(--accent); background: var(--accent); color: var(--accent-text); cursor: pointer; }
+
+/* Notices, preview banner, lock page (milestone 9) */
+.cal5-notice { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0 0 1.25rem; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.cal5-notice .cal5-icon { margin-top: 0.2em; color: var(--accent); }
+.cal5-header + .cal5-notice, .cal5-notice-error { max-width: var(--width); margin: 1rem auto 0; }
+.cal5-notice-error { background: var(--warn-bg); color: var(--warn-text); border-color: var(--warn-border); width: calc(100% - 2rem); }
+.cal5-notice-error .cal5-icon { color: inherit; }
+.cal5-preview { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: center; padding: 0.45rem 1rem; background: var(--accent); color: var(--accent-text); font-weight: 600; }
+.cal5-preview a { color: inherit; }
+.cal5-lockpage { max-width: 34rem; margin: 3rem auto; text-align: center; }
+.cal5-lockpage h1 { display: flex; gap: 0.6rem; align-items: center; justify-content: center; font-size: 1.6rem; }
+
+/* Search, keywords, status, debug */
+.cal5-search-page { max-width: 34rem; margin-bottom: 1rem; }
+.cal5-search-page input { flex: 1; width: auto; padding: 0.55rem 0.9rem; }
+.cal5-search-page button { gap: 0.35rem; align-items: center; font-weight: 600; color: var(--accent); }
+.cal5-result-count { color: var(--muted); }
+.cal5-result-count mark { background: var(--today); color: var(--text); padding: 0 0.2em; border-radius: 3px; }
+.cal5-keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; list-style: none; }
+.cal5-keywords a { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); text-decoration: none; }
+.cal5-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.cal5-status, .cal5-debug table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.cal5-status th, .cal5-status td, .cal5-debug th, .cal5-debug td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.cal5-status th, .cal5-debug th { background: var(--surface-2); font-weight: 600; }
+.cal5-status tr:last-child td { border-bottom: 0; }
+.cal5-debug { margin-top: 2.5rem; padding: 1rem 1.25rem; border: 1px dashed var(--border-strong); border-radius: var(--radius); background: var(--surface); }
+.cal5-debug h2 { margin-top: 0; font-size: 1.2rem; }
+.cal5-debug h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+.cal5-debug td { font-family: var(--mono); font-size: 0.85rem; word-break: break-all; }
+.cal5-menu-extra { border-top: 1px solid var(--border); margin-top: 0.3rem; padding-top: 0.3rem; }
+.cal5-menu-extra a { display: flex !important; align-items: center; gap: 0.4rem; color: var(--accent) !important; }
+.cal5-viewbar .cal5-button { display: inline-flex; align-items: center; gap: 0.4rem; }
 
 /* ---------- Tags and badges ---------- */
 .cal5-tag { display: inline-block; padding: 0.05rem 0.45rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: var(--c-bg, var(--surface-2)); color: var(--c, var(--muted)); white-space: nowrap; }

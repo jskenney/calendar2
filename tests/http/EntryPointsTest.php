@@ -46,8 +46,8 @@ final class EntryPointsTest extends TestCase
             $client = $this->serve(Fixture::load($name)->install(self::CAL5));
             $response = $client->get('calendar.php');
             $this->assertSame(200, $response->status, "$name status");
-            $this->assertContains('data-config-source="legacy"', $response->body, "$name: v4 configuration detected");
-            $this->assertContains('data-config-state="ok"', $response->body, "$name: v4 configuration translated without errors");
+            $this->assertContains('data-cal5-version', $response->body, "$name: Cal5 runs");
+            $this->assertContains('class="cal5-header"', $response->body, "$name: the course's start page, not the set-up page");
             $this->assertNoPhpErrors($response, $name);
             $this->assertSame('nosniff', $response->header('X-Content-Type-Options'), "$name nosniff");
         }
@@ -57,21 +57,23 @@ final class EntryPointsTest extends TestCase
     {
         $fixture = Fixture::load('sample');
         $response = $this->serve($fixture->install(self::CAL5))->get('index.php'); // index.php -> calendar.php
-        $this->assertContains('SI123 Applied Something', $response->body);
+        $this->assertContains('SI123', $response->body);
+        $this->assertContains('Applied Something', $response->body);
+        $this->assertContains('SAMPLE-home', $response->body, 'the home page');
         $this->assertNotContains((string) $fixture->meta['secret'], $response->body);
         $this->assertNotContains((string) $fixture->meta['password'], $response->body);
     }
 
-    public function testInstalledPageSummarisesTheConfiguration(): void
+    public function testInstructorSeesConfigurationWarnings(): void
     {
-        $response = $this->serve(Fixture::load('kitchen-sink')->install(self::CAL5))->get('calendar.php');
-        $this->assertContains('2018-08-20 to 2018-12-31', $response->body);
-        $this->assertContains('mon class, wed lab, fri class', $response->body);
-        $this->assertContains('7 class, 3 lab, 1 exam, 1 final-exam', $response->body, 'events found');
-        $this->assertContains('12 of 12 events, on 13 days', $response->body, 'events on the calendar');
-        $this->assertContains('34 of 38 files now', $response->body, 'files students can see (as v4)');
-        $this->assertContains('1 warning(s)', $response->body, 'problems are counted');
-        $this->assertNotContains('plain text', $response->body, 'but their text is not shown on the page');
+        $course = Fixture::load('core-tests')->install(self::CAL5);
+        $client = $this->serve($course);
+        $student = $client->get('weak_secret.php?load=home');
+        $this->assertNotContains('the secret is weak', $student->body, 'students do not see warnings');
+        $client->get('weak_secret.php?password=testpass');
+        $page = $client->get('weak_secret.php?load=home');
+        $this->assertContains('the secret is weak', $page->body, 'the instructor does (v4 showed them on every page)');
+        $this->assertNotContains('stored as plain text', $page->body, 'but not the advice only bin/cal5 check gives');
     }
 
     public function testBrokenConfigurationShowsNoDetails(): void
@@ -81,17 +83,20 @@ final class EntryPointsTest extends TestCase
         file_put_contents($file, (string) preg_replace("/\\\$SECRET = '[^']*';/",
             "\\\$SECRET = 'A really long phrase that should be impossible to guess, you dont need to remember this...';",
             (string) file_get_contents($file)));
-        $response = $this->serve($course)->get('calendar.php');
-        $this->assertContains('data-config-state="error"', $response->body);
-        $this->assertContains('Configuration problem', $response->body);
-        $this->assertNotContains('sample value', $response->body);
+        $client = $this->serve($course);
+        $response = $client->get('calendar.php');
+        $this->assertContains('This course site is not set up correctly.', $response->body, 'the error page, in the usual layout (v4)');
+        $this->assertContains('class="cal5-header"', $response->body);
+        $this->assertNotContains('sample value', $response->body, 'the problem itself is not shown to students');
+        $this->assertNotContains('SAMPLE-class1', $client->get('calendar.php?type=class&event=1')->body, 'no content is served');
         $this->assertNoPhpErrors($response);
     }
 
     public function testCourseNameIsEscaped(): void
     {
         $response = $this->serve(Fixture::load('core-tests')->install(self::CAL5))->get('calendar.php');
-        $this->assertContains('TST101 Test &lt;b&gt;Course&lt;/b&gt;', $response->body);
+        $this->assertContains('Test &lt;b&gt;Course&lt;/b&gt;', $response->body);
+        $this->assertNotContains('<b>Course</b>', $response->body);
     }
 
     public function testNewCourseWithIniFile(): void

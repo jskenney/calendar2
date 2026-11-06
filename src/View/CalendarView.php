@@ -247,26 +247,33 @@ final class CalendarView
                 if (!$entry->scheduled->combined && $entry->folder === null) {
                     continue; // v4 lists only days with material (and what [combine] adds)
                 }
-                $today = $date === $this->model->today;
-                $html .= '<li class="cal5-row cal5-c' . $this->model->colour($entry->scheduled->type) . ($today ? ' cal5-today' : '') . '">';
-                if ($dated) {
-                    $html .= '<span class="cal5-row-date">' . ($i === 0 || $entries[0]->folder === null ? '<time datetime="' . $date . '">' . $day->format('D j M') . '</time>' : '') . ($today ? ' <span class="cal5-badge">today</span>' : '') . '</span>';
-                }
-                $html .= '<span class="cal5-tag calCore-cal-' . Html::escape(strtoupper($entry->scheduled->type)) . '">' . Html::escape(ucwords($entry->heading())) . '</span>'
-                    . '<span class="cal5-row-main">' . $this->title($entry);
-                if ($entry->boxes !== []) {
-                    $html .= '<ul class="cal5-boxes cal5-boxes-inline">';
-                    foreach ($entry->boxes as $box) {
-                        $html .= $this->boxItem($entry, $box);
-                    }
-                    $html .= '</ul>';
-                }
-                $html .= "</span></li>\n";
+                $html .= $this->row($date, $entry, $dated, $i === 0 || $entries[0]->folder === null);
             }
         }
         if ($open) {
             $html .= "</ol></section>\n";
         }
         return $html;
+    }
+
+    /** One row of the list views (and of search results). */
+    public function row(string $date, CalendarEntry $entry, bool $dated, bool $showDate = true): string
+    {
+        $day = new DateTimeImmutable($date);
+        $today = $date === $this->model->today;
+        $html = '<li class="cal5-row cal5-c' . $this->model->colour($entry->scheduled->type) . ($today ? ' cal5-today' : '') . '">';
+        if ($dated) {
+            $html .= '<span class="cal5-row-date">' . ($showDate ? '<time datetime="' . $date . '">' . $day->format('D j M') . '</time>' : '') . ($today ? ' <span class="cal5-badge">today</span>' : '') . '</span>';
+        }
+        $html .= '<span class="cal5-tag calCore-cal-' . Html::escape(strtoupper($entry->scheduled->type)) . '">' . Html::escape(ucwords($entry->heading())) . '</span>'
+            . '<span class="cal5-row-main">' . $this->title($entry);
+        if ($entry->boxes !== []) {
+            $html .= '<ul class="cal5-boxes cal5-boxes-inline">';
+            foreach ($entry->boxes as $box) {
+                $html .= $this->boxItem($entry, $box);
+            }
+            $html .= '</ul>';
+        }
+        return $html . "</span></li>\n";
     }
 }

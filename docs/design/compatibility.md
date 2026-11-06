@@ -57,8 +57,13 @@ students have saved.
 | `navbaronly` | Instructor file list | Same (status page) |
 | `password` | Login (plaintext or `sha256(password+nonce)`) | Same, plus hashed passwords (Milestone 5) |
 | `lock` | Code for `<lock code="">` sections | Same |
-| `debug` | Debug dump (needs `$DEBUG_MODE`) | Same gate |
-| `edit`, `editor`, `preview`, `csrf` | Built-in editor | **Removed.** `edit` is ignored; the page shows normally |
+| `debug` | Debug dump (needs `$DEBUG_MODE`) | Same gate; a readable summary of what Cal5 decided (no passwords, secrets or session values) |
+| `edit`, `editor`, `preview` | Built-in editor | **Removed.** `edit` is ignored; the page shows normally |
+| `as=student` | – | **New.** The instructor sees the page as a student would now (a banner leads back) |
+
+The routing rules, in v4's order, are in `docs/design/routing.md`. Since milestone 9 the
+compatibility suite compares every request of every fixture (602 requests) and CI requires
+all of them to match.
 
 Cookies and sessions: the cookie names (`cal4-<COURSE>`, `cal4-<COURSE>-nonce`), the session
 keys and, for plain-text passwords, v4's token (`sha1(secret . password . course . nonce . session id)`)
@@ -128,6 +133,8 @@ bringing the old stack back (`docs/design/legacy-content.md`):
 | `.txt` files | Shown as a page (escaped text in the layout); v4 sent `text/plain` | Readable, with the navbar; the text is the same |
 | Audio and video | Real content types (`video/mp4`, `audio/mpeg`, ...), shown inline; v4 sent an `application/octet-stream` attachment | They play in the browser |
 | `.jpg`/`.jpeg` | `image/jpeg`; v4 sent `image/jpg` | The registered type |
+| Error page | The configuration's problem itself is not shown on the page (v4 printed it); the instructor runs `bin/cal5 check` | Students do not see configuration details |
+| `?load=instructor` | Cal5's own short guide (v4: its instructor.html) | It describes Cal5 |
 | Instructor's month view | Day numbers link only days that have an event; v4 also linked days without material (`?navbaronly=1&type=holiday&event=`, a dead link) | No broken links |
 | jQuery, DataTables, Chart.js | Loaded on the pages that use them (`legacy_js = auto`), not on every page; jQuery 3.7.1 (v4: 3.6.3), Chart.js 2.9.4 (v4: 2.9.3), DataTables as in v4 | Smaller pages; same major versions, so course scripts keep working |
 | Bootstrap and Skeleton | Not loaded; `compat.css` re-implements the classes course pages use, glyphicons are drawn with Cal5's icons | A goal of the rebuild; `bin/cal5 audit` reports anything not covered |

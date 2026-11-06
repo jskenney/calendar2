@@ -20,7 +20,7 @@ final class ConfigLoader
             if (LegacyVariables::looksLikeV4($legacy)) {
                 $warnings = $result->warnings;
                 $warnings[] = new Problem('calendar.ini.php is used; the settings in calendar.php are ignored', self::INI_FILE);
-                return new LoadResult($result->source, $result->config, $result->errors, $warnings);
+                return new LoadResult($result->source, $result->config, $result->errors, $warnings, $result->draft);
             }
             return $result;
         }

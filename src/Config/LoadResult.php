@@ -16,6 +16,12 @@ final class LoadResult
         public readonly ?Config $config,
         public readonly array $errors,
         public readonly array $warnings,
+        /**
+         * When the configuration was read but fails a check (for example the published
+         * sample secret): the configuration with a random secret, so the course can show
+         * its error page around the usual header (v4 did the same).  Null otherwise.
+         */
+        public readonly ?Config $draft = null,
     ) {
     }
 
