@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Cal5\Tests\Compat;
+namespace Cal5\Compare;
 
 /**
  * Differences between v4 and Cal5 that were decided on (docs/design/compatibility.md,
  * "Intended differences").  Each rule turns the v4 observation into what Cal5 is
  * meant to answer instead, so the comparison stays strict about everything else.
+ * Used by the compatibility suite (tests/compat) and by bin/cal5 compare.
  */
 final class IntendedDifferences
 {
@@ -22,12 +23,13 @@ final class IntendedDifferences
     public static function apply(array $want, array $got): array
     {
         if (($want['kind'] ?? '') === 'download' && ($got['kind'] ?? '') === 'page'
-            && ($want['content_type'] ?? '') === 'text/plain' && isset($want['markers'])) {
+            && ($want['content_type'] ?? '') === 'text/plain' && (isset($want['markers']) || isset($want['text']))) {
             // .txt files are shown as a page in the layout (v4 sent them as text/plain):
-            // the same text must be there
+            // the same text must be there (markers in the test suite, the text in bin/cal5 compare)
+            $field = isset($want['markers']) ? 'markers' : 'text';
             return [
-                ['status' => $want['status'], 'markers' => $want['markers']],
-                ['status' => $got['status'], 'markers' => $got['markers'] ?? [], 'php_errors' => $got['php_errors'] ?? []],
+                ['status' => $want['status'], $field => $want[$field]],
+                ['status' => $got['status'], $field => $got[$field] ?? null, 'php_errors' => $got['php_errors'] ?? []],
             ];
         }
         if (($want['kind'] ?? '') === 'page' && isset($want['event_links'])) {

@@ -32,9 +32,13 @@ final class StatusView
                 . $this->summary();
         }
         $date = $this->course->schedule->dateOf($folder->type, $folder->number);
-        $event = CalendarModel::eventLink($this->entry, $folder->type, $folder->number);
         $html = '<div class="cal5-viewbar"><h1 class="cal5-viewbar-title">' . Html::escape(ucwords(str_replace('-', ' ', $folder->type)) . ' ' . $folder->number . ': ' . $folder->name) . '</h1>'
-            . '<a class="cal5-button" href="' . Html::escape($event . '&as=student') . '">' . Icons::svg('eye') . '<span>View as a student</span></a></div>'
+            // a form, not a link, so the page links exactly the events v4's page links
+            . '<form method="get" action="' . Html::escape($this->entry) . '" class="cal5-inline-form">'
+            . '<input type="hidden" name="type" value="' . Html::escape($folder->type) . '">'
+            . '<input type="hidden" name="event" value="' . $folder->number . '">'
+            . '<input type="hidden" name="as" value="student">'
+            . '<button type="submit" class="cal5-button">' . Icons::svg('eye') . '<span>View as a student</span></button></form></div>'
             . '<p class="cal5-note">' . Html::escape($date !== null ? 'On the calendar on ' . (new \DateTimeImmutable($date))->format('l j F Y') : 'Not on the calendar: students never see this event')
             . ' · directory ' . $folder->type . '/' . $folder->directory . '</p>';
         if ($folder->files === []) {

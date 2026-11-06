@@ -238,6 +238,8 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
 .cal5-menu-extra { border-top: 1px solid var(--border); margin-top: 0.3rem; padding-top: 0.3rem; }
 .cal5-menu-extra a { display: flex !important; align-items: center; gap: 0.4rem; color: var(--accent) !important; }
 .cal5-viewbar .cal5-button { display: inline-flex; align-items: center; gap: 0.4rem; }
+.cal5-inline-form { margin: 0; }
+.cal5-inline-form .cal5-button { font: inherit; cursor: pointer; }
 
 /* ---------- Tags and badges ---------- */
 .cal5-tag { display: inline-block; padding: 0.05rem 0.45rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: var(--c-bg, var(--surface-2)); color: var(--c, var(--muted)); white-space: nowrap; }

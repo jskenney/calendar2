@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cal5\Tests\Compat;
 
+use Cal5\Compare\IntendedDifferences;
 use Cal5\Tests\Fixture;
 use Cal5\Tests\HttpClient;
 use Cal5\Tests\Server;

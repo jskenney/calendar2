@@ -163,7 +163,7 @@ list, and the login form. Milestone 7 replaces its look; the links stay the same
 every event page and every file of every fixture, as a student and as the instructor, and
 compares the content markers, the keyed and event links on the page, and for files the content
 type, disposition and SHA-1. All 436 requests match; CI runs it strictly. The intended
-differences above are applied by `tests/compat/IntendedDifferences.php`, and nothing else is
+differences above are applied by `src/Compare/IntendedDifferences.php`, and nothing else is
 excused.
 
 ## Security baseline

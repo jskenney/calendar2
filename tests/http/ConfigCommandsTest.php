@@ -222,7 +222,7 @@ final class ConfigCommandsTest extends TestCase
         $this->assertContains('empty', $err);
     }
 
-    public function testCaptureNeedsThisCal5(): void
+    public function testChecksWorkBeforeSwitching(): void
     {
         $course = $this->install('sample');
         unlink("$course/calendar");
@@ -240,8 +240,9 @@ final class ConfigCommandsTest extends TestCase
         $out = (string) stream_get_contents($pipes[1]);
         $err = (string) stream_get_contents($pipes[2]);
         $code = proc_close($process);
-        $this->assertSame(1, $code);
-        $this->assertContains('is not this copy of Cal5', $err);
+        $this->assertSame(0, $code, "check works while calendar/ is still v4 ($err)");
+        $this->assertContains('Course:    SI123', $out);
         $this->assertNotContains('v4 ran', $out . $err, 'the other calendar_main.php is not run');
+        $this->assertSame([], glob(sys_get_temp_dir() . '/cal5-capture-*') ?: [], 'nothing is left behind');
     }
 }

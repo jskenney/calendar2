@@ -127,7 +127,7 @@ final class RoutingTest extends TestCase
         $this->assertContains('instructor.html', $status->body);
         $this->assertTrue((bool) preg_match('/instructor\.html.*?never/s', $status->body), 'release windows (*/instructor never)');
         $this->assertNotContains('KS-class1-index', $status->body, 'navbaronly: no page content (v4)');
-        $this->assertContains('href="calendar.php?type=class&amp;event=1&amp;as=student"', $status->body);
+        $this->assertContains('<input type="hidden" name="as" value="student">', $status->body, 'view as a student (a form, so no extra links)');
         $this->assertContains('Release status of these files', $instructor->get('calendar.php?type=class&event=1')->body, 'linked from the Files menu');
         $this->assertContains('Open an event', $instructor->get('calendar.php?show=calendar_file_selector')->body);
 
