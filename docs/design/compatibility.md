@@ -121,9 +121,13 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 | Year-crossing semesters | Supported | v4 could not show them |
 | Release times | Minute precision and ranges available | New feature; v4 rules unchanged |
 | Downloads | Streamed with `Range` support | Large files and video seeking work |
+| `.txt` files | Shown as a page (escaped text in the layout); v4 sent `text/plain` | Readable, with the navbar; the text is the same |
+| Audio and video | Real content types (`video/mp4`, `audio/mpeg`, ...), shown inline; v4 sent an `application/octet-stream` attachment | They play in the browser |
+| `.jpg`/`.jpeg` | `image/jpeg`; v4 sent `image/jpg` | The registered type |
 
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a
-bug, unless it is added to this table and agreed in a PR.
+bug, unless it is added to this table and agreed in a PR. The suite applies exactly these rules
+(`tests/compat/IntendedDifferences.php`).
 
 ## Decisions made
 

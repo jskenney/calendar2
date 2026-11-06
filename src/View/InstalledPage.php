@@ -13,7 +13,8 @@ use Cal5\Support\Html;
 use Cal5\Version;
 
 /**
- * Placeholder page until course pages exist (milestone 6): confirms Cal5 is
+ * Placeholder for the pages that do not exist yet (home page and calendar
+ * views, milestones 7-9): confirms Cal5 is
  * installed and summarises the configuration it loaded.  It shows counts of
  * problems, not their text, and never shows passwords, secrets or file paths.
  */

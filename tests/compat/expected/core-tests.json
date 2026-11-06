@@ -566,7 +566,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "4cc52a31d99055569051226b57a7e9f1e04a8c17"
+                "sha1": "4cc52a31d99055569051226b57a7e9f1e04a8c17",
+                "markers": [
+                    "VISIBLE-NESTED"
+                ]
             }
         },
         {
@@ -2271,7 +2274,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "4cc52a31d99055569051226b57a7e9f1e04a8c17"
+                "sha1": "4cc52a31d99055569051226b57a7e9f1e04a8c17",
+                "markers": [
+                    "VISIBLE-NESTED"
+                ]
             }
         },
         {

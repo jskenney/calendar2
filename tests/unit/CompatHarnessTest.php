@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cal5\Tests\Unit;
 
+use Cal5\Tests\Compat\IntendedDifferences;
 use Cal5\Tests\Compat\Observer;
 use Cal5\Tests\Compat\Requests;
 use Cal5\Tests\Compat\Runner;
@@ -40,6 +41,39 @@ final class CompatHarnessTest extends TestCase
         $this->assertSame(['status' => 200, 'kind' => 'download', 'content_type' => 'application/pdf', 'disposition' => 'inline', 'sha1' => sha1('%PDF')], $pdf);
         $ppt = $observer->observe(new Response(200, ['HTTP/1.1 200 OK', 'Content-Type: application/vnd.ms-powerpoint', 'Content-Disposition: attachment; filename="a.ppt"'], 'x'));
         $this->assertSame('attachment', $ppt['disposition']);
+        $text = $observer->observe(new Response(200, ['HTTP/1.1 200 OK', 'Content-Type: text/plain'], 'X'));
+        $this->assertSame([], $text['markers'], 'text downloads also record their markers');
+    }
+
+    public function testIntendedDifferences(): void
+    {
+        $txt = ['status' => 200, 'kind' => 'download', 'content_type' => 'text/plain', 'disposition' => 'inline', 'sha1' => 'x', 'markers' => ['M']];
+        $page = ['status' => 200, 'kind' => 'page', 'markers' => ['M'], 'keyed_links' => ['k'], 'event_links' => ['e'], 'php_errors' => []];
+        $this->assertSame([], Runner::compareOne('txt', $txt, $page), '.txt shown as a page with the same text');
+        $this->assertSame(1, count(Runner::compareOne('txt', $txt, ['markers' => []] + $page)), 'the text must be there');
+
+        $mp4 = ['status' => 200, 'kind' => 'download', 'content_type' => 'application/octet-stream', 'disposition' => 'attachment', 'sha1' => 's'];
+        $this->assertSame([], Runner::compareOne('mp4', $mp4, ['content_type' => 'video/mp4', 'disposition' => 'inline'] + $mp4));
+        $this->assertSame(2, count(Runner::compareOne('zip', $mp4, ['content_type' => 'application/zip', 'disposition' => 'inline'] + $mp4)), 'only audio and video');
+        $jpg = ['content_type' => 'image/jpg', 'disposition' => 'inline'] + $mp4;
+        $this->assertSame([], Runner::compareOne('jpg', $jpg, ['content_type' => 'image/jpeg'] + $jpg));
+        $this->assertSame([$page, $page], IntendedDifferences::apply($page, $page), 'pages are compared unchanged');
+    }
+
+    public function testEventsScope(): void
+    {
+        $fixture = Fixture::load('core-tests');
+        $in = static fn (string $query, string $entry = 'calendar.php'): bool => Requests::inScope(['entry' => $entry, 'query' => $query], 'events', $fixture);
+        $this->assertTrue($in('type=class&event=1'));
+        $this->assertTrue($in('key=' . str_repeat('a', 40) . '&type=class&event=1'));
+        $this->assertTrue($in('type=class&event=1&answers=yes&lock=x'));
+        $this->assertFalse($in(''));
+        $this->assertFalse($in('load=home'));
+        $this->assertFalse($in('type=class&event=1&show=calendar_display'), 'calendar views are milestone 9');
+        $this->assertFalse($in('type=class&event=02'), 'invalid requests show the home page');
+        $this->assertFalse($in('type=nosuch&event=1'));
+        $this->assertFalse($in('type=class&event=1', 'sample_secret.php'), 'error entries');
+        $this->assertTrue(Requests::inScope(['entry' => 'x', 'query' => ''], 'all', $fixture));
     }
 
     public function testObserverReportsPhpErrors(): void

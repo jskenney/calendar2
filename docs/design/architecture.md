@@ -30,10 +30,10 @@ calendar2/
 │   ├── Schedule/            Schedule, Event, MeetingTime
 │   ├── Access/              AccessRuleParser, Rule, When, AccessPolicy, Clock
 │   ├── Auth/                InstructorAuth, Session, Csrf, RateLimiter, LockMode
-│   ├── Render/              HtmlRenderer, MarkdownRenderer, TextRenderer, DownloadResponder,
-│   │                        Markdown (converter), Tags/ (one class per Cal4 tag)
-│   ├── Http/                Request, Response, Router (all v4 URL forms)
-│   ├── View/                Layout, Navbar, MonthView, ListView, SearchView, StatusView, templates/
+│   ├── Render/              TagPipeline, PageContext, Markdown (converter), HeadingIndex,
+│   │                        CalphpRunner, Tags/ (one class per Cal4 tag)
+│   ├── Http/                Request, PageRequest (type/event/key), Download (streaming, Range)
+│   ├── View/                EventPage, Layout (head + navbar), later: MonthView, ListView, SearchView, StatusView
 │   └── Support/             Html escaping, paths, natural sort, …
 ├── public/                  served to browsers as calendar/public/...
 │   ├── css/cal5.css         theme (light/dark, responsive, print)
@@ -99,20 +99,64 @@ explicit inputs, so it can be unit tested. The v4 shim is the only place that re
 
 `tests/compat check-structure` compares all of this with v4 for every fixture course.
 
-## Rendering
+## Rendering (milestone 6)
 
-- The renderer is chosen by **file extension**:
-  - `.html` → HTML renderer; `.htm` → HTML renderer without the layout (v4 `nocss`).
-  - `.md` → Markdown converter, then the HTML renderer.
-  - `.txt` → escaped text in `<pre class="cal5-text">` (wrapped, monospace) inside the layout.
-  - `.pdf` → inline download (the browser's PDF viewer).
-  - `.ppt` / `.pptx` and any other type → attachment download, with the correct content type.
-- **Tag pipeline:** an ordered list of `Tag` processors in v4's order: link rewriting →
-  replace → inject / codeinject (these three repeat, up to 5 passes, so injected files are
-  processed too) → postmeeting → inst → host → lock → student → ace → url. Each processor is
-  a small class with its own tests.
-- **Page assets:** MathJax and highlight.js are added to rendered pages. Ace's script tags are
-  added only when an `<ace>` tag is found. `compat.css` and legacy JS follow the config.
+**`View\EventPage`** answers `?type=T&event=N[&key=K]` and picks the file exactly as v4 does:
+
+| Request | File |
+|---|---|
+| key of a file of this event that the viewer may see | that file |
+| key that names no file anywhere in the course | the event's title file (v4's fallback) |
+| key of another event's file, or of a hidden file | nothing (an empty page) |
+| no key | the title file; for students only while it is visible |
+| any PHP script, for a student | nothing (calendar-core 4.6) |
+
+What happens next depends on the file's extension (`Content\FileKind`):
+
+- `.html` → the tag pipeline, inside the layout. `.htm` → the same, without the layout (v4
+  `nocss`).
+- `.md` → `Render\Markdown` (the v4 converter, unchanged output), in
+  `<div class="cal4-markdown">`, then the tag pipeline.
+- `.txt` → escaped text in `<pre class="cal5-text">` (wrapped, monospace) inside the layout.
+  v4 sent it as `text/plain` (an intended difference).
+- Anything else → **`Http\Download`**: v4's content types and inline/attachment choices
+  (`.pdf` inline, `.ppt`/`.pptx` attachments, ...), streamed in 64 KB chunks with
+  `Content-Length`, `Accept-Ranges` and single `Range` requests (206/416), and `HEAD`. Audio and
+  video get their real types and play inline; `.jpg` is `image/jpeg`.
+
+`?print` keeps the theme without the navbar, `?nocss` sends the content only, and `?navbaronly`
+shows the navbar without the content.
+
+**`Render\TagPipeline`** runs the Cal4 tags in v4's order, one class per tag in `Render\Tags\`:
+
+```
+(link rewriting -> replace -> inject -> codeinject) x up to 5 passes
+-> postmeeting -> inst -> host -> lock -> student -> tabs to 2 spaces -> ace -> url
+-> headings (section menu) -> calphp (runs the scripts)
+```
+
+Each tag sees a `PageContext`: the configuration, whether the viewer is the instructor, the
+request and session, the event's files the viewer may see (v4's `$other`), the `<replace>`
+values (the course's, then v4's built-in `event`, `zevent`, `type`, `ctype`, `course`,
+`coursename`, `coursenamefull`, `title`, `access_file`, `class_file`), the event's date and
+meeting time, and the time now. The regular expressions are v4's, so content written for v4
+gives the same result. Two changes: `<ace>` no longer needs jQuery, and its attribute values
+are limited to safe characters before they are written into the script.
+
+**`View\Layout`** writes the `<head>` (theme, MathJax on every page, highlight.js, Ace only
+when the page has an `<ace>`, the course's own CSS/JS) and the navbar: event menus that link
+the same events v4 links, the section menu, the show/hide answers link, the instructor's file
+list, and the login form. Milestone 7 replaces its look; the links stay the same.
+
+`<calphp>` scripts run as in v4: in their own directory, with the course's v4 variables
+(`$COURSE`, ...) and `$INSTRUCTOR`, but without `$ADMIN` and `$SECRET` (v4 removed them too).
+
+**Compared with v4:** `php tests/compat/compat.php check --impl=cal5 --scope=events` sends
+every event page and every file of every fixture, as a student and as the instructor, and
+compares the content markers, the keyed and event links on the page, and for files the content
+type, disposition and SHA-1. All 436 requests match; CI runs it strictly. The intended
+differences above are applied by `tests/compat/IntendedDifferences.php`, and nothing else is
+excused.
 
 ## Security baseline
 

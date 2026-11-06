@@ -72,6 +72,42 @@ final class Requests
         return $requests;
     }
 
+    /** Parameters that send a request somewhere other than an event page. */
+    private const NOT_EVENT = ['show', 'load', 'search', 'keyword', 'navbaronly', 'debug', 'edit', 'editor'];
+
+    /**
+     * Is the request part of a scope?
+     *
+     *  - all:    every request
+     *  - events: event pages and their files (?type=T&event=N[&key=K]) with a valid
+     *            type and event number, on an entry whose configuration works (the
+     *            fixture's "error_entries" show v4's error page instead)
+     *
+     * @param array{entry: string, query: string} $request
+     */
+    public static function inScope(array $request, string $scope, Fixture $fixture): bool
+    {
+        if ($scope === 'all') {
+            return true;
+        }
+        if ($scope !== 'events') {
+            throw new \InvalidArgumentException("Unknown scope: $scope");
+        }
+        if (in_array($request['entry'], $fixture->meta['error_entries'] ?? [], true)) {
+            return false;
+        }
+        parse_str($request['query'], $params);
+        foreach (self::NOT_EVENT as $name) {
+            if (array_key_exists($name, $params)) {
+                return false;
+            }
+        }
+        $type = $params['type'] ?? null;
+        $event = $params['event'] ?? null;
+        return is_string($type) && in_array($type, $fixture->meta['types'] ?? [], true)
+            && is_string($event) && preg_match('/^[1-9][0-9]{0,5}$/', $event) === 1;
+    }
+
     /** @return array{id: string, role: string, entry: string, query: string} */
     private static function make(string $role, string $entry, string $query): array
     {

@@ -29,13 +29,18 @@ final class Observer
         $isPage = ($type === '' || $type === 'text/html') && ($disposition === null || stripos($disposition, 'attachment') === false);
 
         if (!$isPage) {
-            return [
+            $download = [
                 'status' => $response->status,
                 'kind' => 'download',
                 'content_type' => $type,
                 'disposition' => $disposition === null ? 'none' : (stripos($disposition, 'attachment') !== false ? 'attachment' : 'inline'),
                 'sha1' => sha1($response->body),
             ];
+            if (str_starts_with($type, 'text/')) {
+                // text files: also which markers they contain (Cal5 shows .txt files as pages)
+                $download['markers'] = $this->markers($response->body);
+            }
+            return $download;
         }
 
         $links = self::links($response->body);

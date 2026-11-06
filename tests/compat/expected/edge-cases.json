@@ -253,7 +253,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755"
+                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755",
+                "markers": [
+                    "EDGE-file-9"
+                ]
             }
         },
         {
@@ -266,7 +269,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13"
+                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13",
+                "markers": [
+                    "EDGE-file-10"
+                ]
             }
         },
         {
@@ -346,7 +352,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1"
+                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1",
+                "markers": [
+                    "EDGE-lecture1-notes"
+                ]
             }
         },
         {
@@ -416,7 +425,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a"
+                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a",
+                "markers": [
+                    "EDGE-lecture2-homework-txt"
+                ]
             }
         },
         {
@@ -650,7 +662,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44"
+                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44",
+                "markers": [
+                    "EDGE-lab2-notes"
+                ]
             }
         },
         {
@@ -846,7 +861,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff"
+                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff",
+                "markers": [
+                    "EDGE-virtual-notes"
+                ]
             }
         },
         {
@@ -1153,7 +1171,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755"
+                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755",
+                "markers": [
+                    "EDGE-file-9"
+                ]
             }
         },
         {
@@ -1166,7 +1187,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13"
+                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13",
+                "markers": [
+                    "EDGE-file-10"
+                ]
             }
         },
         {
@@ -1263,7 +1287,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1"
+                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1",
+                "markers": [
+                    "EDGE-lecture1-notes"
+                ]
             }
         },
         {
@@ -1345,7 +1372,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a"
+                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a",
+                "markers": [
+                    "EDGE-lecture2-homework-txt"
+                ]
             }
         },
         {
@@ -1601,7 +1631,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44"
+                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44",
+                "markers": [
+                    "EDGE-lab2-notes"
+                ]
             }
         },
         {
@@ -1810,7 +1843,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff"
+                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff",
+                "markers": [
+                    "EDGE-virtual-notes"
+                ]
             }
         },
         {

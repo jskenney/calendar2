@@ -14,9 +14,15 @@ final class HttpClient
     {
     }
 
-    public function get(string $path): Response
+    /** @param list<string> $headers extra request headers, e.g. "Range: bytes=0-9" */
+    public function get(string $path, array $headers = []): Response
     {
-        return $this->request('GET', $path, null);
+        return $this->request('GET', $path, null, $headers);
+    }
+
+    public function head(string $path): Response
+    {
+        return $this->request('HEAD', $path, null);
     }
 
     /** @param array<string, string> $data */
@@ -49,10 +55,12 @@ final class HttpClient
         return preg_match($pattern, $response->body, $m) ? html_entity_decode($m[1]) : null;
     }
 
-    /** @param array<string, string>|null $data */
-    private function request(string $method, string $path, ?array $data): Response
+    /**
+     * @param array<string, string>|null $data
+     * @param list<string> $headers
+     */
+    private function request(string $method, string $path, ?array $data, array $headers = []): Response
     {
-        $headers = [];
         if ($this->cookies !== []) {
             $pairs = [];
             foreach ($this->cookies as $name => $value) {

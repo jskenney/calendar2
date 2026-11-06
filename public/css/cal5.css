@@ -1,5 +1,6 @@
-/* Cal5 theme.  Milestone 1: tokens and the "installed" page only; the full
-   theme (navbar, calendar views, print) arrives in milestone 7. */
+/* Cal5 theme.  Milestone 6: tokens, the "installed" page, and a plain layout for
+   event pages (navbar, menus, content).  The full design (calendar views, print
+   polish) arrives in milestone 7. */
 
 :root {
   --cal5-bg: #fbfbfa;
@@ -64,3 +65,61 @@ a { color: var(--cal5-accent); }
 .cal5-login input[type=password] { font: inherit; padding: 0.3rem 0.5rem; border: 1px solid var(--cal5-border); border-radius: 6px; background: var(--cal5-bg); color: var(--cal5-text); }
 .cal5-login button { font: inherit; padding: 0.35rem 0.9rem; border-radius: 6px; border: 1px solid var(--cal5-accent); background: var(--cal5-accent); color: #fff; cursor: pointer; }
 .cal5-locked { font-weight: 600; }
+
+.cal5-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Navbar (milestone 6: plain; milestone 7 brings the design) */
+.cal5-nav {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--cal5-surface);
+  border-bottom: 1px solid var(--cal5-border);
+}
+.cal5-nav nav {
+  max-width: 72rem; margin: 0 auto; padding: 0.4rem 1rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem;
+}
+.cal5-nav nav > a { text-decoration: none; }
+.cal5-nav nav > a:hover { text-decoration: underline; }
+.cal5-brand { font-weight: 600; color: var(--cal5-text) !important; margin-right: auto; }
+.cal5-menu { position: relative; }
+.cal5-menu summary { cursor: pointer; color: var(--cal5-accent); list-style: none; }
+.cal5-menu summary::-webkit-details-marker { display: none; }
+.cal5-menu summary::after { content: " \25BE"; font-size: 0.8em; }
+.cal5-menu ul {
+  position: absolute; right: 0; top: 1.8rem; min-width: 14rem; max-height: 70vh; overflow-y: auto;
+  margin: 0; padding: 0.4rem 0; list-style: none;
+  background: var(--cal5-surface); border: 1px solid var(--cal5-border); border-radius: var(--cal5-radius);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.12);
+}
+.cal5-menu li a, .cal5-menu li span { display: block; padding: 0.2rem 0.9rem; white-space: nowrap; text-decoration: none; }
+.cal5-menu li a:hover { background: var(--cal5-bg); }
+.cal5-menu a[aria-current] { font-weight: 600; color: var(--cal5-text); }
+.cal5-unavailable { color: var(--cal5-muted); cursor: default; }
+.cal5-nav .cal5-login { margin: 0; }
+.cal5-nav .cal5-login button { padding: 0.15rem 0.7rem; }
+
+/* Content */
+.cal5-page { max-width: 72rem; margin: 0 auto; padding: 1.25rem 1rem 3rem; overflow-wrap: anywhere; }
+.cal5-page img, .cal5-page video { max-width: 100%; height: auto; }
+.cal5-page pre { overflow-x: auto; }
+.cal5-text { white-space: pre-wrap; font-family: var(--cal5-mono); font-size: 0.92rem; }
+.cal5-warnings {
+  margin-bottom: 1rem; padding: 0.6rem 1rem;
+  border: 1px solid #e0a800; border-radius: var(--cal5-radius); background: #fff8e1; color: #5c4400;
+}
+.cal5-warnings ul { margin: 0.25rem 0 0; padding-left: 1.25rem; }
+@media (prefers-color-scheme: dark) { .cal5-warnings { background: #3a3000; color: #ffe58f; border-color: #8a6d00; } }
+.cal5-unlock { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1rem 0; padding: 0.75rem 1rem; border: 1px dashed var(--cal5-border); border-radius: var(--cal5-radius); }
+.cal5-unlock input { font: inherit; padding: 0.25rem 0.5rem; border: 1px solid var(--cal5-border); border-radius: 6px; background: var(--cal5-bg); color: var(--cal5-text); }
+.cal5-unlock button { font: inherit; padding: 0.25rem 0.8rem; border-radius: 6px; border: 1px solid var(--cal5-accent); background: var(--cal5-accent); color: #fff; cursor: pointer; }
+.cal5-ace { border: 1px solid var(--cal5-border); border-radius: 6px; }
+
+@media (max-width: 40rem) {
+  .cal5-menu ul { position: fixed; left: 0.5rem; right: 0.5rem; top: auto; min-width: 0; }
+}
+
+@media print {
+  .cal5-nav, .cal5-login, .cal5-unlock, .cal5-warnings { display: none; }
+  .cal5-page { max-width: none; padding: 0; }
+  body { background: #fff; color: #000; }
+}
