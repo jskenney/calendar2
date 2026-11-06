@@ -10,8 +10,9 @@ use Cal5\Render\PageContext;
  * <ace name="x" mode="python" theme="tomorrow" height="48px" readonly="true"
  * nolinenumbers="true" textwrap="true">code</ace>: an Ace editor box.  An element
  * with id "ace_<name>" shows the editor's contents as HTML (v4).  Unlike v4 no
- * jQuery is needed, and attribute values are limited to safe characters before
- * they go into the script.
+ * jQuery is needed, attribute values are limited to safe characters before
+ * they go into the script, and Ace's background syntax checkers (workers) are
+ * not used: the boxes show and run code, they do not lint it.
  */
 final class AceTag implements Tag
 {
@@ -37,6 +38,7 @@ final class AceTag implements Tag
                 . "  var editor = ace.edit(\"$name\");\n"
                 . "  editor.setTheme(\"ace/theme/$theme\");\n"
                 . "  editor.getSession().setMode(\"ace/mode/$mode\");\n"
+                . "  editor.getSession().setUseWorker(false);\n"
                 . ($flag('textwrap') ? "  editor.getSession().setUseWrapMode(true);\n" : '')
                 . ($flag('readonly') ? "  editor.setReadOnly(true);\n" : '')
                 . ($flag('nolinenumbers') ? "  editor.renderer.setShowGutter(false);\n" : '')

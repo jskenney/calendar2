@@ -66,7 +66,19 @@ final class EventPageTest extends TestCase
         $this->assertContains('data-instructor="no"', $page->body);
         $this->assertContains('KS-class1-index', $page->body);
         $this->assertContains('KS-class1-calphp-ran', $page->body, '<calphp> ran');
-        $this->assertContains('tex-chtml-full.js', $page->body, 'MathJax on every page');
+        $this->assertContains('calendar/public/vendor/mathjax/tex-chtml.js', $page->body, 'MathJax on every page');
+        $this->assertNotContains('cdn.', $page->body, 'nothing from a CDN');
+        // every library file the head names is there (and is served)
+        preg_match_all('#(?:src|href)="calendar/(public/[^"]+)"#', $page->body, $assets);
+        $this->assertTrue(count($assets[1]) >= 5, 'theme, highlight.js (script and style), MathJax, Ace');
+        foreach ($assets[1] as $asset) {
+            $this->assertTrue(is_file(__DIR__ . '/../../' . $asset), "$asset exists");
+            $this->assertSame(200, $student->get('calendar/' . $asset)->status, "$asset is served");
+        }
+        foreach (['mathjax-newcm-font/chtml.js', 'mathjax-newcm-font/chtml/woff2', 'mathjax-mhchem-font-extension/chtml.js',
+                  'mathjax/input/tex/extensions/mathtools.js', 'ace/mode-python.js', 'ace/theme-tomorrow.js'] as $file) {
+            $this->assertTrue(file_exists(__DIR__ . '/../../public/vendor/' . $file), "vendor/$file");
+        }
         $this->assertContains('vendor/ace/ace.js', $page->body, 'Ace on a page with <ace>');
         $this->assertNotContains('KS-class1-inst', $page->body);
         $this->assertNotContains('KS-class1-student', $page->body);

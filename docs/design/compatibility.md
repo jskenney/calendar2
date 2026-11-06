@@ -124,6 +124,7 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 | `.txt` files | Shown as a page (escaped text in the layout); v4 sent `text/plain` | Readable, with the navbar; the text is the same |
 | Audio and video | Real content types (`video/mp4`, `audio/mpeg`, ...), shown inline; v4 sent an `application/octet-stream` attachment | They play in the browser |
 | `.jpg`/`.jpeg` | `image/jpeg`; v4 sent `image/jpg` | The registered type |
+| Browser libraries | MathJax 4.1.3 (v4: 3.2.2), highlight.js 11.12.0 (v4: 11.7.0), Ace 1.45.2 (v4: 1.4.7) | Maintained versions. Math uses MathJax 4's New Computer Modern font, so it looks slightly different; the same TeX extensions are loaded and `\( \)` stays the inline delimiter. `<ace>` boxes have no lint markers (Ace's workers are not shipped) |
 
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a
 bug, unless it is added to this table and agreed in a PR. The suite applies exactly these rules

@@ -20,6 +20,7 @@ use Cal5\Render\PageContext;
 use Cal5\Render\TagPipeline;
 use Cal5\Tests\TestCase;
 use Cal5\View\EventPage;
+use Cal5\View\Layout;
 use DateTimeImmutable;
 use DateTimeZone;
 
@@ -189,8 +190,28 @@ final class RenderTest extends TestCase
         $this->assertContains('ace/mode/python', $result->html);
         $this->assertContains('#ed1 { height: 90px; }', $result->html);
         $this->assertNotContains('$(', $result->html, 'no jQuery');
+        $this->assertContains('setUseWorker(false)', $result->html, 'Ace workers are not shipped');
         $this->assertNotContains("alert(1)", $result->html, 'unsafe names are not written into the script');
         $this->assertFalse((new TagPipeline())->process('<p>no editor</p>', self::page())->usesAce);
+    }
+
+    public function testMathJaxConfiguration(): void
+    {
+        $script = Layout::mathJaxConfig('calendar/');
+        $this->assertTrue(str_starts_with($script, 'window.MathJax = {') && str_ends_with($script, '};'));
+        $config = json_decode(substr($script, strlen('window.MathJax = '), -1), true);
+        $this->assertSame([['\\(', '\\)']], $config['tex']['inlineMath'], 'v4 inline delimiters; $ is not math');
+        $this->assertSame('calendar/public/vendor', $config['loader']['paths']['fonts'], 'fonts from the course, not a CDN');
+        $this->assertSame('calendar/public/vendor/%%FONT%%-font', $config['output']['fontPath']);
+        $this->assertContains('[tex]/mathtools', implode(',', $config['loader']['load']));
+        $this->assertSame(Layout::MATHJAX_PACKAGES, $config['tex']['packages']['[+]']);
+        foreach (['require', 'newcommand', 'configmacros', 'textmacros', 'texhtml'] as $package) {
+            $this->assertFalse(in_array($package, Layout::MATHJAX_PACKAGES, true), "$package: built in or not wanted");
+        }
+        foreach (Layout::MATHJAX_PACKAGES as $package) {
+            $this->assertTrue(is_file(__DIR__ . "/../../public/vendor/mathjax/input/tex/extensions/$package.js"), "$package is vendored");
+        }
+        $this->assertNotContains('</script', Layout::mathJaxConfig('x</script><script>'), 'the asset base can not end the script');
     }
 
     public function testTabsBecomeTwoSpaces(): void

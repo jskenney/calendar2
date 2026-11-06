@@ -87,8 +87,8 @@ final class Layout
             . "  <link rel=\"icon\" href=\"{$a}images/web-icon.png\">\n"
             . "  <link rel=\"stylesheet\" href=\"{$a}public/css/cal5.css\">\n"
             . "  <link rel=\"stylesheet\" href=\"{$a}public/vendor/highlight/styles/color-brewer.min.css\">\n"
-            . "  <script>window.MathJax = { tex: { inlineMath: [['\\\\(', '\\\\)']], processEscapes: true } };</script>\n"
-            . "  <script defer src=\"{$a}public/vendor/mathjax/tex-chtml-full.js\"></script>\n"
+            . '  <script>' . self::mathJaxConfig($this->assetBase) . "</script>\n"
+            . "  <script defer src=\"{$a}public/vendor/mathjax/tex-chtml.js\"></script>\n"
             . "  <script defer src=\"{$a}public/vendor/highlight/highlight.min.js\"></script>\n";
         if ($this->usesAce) {
             $head .= "  <script src=\"{$a}public/vendor/ace/ace.js\"></script>\n";
@@ -103,6 +103,39 @@ final class Layout
             $head .= $this->courseAsset($file, '  <script src="%s"></script>');
         }
         return $head;
+    }
+
+    /**
+     * TeX extensions loaded on every page, on top of MathJax 4's defaults (base, ams,
+     * newcommand, textmacros, noundefined, require, autoload, configmacros): the rest of
+     * what v3's tex-chtml-full.js had, which v4 courses were written against, so macros
+     * such as \\coloneqq (mathtools) or \\dv (physics) keep working.  Not loaded:
+     * texhtml (raw HTML inside TeX), colorv2 and fontsizev3 (old variants), and the
+     * alternative blackboard fonts.
+     */
+    public const MATHJAX_PACKAGES = ['action', 'amscd', 'bbox', 'boldsymbol', 'braket', 'bussproofs', 'cancel', 'cases',
+        'centernot', 'color', 'colortbl', 'empheq', 'enclose', 'extpfeil', 'gensymb', 'html', 'mathtools',
+        'mhchem', 'physics', 'setoptions', 'tagformat', 'textcomp', 'unicode', 'upgreek', 'verb'];
+
+    /**
+     * MathJax 4 settings: \\( \\) for inline math (as in v4; $ is left alone), every
+     * file served from calendar/public/vendor (fonts included, nothing from a CDN).
+     */
+    public static function mathJaxConfig(string $assetBase): string
+    {
+        $config = [
+            'loader' => [
+                'paths' => ['fonts' => $assetBase . 'public/vendor'],
+                'load' => array_map(static fn (string $p): string => '[tex]/' . $p, self::MATHJAX_PACKAGES),
+            ],
+            'tex' => [
+                'inlineMath' => [['\\(', '\\)']],
+                'processEscapes' => true,
+                'packages' => ['[+]' => self::MATHJAX_PACKAGES],
+            ],
+            'output' => ['fontPath' => $assetBase . 'public/vendor/%%FONT%%-font'],
+        ];
+        return 'window.MathJax = ' . json_encode($config, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_THROW_ON_ERROR) . ';';
     }
 
     /** A course stylesheet or script (v4 leaves a comment when the file is missing). */
