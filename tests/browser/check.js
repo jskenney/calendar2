@@ -8,7 +8,8 @@
  *
  * For each course it opens the calendar views and event pages as a student and as the
  * instructor, at desktop and phone size, in light and dark mode, and fails when a page
- * - requests Bootstrap or jQuery, or anything from another host,
+ * - requests Bootstrap or jQuery, or anything from another host (the legacy-content course's
+ *   pages that use jQuery, DataTables or Chart.js load those, and only those, and they must work),
  * - gets a failed response (4xx/5xx) or logs a JavaScript error,
  * - scrolls sideways (the page is wider than the screen),
  * - shows PHP warnings.
@@ -25,7 +26,14 @@ const args = Object.fromEntries(process.argv.slice(2).map((a) => {
   const m = a.match(/^--([a-z]+)(?:=(.*))?$/);
   return m ? [m[1], m[2] === undefined ? true : m[2]] : [a, true];
 }));
-const COURSES = args.only ? String(args.only).split(',') : ['demo', 'sample', 'core-tests', 'kitchen-sink', 'edge-cases', 'access-rules'];
+const COURSES = args.only ? String(args.only).split(',') : ['demo', 'sample', 'core-tests', 'kitchen-sink', 'edge-cases', 'access-rules', 'legacy-content'];
+/** Pages whose own scripts use the legacy libraries (features.legacy_js = auto): what they load, and how to see it worked. */
+const LEGACY = {
+  'legacy-content': {
+    'type=class&event=3': { libs: ['jquery', 'datatables'], works: () => document.body.textContent.includes('LC-class3-jquery-ran') && !!document.querySelector('.dataTables_wrapper') },
+    'type=lab&event=1': { libs: ['chartjs'], works: () => !!(window.Chart && Object.keys(window.Chart.instances || {}).length) },
+  },
+};
 const SHOTS = typeof args.screenshots === 'string' ? path.resolve(args.screenshots) : null;
 const VIEWPORTS = {
   desktop: { viewport: { width: 1280, height: 860 } },
@@ -73,12 +81,23 @@ async function newContext(browser, base, viewport, scheme, instructor, password,
   return context;
 }
 
-async function visit(context, base, url, where) {
+function legacyFor(course, url) {
+  const query = url.split('?')[1] || '';
+  return (LEGACY[course] || {})[query] || null;
+}
+
+async function visit(context, base, url, where, course) {
   const page = await context.newPage();
   const origin = new URL(base).origin;
+  const legacy = legacyFor(course, url);
+  const loaded = new Set();
   page.on('request', (request) => {
     const u = request.url();
-    if (/bootstrap|jquery/i.test(u)) { problem(where, 'requested ' + u); }
+    const lib = (u.match(/\/public\/vendor\/legacy\/(jquery|datatables|chartjs)\//) || [])[1];
+    if (lib) {
+      loaded.add(lib);
+      if (!legacy || !legacy.libs.includes(lib)) { problem(where, 'loaded ' + lib + ' on a page that does not use it'); }
+    } else if (/bootstrap|jquery/i.test(u)) { problem(where, 'requested ' + u); }
     if (!u.startsWith(origin) && !u.startsWith('data:') && !u.startsWith('blob:')) { problem(where, 'requested another host: ' + u); }
   });
   page.on('response', (response) => {
@@ -103,6 +122,10 @@ async function visit(context, base, url, where) {
   if (/<b>(Warning|Notice|Deprecated|Fatal error)<\/b>:/.test(body)) { problem(where, 'PHP error on the page'); }
   const wide = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (wide > 1) { problem(where, `the page scrolls sideways by ${wide}px`); }
+  if (legacy) {
+    for (const lib of legacy.libs) { if (!loaded.has(lib)) { problem(where, `${lib} was not loaded`); } }
+    if (!(await page.evaluate(legacy.works))) { problem(where, 'the page\'s legacy scripts did not work'); }
+  }
   return page;
 }
 
@@ -142,7 +165,7 @@ async function main() {
               const context = await newContext(browser, server.url, viewport, scheme, instructor, server.password, server.entry);
               for (const url of pages(course, server.entry)) {
                 const where = `${course} ${instructor ? 'instructor' : 'student'} ${viewport} ${scheme} ${url}`;
-                const page = await visit(context, server.url, url, where);
+                const page = await visit(context, server.url, url, where, course);
                 await page.close();
                 checked++;
               }
@@ -150,14 +173,21 @@ async function main() {
             }
           }
         }
-        if (SHOTS && (course === 'demo' || course === 'kitchen-sink')) {
+        if (SHOTS && (course === 'demo' || course === 'kitchen-sink' || course === 'legacy-content')) {
           fs.mkdirSync(SHOTS, { recursive: true });
-          const plan = course === 'demo' ? screenshotPlan(server.entry)
+          const legacyPlan = [];
+          for (const scheme of ['light', 'dark']) {
+            for (const [name, query] of [['bootstrap', 'type=class&event=1'], ['skeleton', 'type=class&event=2'], ['datatables', 'type=class&event=3'], ['chartjs', 'type=lab&event=1']]) {
+              legacyPlan.push([`legacy-${name}-desktop-${scheme}`, 'student', 'desktop', scheme, `${server.entry}?${query}`, null]);
+            }
+          }
+          legacyPlan.push(['legacy-bootstrap-phone-light', 'student', 'phone', 'light', `${server.entry}?type=class&event=1`, null]);
+          const plan = course === 'demo' ? screenshotPlan(server.entry) : course === 'legacy-content' ? legacyPlan
             : [['kitchen-sink-month-instructor-desktop-light', 'instructor', 'desktop', 'light', `${server.entry}?show=calendar_display`, null],
                ['kitchen-sink-event-student-desktop-light', 'student', 'desktop', 'light', `${server.entry}?type=class&event=1`, null]];
           for (const [file, role, viewport, scheme, url, action] of plan) {
             const context = await newContext(browser, server.url, viewport, scheme, role === 'instructor', server.password, server.entry);
-            const page = await visit(context, server.url, url, `screenshot ${file}`);
+            const page = await visit(context, server.url, url, `screenshot ${file}`, course);
             await page.waitForTimeout(300);
             if (action === 'files') { await page.click('.cal5-pagebar summary:has-text("Files")'); }
             if (action === 'classes') { await page.click('.cal5-primary summary:has-text("Classes")'); }
@@ -179,7 +209,7 @@ async function main() {
     for (const p of [...new Set(problems)].slice(0, 60)) { console.log('  - ' + p); }
     process.exit(1);
   }
-  console.log(`browser check: ${checked} page views, no Bootstrap or jQuery, no other hosts, no errors`);
+  console.log(`browser check: ${checked} page views: no Bootstrap; jQuery, DataTables and Chart.js only on the pages that use them; no other hosts, no errors`);
 }
 
 main().catch((error) => { console.error(error); process.exit(1); });

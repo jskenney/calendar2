@@ -1,0 +1,12 @@
+<h1>LC-class3-scripts</h1>
+<p id="greeting">LC-class3-before</p>
+<table id="scores" class="table">
+  <thead><tr><th>Name</th><th>Score</th></tr></thead>
+  <tbody><tr><td>Ada</td><td>98</td></tr><tr><td>Grace</td><td>95</td></tr><tr><td>Alan</td><td>91</td></tr></tbody>
+</table>
+<script>
+$(function () {
+  $('#greeting').text('LC-class3-jquery-ran');
+  $('#scores').DataTable({ paging: false });
+});
+</script>

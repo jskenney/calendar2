@@ -1,0 +1,147 @@
+{
+    "fixture": "legacy-content",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "structure": {
+        "types": {
+            "class": [
+                {
+                    "number": 1,
+                    "dir": "01.Bootstrap",
+                    "name": "Bootstrap",
+                    "date": "2018-08-20",
+                    "boxes": {
+                        "homework": "homework.html",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "homework.html": {
+                            "key": "85f85c7ffee7c6b8bc5fceb4ff1353a838fcd7b5",
+                            "box": "homework",
+                            "actual": "class/01.Bootstrap/homework.html",
+                            "student_visible": true
+                        },
+                        "index.html": {
+                            "key": "14b3c519aee1a682d499c460b218d1c5174b1050",
+                            "box": "title",
+                            "actual": "class/01.Bootstrap/index.html",
+                            "student_visible": true
+                        },
+                        "pic.png": {
+                            "key": "f5260987720ec0d6a2df55b9616d3cfeae0ad11d",
+                            "box": null,
+                            "actual": "class/01.Bootstrap/pic.png",
+                            "student_visible": true
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Skeleton",
+                    "name": "Skeleton",
+                    "date": "2018-08-27",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "8e723913d549716dedeb78d88d2158de908ea13c",
+                            "box": "title",
+                            "actual": "class/02.Skeleton/index.html",
+                            "student_visible": true
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Scripts",
+                    "name": "Scripts",
+                    "date": "2018-09-03",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "94c9241b2bb9659cbd4826c7f7e4f48b79594d1d",
+                            "box": "title",
+                            "actual": "class/03.Scripts/index.html",
+                            "student_visible": true
+                        }
+                    }
+                },
+                {
+                    "number": 4,
+                    "dir": "04.Plain",
+                    "name": "Plain",
+                    "date": "2018-09-10",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "3cd1adc5f2cbd023296f62729ab1f98fe763f338",
+                            "box": "title",
+                            "actual": "class/04.Plain/index.html",
+                            "student_visible": true
+                        }
+                    }
+                }
+            ],
+            "lab": [
+                {
+                    "number": 1,
+                    "dir": "01.Charts",
+                    "name": "Charts",
+                    "date": "2018-08-23",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "c479bea4907893ec9cb20fd68422a95a9a2fd3e2",
+                            "box": "title",
+                            "actual": "lab/01.Charts/index.html",
+                            "student_visible": true
+                        }
+                    }
+                }
+            ]
+        },
+        "days": {
+            "2018-08-20": [
+                {
+                    "type": "class",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-23": [
+                {
+                    "type": "lab",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-27": [
+                {
+                    "type": "class",
+                    "number": 2,
+                    "combined": false
+                }
+            ],
+            "2018-09-03": [
+                {
+                    "type": "class",
+                    "number": 3,
+                    "combined": false
+                }
+            ],
+            "2018-09-10": [
+                {
+                    "type": "class",
+                    "number": 4,
+                    "combined": false
+                }
+            ]
+        }
+    }
+}

@@ -191,8 +191,8 @@ js.lab       = docs/lab-helpers.js
 [features]
 postmeeting = end            ; when <postmeeting> appears: end (of the meeting), a time such as 13:00, or off (always shown)
 access_log  = /var/log/cal5/si460.log
-legacy_css  = no             ; yes: Bootstrap/Skeleton class support for course pages (milestone 8)
-legacy_js   =                ; jquery, datatables, chartjs (only if course pages need them)
+legacy_css  = no             ; yes: Bootstrap/Skeleton classes and glyphicons in course pages (compat.css)
+legacy_js   =                ; auto (on the pages that use them), or jquery, datatables, chartjs (every page)
 debug       = no
 ```
 
@@ -233,7 +233,7 @@ debug       = no
 | `features.postmeeting` | `end` \| `HH:MM` \| `off` | end | `off` = content always shown (v4 without `$REVEALHOUR`) |
 | `features.access_log` | path | none | |
 | `features.legacy_css` | bool | no | |
-| `features.legacy_js` | list of `jquery`, `datatables`, `chartjs` | none | |
+| `features.legacy_js` | list of `auto`, `jquery`, `datatables`, `chartjs` | none | `auto`: each library on the pages whose scripts use it; listed libraries on every page (`docs/design/legacy-content.md`) |
 | `features.debug` | bool | no | |
 
 Box candidates are tried **in the order listed** (`box_pick = listed`). Old courses that relied on v4's rule ("the
@@ -283,7 +283,7 @@ result as a commented `calendar.ini.php` for courses that want to switch formats
 | `$REVEALHOUR` | `features.postmeeting = HH:00` | Without `$REVEALHOUR`, `postmeeting = off`: v4 leaves `<postmeeting>` content visible |
 | `$ACCESS_LOG` | `features.access_log` | |
 | `$DEBUG_MODE` | `features.debug` | |
-| *(any v4 config)* | `features.legacy_css = yes`, `features.legacy_js = jquery, datatables, chartjs` | v4 loaded all of these on every page, so translated courses keep them (exact drop-in). Courses that move to `calendar.ini.php` can turn them off; the milestone 8 audit tool shows which ones a course needs |
+| *(any v4 config)* | `features.legacy_css = yes`, `features.legacy_js = auto` | v4 loaded Bootstrap, Skeleton, jQuery, DataTables and Chart.js on every page. Translated courses get the compatibility styles, and each library on the pages that use it, so their pages work unchanged. `bin/cal5 audit` shows what a course uses |
 | `$NAVBAR`, `$NAVBAR_TITLE`, `$NAVBAR_TITLE_URL` | – | Only used by v4's unrelated `template_navbar.php`; ignored |
 
 Unknown upper-case globals are listed in an instructor-only notice, so a typo or a

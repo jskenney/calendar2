@@ -169,9 +169,7 @@
         "access_log": null,
         "legacy_css": true,
         "legacy_js": [
-            "jquery",
-            "datatables",
-            "chartjs"
+            "auto"
         ],
         "debug": false
     }

@@ -1,0 +1,112 @@
+{
+    "course": {
+        "number": "LC101",
+        "name": "Legacy Content",
+        "full_name": "",
+        "title": "LC101",
+        "timezone": "(server default)"
+    },
+    "semester": {
+        "start": "2018-08-20",
+        "end": "2018-09-30",
+        "weekends": false,
+        "show_from": null,
+        "show_until": null
+    },
+    "schedule": {
+        "mon": [
+            {
+                "type": "class",
+                "label": "class",
+                "meeting": null
+            }
+        ],
+        "thu": [
+            {
+                "type": "lab",
+                "label": "lab",
+                "meeting": null
+            }
+        ]
+    },
+    "days": [],
+    "combine": [],
+    "boxes": [
+        {
+            "name": "title",
+            "candidates": [
+                "index.md",
+                "index.html"
+            ]
+        },
+        {
+            "name": "homework",
+            "candidates": [
+                "homework.md",
+                "homework.html"
+            ]
+        }
+    ],
+    "menus": [
+        {
+            "type": "class",
+            "label": "Class",
+            "icon": "blackboard"
+        },
+        {
+            "type": "lab",
+            "label": "Lab",
+            "icon": "knight"
+        }
+    ],
+    "instructor_menus": null,
+    "replace": [],
+    "files": {
+        "access": "virtual/cal4.access",
+        "virtual": "virtual/cal4.virtual",
+        "load_pages": [
+            "home",
+            "policy",
+            "resources"
+        ],
+        "allowed_paths": []
+    },
+    "security": {
+        "password_hash": null,
+        "password": "(set)",
+        "secret_sha1": "e8b2cccf31904f5d9c62838922648cfeaa4c07e0",
+        "session_seconds": 43200,
+        "lock_always": false,
+        "lock_file": null
+    },
+    "display": {
+        "start_page": "home",
+        "calendar_view": "month",
+        "markdown_menu_levels": [
+            2
+        ],
+        "heading_warnings": false,
+        "box_pick": "first-by-name",
+        "calendar_boxes": null
+    },
+    "style": {
+        "css": [],
+        "css_by_type": [],
+        "css_calendar": [],
+        "js": [],
+        "js_by_type": {
+            "lab": [
+                "docs/course.js"
+            ]
+        }
+    },
+    "features": {
+        "postmeeting": "off",
+        "access_log": null,
+        "legacy_css": true,
+        "legacy_js": [
+            "auto"
+        ],
+        "debug": false
+    }
+}

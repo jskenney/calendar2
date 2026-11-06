@@ -1,0 +1,12 @@
+{
+  "description": "Course pages written for v4's front end: Bootstrap 3 and Skeleton classes, glyphicons, inline jQuery, DataTables and Chart.js, plus things Cal5 does not provide (Bootstrap's JavaScript, Font Awesome, links to v4's own files) for bin/cal5 audit.",
+  "entry": "calendar.php",
+  "secret": "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+  "password": "legacypass",
+  "types": ["class", "lab"],
+  "markers": { "pattern": "LC-[A-Za-z0-9-]+" },
+  "pages": ["home"],
+  "views": ["calendar_display"],
+  "searches": [],
+  "extra_requests": {}
+}

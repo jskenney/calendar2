@@ -10,6 +10,7 @@ use Cal5\Config\Config;
 use Cal5\Content\ContentFile;
 use Cal5\Course;
 use Cal5\Render\HeadingIndex;
+use Cal5\Render\LegacyScripts;
 use Cal5\Support\Html;
 use Cal5\Version;
 
@@ -84,7 +85,7 @@ final class Layout
             $warnings .= "</ul></div></div>\n";
         }
         $pageClass = 'cal5-page cal5-page-' . $this->page . ($mode === self::PRINT ? ' cal5-print' : '');
-        return "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n" . $this->head() . "</head>\n"
+        return "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n" . $this->head($content) . "</head>\n"
             . '<body class="cal5" data-cal5-version="' . Html::escape(Version::VERSION) . '" data-instructor="' . $instructor . '">' . "\n"
             . ($mode === self::FULL ? "<a class=\"cal5-skip\" href=\"#cal5-main\">Skip to content</a>\n" : '')
             . $header
@@ -93,7 +94,7 @@ final class Layout
             . "</body>\n</html>\n";
     }
 
-    private function head(): string
+    private function head(string $content = ''): string
     {
         $a = Html::escape($this->assetBase);
         $name = $this->title !== '' ? $this->title : $this->eventName;
@@ -102,6 +103,7 @@ final class Layout
             . "  <meta name=\"robots\" content=\"noindex\">\n  <meta name=\"color-scheme\" content=\"light dark\">\n  <title>$title</title>\n"
             . "  <link rel=\"icon\" href=\"{$a}images/web-icon.png\">\n"
             . "  <link rel=\"stylesheet\" href=\"{$a}public/css/cal5.css\">\n"
+            . ($this->config->features->legacyCss ? "  <link rel=\"stylesheet\" href=\"{$a}public/css/compat.css\">\n" : '')
             . "  <link rel=\"stylesheet\" href=\"{$a}public/vendor/highlight/styles/color-brewer.min.css\" media=\"(prefers-color-scheme: light)\">\n"
             . "  <link rel=\"stylesheet\" href=\"{$a}public/vendor/highlight/styles/github-dark.min.css\" media=\"(prefers-color-scheme: dark)\">\n"
             . '  <script>' . self::mathJaxConfig($this->assetBase) . "</script>\n"
@@ -112,12 +114,21 @@ final class Layout
             $head .= "  <script src=\"{$a}public/vendor/ace/ace.js\"></script>\n";
         }
         $style = $this->config->style;
+        $js = array_merge($style->js, $this->type !== null ? ($style->jsByType[$this->type] ?? []) : []);
+        // jQuery, DataTables, Chart.js: before the course's scripts and the page's inline scripts
+        foreach (LegacyScripts::forPage($this->config->features->legacyJs, $content, $this->courseScripts($js)) as $library) {
+            $head .= match ($library) {
+                'jquery' => "  <script src=\"{$a}public/vendor/legacy/jquery/jquery.min.js\"></script>\n",
+                'datatables' => "  <link rel=\"stylesheet\" href=\"{$a}public/vendor/legacy/datatables/datatables.min.css\">\n"
+                    . "  <script src=\"{$a}public/vendor/legacy/datatables/datatables.min.js\"></script>\n",
+                default => "  <script src=\"{$a}public/vendor/legacy/chartjs/Chart.bundle.min.js\"></script>\n",
+            };
+        }
         $css = array_merge($style->css, $this->type !== null ? ($style->cssByType[$this->type] ?? []) : [],
             $this->page === self::PAGE_CALENDAR ? $style->cssCalendar : []);
         foreach ($css as $file) {
             $head .= $this->courseAsset($file, '  <link rel="stylesheet" href="%s">');
         }
-        $js = array_merge($style->js, $this->type !== null ? ($style->jsByType[$this->type] ?? []) : []);
         foreach ($js as $file) {
             $head .= $this->courseAsset($file, '  <script src="%s"></script>');
         }
@@ -155,6 +166,23 @@ final class Layout
             'output' => ['fontPath' => $assetBase . 'public/vendor/%%FONT%%-font'],
         ];
         return 'window.MathJax = ' . json_encode($config, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_THROW_ON_ERROR) . ';';
+    }
+
+    /**
+     * The text of the course's script files ([style] js), for legacy_js = auto.
+     *
+     * @param list<string> $files
+     */
+    private function courseScripts(array $files): string
+    {
+        $text = '';
+        foreach ($files as $file) {
+            $path = $this->course->directory . '/' . $file;
+            if (is_file($path) && filesize($path) < 2_000_000) {
+                $text .= (string) file_get_contents($path) . "\n";
+            }
+        }
+        return $text;
     }
 
     /** A course stylesheet or script (v4 leaves a comment when the file is missing). */

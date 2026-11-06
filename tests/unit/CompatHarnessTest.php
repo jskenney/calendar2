@@ -190,7 +190,7 @@ final class CompatHarnessTest extends TestCase
 
     public function testFixtureMetadata(): void
     {
-        $this->assertSame(['access-rules', 'core-tests', 'edge-cases', 'kitchen-sink', 'sample'], Fixture::names());
+        $this->assertSame(['access-rules', 'core-tests', 'edge-cases', 'kitchen-sink', 'legacy-content', 'sample'], Fixture::names());
         foreach (Fixture::names() as $name) {
             $meta = Fixture::load($name)->meta;
             foreach (['description', 'entry', 'secret', 'password', 'types', 'markers'] as $field) {

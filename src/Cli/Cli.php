@@ -49,6 +49,8 @@ final class Cli
                 'events' => $this->events($options),
                 'access' => $this->access($options),
                 'hash-password' => $this->hashPassword($options),
+                'audit' => $this->audit($options),
+                'build-compat-css' => $this->buildCompatCss(),
                 default => $this->fail("Unknown command: $command\nRun: php calendar/bin/cal5 help", 2),
             };
         } catch (RuntimeException $e) {
@@ -84,11 +86,15 @@ Commands:
                  now, or at the --at time (course time zone).
   hash-password [--stdin]
                  Print a password hash for [security] password_hash.
+  audit [--json] [--course DIR]
+                 What the course's pages use from v4's front end (Bootstrap
+                 and Skeleton classes, glyphicons, jQuery, DataTables,
+                 Chart.js, ...), whether Cal5 handles it, and the [features]
+                 lines to use.  Exits with 1 if something is not handled.
   version        Print the Cal5 version
   help           Show this help
 
 Planned (see MILESTONES.md):
-  audit          Report legacy CSS/JS used by a course's pages      (milestone 8)
   compare        Compare a course under v4 and Cal5                 (milestone 10)
 TXT);
         return 0;
@@ -318,6 +324,62 @@ TXT);
         foreach ($policy->problems() as $problem) {
             fwrite($this->err, 'warning: ' . $problem . "\n");
         }
+        return 0;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function audit(array $options): int
+    {
+        $courseDir = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        $result = $this->loadCourseConfig($courseDir);
+        if ($result->config === null) {
+            $this->problems($result);
+            return $this->fail('The configuration has errors (run: php calendar/bin/cal5 check).', 1);
+        }
+        $course = \Cal5\Course::load($courseDir, $result->config);
+        $report = (new \Cal5\Audit\CourseAudit($course))->run();
+        if (isset($options['json'])) {
+            fwrite($this->out, json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            return $report['attention'] === [] ? 0 : 1;
+        }
+        $this->say("Audit of {$report['files']} files (pages, Markdown, root pages, the course's CSS and JS)");
+        foreach ($report['findings'] as $group => $items) {
+            if ($items === []) {
+                continue;
+            }
+            $this->say('');
+            $this->say(ucfirst($group) . ':');
+            foreach ($items as $name => $files) {
+                $this->say(sprintf('  %-40s %3d file%s  %s', $name, count($files), count($files) === 1 ? ' ' : 's',
+                    implode(', ', array_slice($files, 0, 3)) . (count($files) > 3 ? ', ...' : '')));
+            }
+        }
+        $features = $result->config->features;
+        $this->say('');
+        $this->say('Suggested [features] for calendar.ini.php:');
+        $this->say('  legacy_css = ' . $report['suggest']['legacy_css']);
+        $this->say('  legacy_js  = ' . $report['suggest']['legacy_js']
+            . ($report['libraries'] !== [] ? '   ; loads ' . implode(', ', $report['libraries']) . ' on the pages that use them' : ''));
+        $this->say('Now: legacy_css = ' . ($features->legacyCss ? 'yes' : 'no') . ', legacy_js = ' . (implode(', ', $features->legacyJs) ?: '(none)')
+            . ($result->source === ConfigSource::Legacy ? ' (v4 configuration: both are on)' : ''));
+        $this->say('');
+        if ($report['attention'] === []) {
+            $this->say('Nothing needs attention: Cal5 handles everything these pages use.');
+            return 0;
+        }
+        $this->say('Needs attention:');
+        foreach ($report['attention'] as $line) {
+            $this->say('  - ' . $line);
+        }
+        return 1;
+    }
+
+    /** Developer command: regenerate the generated part of public/css/compat.css. */
+    private function buildCompatCss(): int
+    {
+        $file = \Cal5\View\CompatCss::FILE;
+        file_put_contents($file, \Cal5\View\CompatCss::build((string) file_get_contents($file)));
+        $this->say('wrote ' . realpath($file));
         return 0;
     }
 

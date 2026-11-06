@@ -6,9 +6,10 @@ namespace Cal5\Config;
 
 final class FeatureSettings
 {
-    public const LEGACY_JS = ['jquery', 'datatables', 'chartjs'];
+    /** Libraries features.legacy_js can load; "auto" loads each one on the pages whose scripts use it. */
+    public const LEGACY_JS = ['jquery', 'datatables', 'chartjs', 'auto'];
 
-    /** @param list<string> $legacyJs */
+    /** @param list<string> $legacyJs libraries loaded on every page, and/or "auto" */
     public function __construct(
         /** off (content always shown, v4 without $REVEALHOUR) | end (after the meeting) | HH:MM */
         public readonly string $postmeeting,

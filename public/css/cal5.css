@@ -178,19 +178,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .cal5-page-event { max-width: min(var(--width), 62rem); }
 .cal5-footer { max-width: var(--width); width: 100%; margin: 0 auto; padding: 1.25rem 1rem 2rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
 
-/* Course content */
-.cal5-page-event h1, .cal5-page-event h2, .cal5-page-event h3, .cal5-page-event h4 { line-height: 1.25; margin: 1.6em 0 0.6em; }
-.cal5-page-event h1 { font-size: 2rem; margin-top: 0.2em; }
-.cal5-page-event h2 { font-size: 1.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
-.cal5-page-event h3 { font-size: 1.2rem; }
-.cal5-page pre { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 0.85rem 1rem; overflow-x: auto; line-height: 1.45; }
+/* Course content.  Zero specificity (:where), so a course's own stylesheet and compat.css
+   always win; tables with a class of their own are left to those styles, except the
+   Markdown converter's (v4 gave them Bootstrap's "table table-bordered"). */
+:where(.cal5-page-event) :is(h1, h2, h3, h4) { line-height: 1.25; margin: 1.6em 0 0.6em; }
+:where(.cal5-page-event) h1 { font-size: 2rem; margin-top: 0.2em; }
+:where(.cal5-page-event) h2 { font-size: 1.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+:where(.cal5-page-event) h3 { font-size: 1.2rem; }
+:where(.cal5-page) pre { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-s); padding: 0.85rem 1rem; overflow-x: auto; line-height: 1.45; }
+/* highlight.js themes pad code blocks themselves; the <pre> already has the padding */
 .cal5-page pre code.hljs { background: none; padding: 0; }
-.cal5-page :not(pre) > code { background: var(--surface-2); padding: 0.1em 0.35em; border-radius: 4px; }
-.cal5-page table:not(.cal5-grid) { border-collapse: collapse; margin: 1rem 0; display: block; max-width: 100%; overflow-x: auto; }
-.cal5-page table:not(.cal5-grid) th, .cal5-page table:not(.cal5-grid) td { border: 1px solid var(--border); padding: 0.4rem 0.7rem; text-align: left; vertical-align: top; }
-.cal5-page table:not(.cal5-grid) th { background: var(--surface-2); }
-.cal5-page blockquote { margin: 1rem 0; padding: 0.25rem 1rem; border-left: 4px solid var(--border-strong); color: var(--muted); }
-.cal5-page hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+:where(.cal5-page) :not(pre) > code { background: var(--surface-2); padding: 0.1em 0.35em; border-radius: 4px; }
+:where(.cal5-page) :is(table:not([class]), .cal4-markdown table) { border-collapse: collapse; margin: 1rem 0; display: block; max-width: 100%; overflow-x: auto; }
+:where(.cal5-page) :is(table:not([class]), .cal4-markdown table) :is(th, td) { border: 1px solid var(--border); padding: 0.4rem 0.7rem; text-align: left; vertical-align: top; }
+:where(.cal5-page) :is(table:not([class]), .cal4-markdown table) th { background: var(--surface-2); }
+:where(.cal5-page) table[class]:not(.cal5-grid) { border-collapse: collapse; }
+:where(.cal5-page) table[class]:not(.cal5-grid) :is(th, td) { padding: 0.4rem 0.7rem; text-align: left; vertical-align: top; }
+:where(.cal5-page) blockquote { margin: 1rem 0; padding: 0.25rem 1rem; border-left: 4px solid var(--border-strong); color: var(--muted); }
+:where(.cal5-page) hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 .cal5-text { white-space: pre-wrap; }
 .cal5-ace { border: 1px solid var(--border); border-radius: var(--radius-s); margin: 0.75rem 0; }
 mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }

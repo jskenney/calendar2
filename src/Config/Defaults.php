@@ -30,7 +30,8 @@ final class Defaults
     public const SESSION_SECONDS = 43200; // 12 hours, v4 $LOGON_TIME default
 
     /** @var list<string> */
-    public const LEGACY_JS = ['jquery', 'datatables', 'chartjs'];
+    /** v4 configurations: v4 loaded jQuery, DataTables and Chart.js on every page; Cal5 loads them where pages use them. */
+    public const LEGACY_JS = ['auto'];
 
     /** The published sample secret of the v4 calendar shell; refused like calendar-core 4.5 does. */
     public const SAMPLE_SECRET = 'A really long phrase that should be impossible to guess, you dont need to remember this...';

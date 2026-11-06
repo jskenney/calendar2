@@ -20,5 +20,18 @@ update this table, and check a page with math, code and an `<ace>` box in a brow
 console errors, no failed requests, and no requests to other hosts. `tests/http/EventPageTest.php`
 checks that every file the page head names exists.
 
-Legacy libraries for course pages that need them (jQuery, DataTables, Chart.js, Bootstrap
-CSS) arrive in milestone 8 and are only loaded when a course turns them on.
+### Legacy libraries (`legacy/`, milestone 8)
+
+For course pages written for v4. Loaded only by `features.legacy_js` (`auto`: on the pages
+whose scripts use them). Bootstrap is not included: `public/css/compat.css` covers its classes.
+
+| Directory | Library | Version | Licence | Source |
+|---|---|---|---|---|
+| `legacy/jquery/` | jQuery (`jquery.min.js`) | 3.7.1 (v4: 3.6.3) | MIT (`jquery/LICENSE.txt`) | npm `jquery` |
+| `legacy/chartjs/` | Chart.js (`Chart.bundle.min.js`, includes Moment) | 2.9.4 (v4: 2.9.3) | MIT (`chartjs/LICENSE.md`) | npm `chart.js` |
+| `legacy/datatables/` | DataTables bundle (`datatables.min.js/.css`) with Bootstrap 3 styling and its extensions (Buttons, Responsive, ...) | 1.13.2, unchanged from calendar-core | MIT (`datatables/LICENSE.md`) | calendar-core `datatables.net/` |
+
+jQuery and Chart.js are the newest releases of the major versions v4 used, so course scripts
+keep working (Chart.js 2.9.4 also fixes a security issue). The DataTables bundle is kept as
+calendar-core shipped it, because course tables may use its extensions and that bundle can
+only be rebuilt with DataTables' online builder.
