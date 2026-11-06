@@ -1,5 +1,7 @@
 # Cal5 Milestones
 
+**Status: all ten milestones are done; Cal5 5.0.0 is released (`CHANGELOG.md`).**
+
 Cal5 (this repository, `calendar2`) is a rebuild of Calendar v4 (`calendar` + `calendar-core`).
 The work is split into milestones. Each milestone gets its own branch (`milestone-NN-short-name`)
 and its own pull request, and is reviewed and merged before the next one starts.

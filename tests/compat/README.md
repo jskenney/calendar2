@@ -63,6 +63,14 @@ php tests/compat/compat.php check --impl=cal5 --fixture=sample
 `expected/<fixture>.json` holds the recorded v4 results. Re-record them only when a fixture
 changes, or when `V4_COMMIT` is moved to a newer calendar-core, and review the diff in the PR.
 
+## Real courses: `bin/cal5 compare`
+
+The fixtures are small courses written for these tests. For a real course,
+`php calendar/bin/cal5 compare` (milestone 10) serves copies of it with v4 and with Cal5 and
+crawls every page and file as a student and as the instructor, using the same intended
+differences (`src/Compare/IntendedDifferences.php`). CI also runs it on every fixture
+(`php tests/compat/compare-fixtures.php`).
+
 ## Status by milestone
 
 - `check-structure --impl=cal5` has been required since milestone 3.
@@ -74,5 +82,5 @@ changes, or when `V4_COMMIT` is moved to a newer calendar-core, and review the d
   one part. The fixture's `error_entries` are only left out of the `events` scope.
 
 Text downloads (`text/*`) also record which markers they contain, so that `.txt` files, which
-Cal5 shows as pages, can be compared by their text. `IntendedDifferences.php` holds the
+Cal5 shows as pages, can be compared by their text. `src/Compare/IntendedDifferences.php` holds the
 differences listed in `docs/design/compatibility.md` and is the only place they are excused.

@@ -17,8 +17,9 @@ git clone https://github.com/jskenney/calendar2.git calendar-core
 ```
 
 The `calendar -> calendar-core/` symlink and `calendar.php` stay untouched. Rolling back is
-the reverse rename. Courses that use the submodule change its URL instead. The Milestone 10
-migration guide covers both.
+the reverse rename. Courses that use the submodule change its URL instead.
+[docs/migration.md](../migration.md) covers both, and how to check a course first
+(`bin/cal5 audit`, `bin/cal5 compare`).
 
 **Reload PHP after switching** (`systemctl reload php8.3-fpm`, or reload Apache with
 mod_php). PHP's OPcache reuses the resolved path of `calendar/calendar_main.php`
@@ -143,7 +144,7 @@ bringing the old stack back (`docs/design/legacy-content.md`):
 
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a
 bug, unless it is added to this table and agreed in a PR. The suite applies exactly these rules
-(`tests/compat/IntendedDifferences.php`).
+(`src/Compare/IntendedDifferences.php`).
 
 ## Decisions made
 

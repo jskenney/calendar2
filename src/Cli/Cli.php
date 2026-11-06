@@ -50,6 +50,8 @@ final class Cli
                 'access' => $this->access($options),
                 'hash-password' => $this->hashPassword($options),
                 'audit' => $this->audit($options),
+                'compare' => $this->compare($options),
+                'init' => $this->init($options),
                 'build-compat-css' => $this->buildCompatCss(),
                 default => $this->fail("Unknown command: $command\nRun: php calendar/bin/cal5 help", 2),
             };
@@ -94,8 +96,20 @@ Commands:
   version        Print the Cal5 version
   help           Show this help
 
-Planned (see MILESTONES.md):
-  compare        Compare a course under v4 and Cal5                 (milestone 10)
+  init [--number=N --name=NAME --start=YYYY-MM-DD --end=YYYY-MM-DD
+        --class-days="mon wed fri" --lab-days=thu --timezone=ZONE
+        --password-stdin] [--yes] [--course=DIR]
+                 Set up a new course (installer.sh runs this): asks for what
+                 is not given, and writes calendar.ini.php (random secret,
+                 hashed password), index.php, starter pages, a first class
+                 and example release rules.  Never touches an existing course.
+  compare [--v4 DIR] [--password P] [--max N] [--json] [--keep] [--course DIR]
+                 Serve copies of a v4 course with v4 and with Cal5 side by
+                 side, follow every page and file link as a student and as
+                 the instructor, and report every difference.  --v4 is a
+                 calendar-core (v4) checkout; by default calendar-core-v4/
+                 or the course's calendar/ link when it is v4.  The course
+                 is not changed.  Exits with 1 if anything differs.
 TXT);
         return 0;
     }
@@ -372,6 +386,126 @@ TXT);
             $this->say('  - ' . $line);
         }
         return 1;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function compare(array $options): int
+    {
+        $courseDir = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        $v4 = is_string($options['v4'] ?? null) ? (string) $options['v4'] : null;
+        if ($v4 === null) {
+            foreach (["$courseDir/calendar-core-v4", "$courseDir/calendar"] as $candidate) {
+                if (is_file("$candidate/calendar_main.php") && !is_file("$candidate/src/App.php")) {
+                    $v4 = $candidate;
+                    break;
+                }
+            }
+        }
+        if ($v4 === null) {
+            return $this->fail('Where is v4? Use --v4 DIR (a calendar-core checkout), or keep it as calendar-core-v4/ in the course.', 2);
+        }
+        $compare = new \Cal5\Compare\CourseCompare(
+            $courseDir,
+            $v4,
+            dirname(__DIR__, 2),
+            is_string($options['password'] ?? null) ? (string) $options['password'] : null,
+            is_string($options['max'] ?? null) ? max(1, (int) $options['max']) : 3000,
+            isset($options['keep']),
+        );
+        if (!isset($options['json'])) {
+            fwrite($this->err, "Serving the course with v4 and with Cal5 and comparing every page and file...\n");
+        }
+        $report = $compare->run();
+        if (isset($options['json'])) {
+            fwrite($this->out, json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            return $report['differences'] === [] ? 0 : 1;
+        }
+        $this->say('Course: ' . $report['course']);
+        foreach ($report['roles'] as $role => $stats) {
+            $this->say(sprintf('  %-10s %4d addresses (%d pages, %d files): %d the same, %d different%s', $role, $stats['requests'],
+                $stats['pages'], $stats['files'], $stats['match'], $stats['differ'],
+                $stats['not visited'] > 0 ? ", {$stats['not visited']} not visited (--max)" : ''));
+        }
+        if ($report['refused']) {
+            $this->say('  (the configuration is refused, for example the published sample secret: both show their error page, and the instructor is not compared)');
+        } elseif (!isset($report['roles']['instructor'])) {
+            $this->say('  (instructor not compared: the password is stored as a hash; use --password)');
+        }
+        if ($report['work'] !== null) {
+            $this->say('  copies kept in ' . $report['work']);
+        }
+        if ($report['differences'] === []) {
+            $this->say('');
+            $this->say('No differences: Cal5 shows this course as v4 does (see docs/design/compatibility.md for the intended differences).');
+            return 0;
+        }
+        $this->say('');
+        $this->say('Differences:');
+        foreach (array_slice($report['differences'], 0, 200) as $difference) {
+            $this->say("  {$difference['role']} {$difference['url']}");
+            foreach ($difference['problems'] as $problem) {
+                $this->say("      {$problem['field']}:");
+                $this->say('        v4:   ' . ($problem['v4'] === '' ? '-' : $problem['v4']));
+                $this->say('        Cal5: ' . ($problem['cal5'] === '' ? '-' : $problem['cal5']));
+            }
+        }
+        if (count($report['differences']) > 200) {
+            $this->say('  ... and ' . (count($report['differences']) - 200) . ' more (use --json)');
+        }
+        return 1;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function init(array $options): int
+    {
+        $dir = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        // --yes or --password-stdin: no questions (standard input carries the password); defaults for the rest
+        $quiet = isset($options['yes']) || isset($options['password-stdin']);
+        $ask = function (string $option, string $question, string $default = '') use ($options, $quiet): string {
+            if (is_string($options[$option] ?? null)) {
+                return trim((string) $options[$option]);
+            }
+            if ($quiet) {
+                return $default;
+            }
+            fwrite($this->err, $question . ($default !== '' ? " [$default]" : '') . ': ');
+            $answer = trim((string) fgets($this->in));
+            return $answer === '' ? $default : $answer;
+        };
+        $year = (int) date('Y');
+        $answers = [
+            'number' => $ask('number', 'Course number (for example SI460)'),
+            'name' => $ask('name', 'Course name (for example Computer Graphics)'),
+        ];
+        $answers['full_name'] = $ask('full-name', 'Full name, shown in the footer', trim($answers['number'] . ': ' . $answers['name'], ': '));
+        $answers['start'] = $ask('start', 'First day of the semester (YYYY-MM-DD)', "$year-08-24");
+        $answers['end'] = $ask('end', 'Last day of the semester (YYYY-MM-DD)', "$year-12-18");
+        $answers['class_days'] = CourseInit::days($ask('class-days', 'Class days', 'mon wed fri'));
+        $answers['lab_days'] = CourseInit::days($ask('lab-days', 'Lab days (empty for none)', ''));
+        $answers['timezone'] = $ask('timezone', 'Time zone', date_default_timezone_get());
+        if (isset($options['password-stdin'])) {
+            $answers['password'] = rtrim((string) fgets($this->in), "\r\n");
+        } else {
+            $tty = function_exists('posix_isatty') && posix_isatty($this->in);
+            fwrite($this->err, 'Instructor password (at least 8 characters): ');
+            if ($tty) {
+                shell_exec('stty -echo');
+            }
+            $answers['password'] = rtrim((string) fgets($this->in), "\r\n");
+            if ($tty) {
+                shell_exec('stty echo');
+                fwrite($this->err, "\n");
+            }
+        }
+        $written = CourseInit::create($dir, $answers);
+        $this->say('Created the course ' . $answers['number'] . ':');
+        foreach ($written as $file) {
+            $this->say('  ' . $file);
+        }
+        $this->say('');
+        $this->say('Next: open the course in a browser, log in, and add material to class/02.Name/, class/03.Name/, ...');
+        $this->say('Check the configuration any time with: php calendar/bin/cal5 check');
+        return 0;
     }
 
     /** Developer command: regenerate the generated part of public/css/compat.css. */

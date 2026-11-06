@@ -51,6 +51,8 @@ jobs:
         run: php tests/compat/compat.php check-structure --impl=cal5
       - name: Cal5 matches v4 for every request of every fixture
         run: php tests/compat/compat.php check --impl=cal5
+      - name: bin/cal5 compare finds no differences in any fixture course
+        run: php tests/compat/compare-fixtures.php
 
   browser:
     name: Browser check (Chromium)

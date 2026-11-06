@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cal5\Tests\Unit;
 
-use Cal5\Tests\Compat\IntendedDifferences;
+use Cal5\Compare\IntendedDifferences;
 use Cal5\Tests\Compat\Observer;
 use Cal5\Tests\Compat\Requests;
 use Cal5\Tests\Compat\Runner;

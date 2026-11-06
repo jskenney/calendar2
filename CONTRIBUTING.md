@@ -24,8 +24,8 @@ deprecation fails a test, both in test code and in pages served by Cal5.
 ```bash
 tests/compat/fetch-v4.sh                                # calendar-core at the pinned commit -> .v4/
 php tests/compat/compat.php check --impl=v4 --v4=.v4    # v4 still matches the recorded results
-php tests/compat/compat.php check --impl=cal5 --report  # how much of v4's behaviour Cal5 matches
-php tests/compat/compat.php check --impl=cal5           # strict: lists every difference
+php tests/compat/compat.php check --impl=cal5           # every request must match v4 (CI requires it)
+php tests/compat/compat.php check --impl=cal5 --scope=events   # one part: events, calendars
 ```
 
 See `tests/compat/README.md` for how the comparison works and how to re-record results.

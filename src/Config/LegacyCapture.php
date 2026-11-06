@@ -11,7 +11,8 @@ use RuntimeException;
  * returns the variables it sets, without running the calendar: while a capture
  * is active, calendar_main.php returns early.  The variables are read from the
  * scope calendar.php ran in, so this also works when calendar_main.php was
- * already loaded once in this process (require_once then skips it).
+ * already loaded once in this process (require_once then skips it).  It also
+ * works before the course is switched to Cal5 (calendar/ still pointing to v4).
  */
 final class LegacyCapture
 {
@@ -29,15 +30,23 @@ final class LegacyCapture
         $course = dirname($file);
         $shim = realpath($course . '/calendar/calendar_main.php');
         $ours = realpath(dirname(__DIR__, 2) . '/calendar_main.php');
+        // Before a course is switched, its calendar/ still points to v4.  calendar.php is then
+        // run from a temporary directory whose calendar/ is this Cal5: PHP finds
+        // "calendar/calendar_main.php" in the working directory first, and the course's own
+        // relative includes are still found next to calendar.php.
+        $runIn = $course;
+        $temporary = null;
         if ($shim === false || $shim !== $ours) {
-            throw new RuntimeException("calendar/ in $course is not this copy of Cal5 "
-                . "(calendar.php loads calendar/calendar_main.php, so calendar/ must point to Cal5 to read the settings)");
+            $temporary = sys_get_temp_dir() . '/cal5-capture-' . bin2hex(random_bytes(4));
+            mkdir($temporary);
+            symlink(dirname((string) $ours), $temporary . '/calendar');
+            $runIn = $temporary;
         }
 
         $cwd = (string) getcwd();
         self::$capturing = true;
         self::$captured = null;
-        chdir($course);
+        chdir($runIn);
         ob_start();
         try {
             $variables = (static function (string $cal5CaptureFile): array {
@@ -48,6 +57,10 @@ final class LegacyCapture
             ob_end_clean();
             chdir($cwd);
             self::$capturing = false;
+            if ($temporary !== null) {
+                @unlink($temporary . '/calendar');
+                @rmdir($temporary);
+            }
         }
         unset($variables['cal5CaptureFile'], $variables['cal5GlobalVariables']);
         return $variables;
