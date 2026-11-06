@@ -124,6 +124,27 @@ final class CompatHarnessTest extends TestCase
         }
     }
 
+    /**
+     * Git does not keep empty directories, so a fixture that relies on one would
+     * differ between a working copy and a fresh clone (CI).  Put a hidden file
+     * (".gitkeep") in directories that must look empty: hidden files are skipped
+     * by both v4 and Cal5.
+     */
+    public function testFixturesHaveNoEmptyDirectories(): void
+    {
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator(Fixture::DIR, \FilesystemIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::SELF_FIRST,
+        );
+        $empty = [];
+        foreach ($iterator as $path => $info) {
+            if ($info->isDir() && !$info->isLink() && (scandir((string) $path) ?: []) === ['.', '..']) {
+                $empty[] = substr((string) $path, strlen(Fixture::DIR) + 1);
+            }
+        }
+        $this->assertSame([], $empty, 'empty fixture directories (add a .gitkeep)');
+    }
+
     public function testFixtureMetadata(): void
     {
         $this->assertSame(['core-tests', 'edge-cases', 'kitchen-sink', 'sample'], Fixture::names());

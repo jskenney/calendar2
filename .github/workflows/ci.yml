@@ -15,7 +15,7 @@ jobs:
     # PHP 8.3 is the supported version; 8.4 is an early warning only.
     continue-on-error: ${{ matrix.php == '8.4' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -32,7 +32,7 @@ jobs:
     name: Compatibility with v4
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
