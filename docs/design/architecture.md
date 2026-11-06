@@ -7,8 +7,9 @@
 - **Deployment stays the same:** a directory inside a course directory on an Apache (or
   nginx) PHP server, with no Composer, no build step, no database and no writable directory
   except optional logs.
-- **MathJax is required.** It stays vendored (version 3.2.2, the same as calendar-core),
-  served from the repository.
+- **MathJax is required.** It is vendored and served from the repository, fonts included,
+  so pages never load anything from a CDN. Cal5 uses MathJax 4 (calendar-core has 3.2.2);
+  see `public/vendor/README.md` for every library's version.
 - **Front-end:**
   - Vendored libraries: MathJax, highlight.js, and Ace (only on pages with `<ace>`).
   - Cal5's own code: one CSS file and one small vanilla JS file.
@@ -40,7 +41,7 @@ calendar2/
 │   ├── css/compat.css       Bootstrap/Skeleton classes for legacy course pages
 │   ├── js/cal5.js           menus, login hashing, small helpers (no dependencies)
 │   ├── icons/               SVG sprite
-│   └── vendor/              mathjax/, highlight/, ace/, legacy/ (jquery, datatables, chartjs)
+│   └── vendor/              mathjax/ (+ its fonts), highlight/, ace/, later legacy/ (jquery, datatables, chartjs)
 ├── images/web-icon.png      kept at the v4 path
 ├── docs/                    design documents, instructor guide, migration guide
 └── tests/
@@ -140,11 +141,15 @@ request and session, the event's files the viewer may see (v4's `$other`), the `
 values (the course's, then v4's built-in `event`, `zevent`, `type`, `ctype`, `course`,
 `coursename`, `coursenamefull`, `title`, `access_file`, `class_file`), the event's date and
 meeting time, and the time now. The regular expressions are v4's, so content written for v4
-gives the same result. Two changes: `<ace>` no longer needs jQuery, and its attribute values
-are limited to safe characters before they are written into the script.
+gives the same result. Changes to `<ace>`: it no longer needs jQuery, its attribute values
+are limited to safe characters before they are written into the script, and Ace's background
+syntax checkers (workers) are off, so the boxes show and run code without lint markers.
 
 **`View\Layout`** writes the `<head>` (theme, MathJax on every page, highlight.js, Ace only
-when the page has an `<ace>`, the course's own CSS/JS) and the navbar: event menus that link
+when the page has an `<ace>`, the course's own CSS/JS). MathJax 4 is set up to match what v4
+courses had: `\\( \\)` for inline math (`$` is left alone) and the TeX extensions of v3's
+"full" bundle (`mathtools`, `physics`, `mhchem`, `cancel`, `cases`, ...), with its fonts served
+from `public/vendor/`. The navbar has event menus that link
 the same events v4 links, the section menu, the show/hide answers link, the instructor's file
 list, and the login form. Milestone 7 replaces its look; the links stay the same.
 

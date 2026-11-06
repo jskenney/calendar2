@@ -97,6 +97,7 @@ a { color: var(--cal5-accent); }
 .cal5-unavailable { color: var(--cal5-muted); cursor: default; }
 .cal5-nav .cal5-login { margin: 0; }
 .cal5-nav .cal5-login button { padding: 0.15rem 0.7rem; }
+.cal5-nav .cal5-login input[type=password] { width: 9rem; padding: 0.15rem 0.5rem; }
 
 /* Content */
 .cal5-page { max-width: 72rem; margin: 0 auto; padding: 1.25rem 1rem 3rem; overflow-wrap: anywhere; }
