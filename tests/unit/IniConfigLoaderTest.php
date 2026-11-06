@@ -108,7 +108,7 @@ final class IniConfigLoaderTest extends TestCase
             'test.ini:17: [schedule] the meeting must end after it starts: "lab 14:00-13:00"',
             'test.ini:19: [days] expected a date like 2026-08-24, got "2026-02-30"',
             'test.ini:21: [display] calendar_view: expected one of month, list, agenda, got "grid"',
-            'test.ini:23: [features] legacy_js: expected any of jquery, datatables, chartjs, got "angular"',
+            'test.ini:23: [features] legacy_js: expected any of jquery, datatables, chartjs, auto, got "angular"',
         ];
         foreach ($expected as $message) {
             $this->assertTrue(in_array($message, $messages, true), "reports: $message\n  got: " . implode("\n       ", $messages));

@@ -90,7 +90,7 @@ final class LegacyTranslatorTest extends TestCase
         $this->assertSame('first-by-name', $c->display->boxPick);
         $this->assertSame('off', $c->features->postmeeting, 'without $REVEALHOUR v4 leaves <postmeeting> content visible');
         $this->assertTrue($c->features->legacyCss);
-        $this->assertSame(['jquery', 'datatables', 'chartjs'], $c->features->legacyJs);
+        $this->assertSame(['auto'], $c->features->legacyJs, 'v4 configs load jQuery, DataTables and Chart.js where pages use them');
         $this->assertFalse($c->features->debug);
     }
 

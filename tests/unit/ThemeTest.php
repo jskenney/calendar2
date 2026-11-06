@@ -95,6 +95,8 @@ final class ThemeTest extends TestCase
         $this->assertContains('prefers-reduced-motion', $css);
         $this->assertNotContains('@import', $css, 'one stylesheet');
         $this->assertFalse((bool) preg_match('/https?:\/\//', $css), 'nothing from other hosts');
+        $this->assertContains('.cal4-markdown table', $css, "Markdown tables are styled without compat.css (v4's converter gives them Bootstrap classes)");
+        $this->assertContains(':where(.cal5-page-event) :is(h1, h2, h3, h4)', $css, 'content styles have zero specificity, so course and compat styles win');
     }
 
     public function testScriptBudget(): void

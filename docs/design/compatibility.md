@@ -100,16 +100,20 @@ All tags behave as in v4. Output is escaped exactly as calendar-core 4.5 does it
 
 Cal5 drops Bootstrap 3, Skeleton and jQuery from its own pages. Course pages may still rely
 on them, for example `<table class="table">`, `<div class="row"><div class="six columns">`,
-glyphicons, or inline `$(...)` scripts. The plan for those pages:
+glyphicons, or inline `$(...)` scripts. Milestone 8 keeps those pages working without
+bringing the old stack back (`docs/design/legacy-content.md`):
 
-- **`compat.css`** (Milestone 8) covers the Bootstrap/Skeleton classes course content
-  commonly uses (`features.legacy_css`).
-- **`features.legacy_js`** loads jQuery / DataTables / Chart.js for courses whose pages need
-  them.
-- **v4 courses (translated configs)** get both turned on, because v4 loaded all of them on
-  every page, so their pages keep working unchanged. New `calendar.ini.php` courses get
-  neither unless they ask. The Cal5 theme itself never depends on them.
-- **`bin/cal5 audit`** reports exactly which of these a course uses, before it switches.
+- **`compat.css`** re-implements the Bootstrap 3 and Skeleton classes course content commonly
+  uses, and draws glyphicons with Cal5's icons (`features.legacy_css`).
+- **`features.legacy_js`** loads jQuery, DataTables and Chart.js. `auto` loads each one only
+  on the pages whose scripts use it; listed libraries load on every page.
+- **v4 courses (translated configs)** get `legacy_css = yes` and `legacy_js = auto`, so their
+  pages keep working unchanged, and pages that do not use the libraries do not load them.
+  New `calendar.ini.php` courses get neither unless they ask. The Cal5 theme itself never
+  depends on them.
+- **`bin/cal5 audit`** reports exactly which of these a course uses, and what Cal5 does not
+  provide (Bootstrap's JavaScript, Font Awesome, links to v4's own files), before it
+  switches.
 
 ## Intentional differences
 
@@ -125,6 +129,9 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 | Audio and video | Real content types (`video/mp4`, `audio/mpeg`, ...), shown inline; v4 sent an `application/octet-stream` attachment | They play in the browser |
 | `.jpg`/`.jpeg` | `image/jpeg`; v4 sent `image/jpg` | The registered type |
 | Instructor's month view | Day numbers link only days that have an event; v4 also linked days without material (`?navbaronly=1&type=holiday&event=`, a dead link) | No broken links |
+| jQuery, DataTables, Chart.js | Loaded on the pages that use them (`legacy_js = auto`), not on every page; jQuery 3.7.1 (v4: 3.6.3), Chart.js 2.9.4 (v4: 2.9.3), DataTables as in v4 | Smaller pages; same major versions, so course scripts keep working |
+| Bootstrap and Skeleton | Not loaded; `compat.css` re-implements the classes course pages use, glyphicons are drawn with Cal5's icons | A goal of the rebuild; `bin/cal5 audit` reports anything not covered |
+| Bootstrap's JavaScript, Font Awesome | Not provided (content that Bootstrap's `collapse` hid is shown) | `bin/cal5 audit` lists the pages that use them |
 | Browser libraries | MathJax 4.1.3 (v4: 3.2.2), highlight.js 11.12.0 (v4: 11.7.0), Ace 1.45.2 (v4: 1.4.7) | Maintained versions. Math uses MathJax 4's New Computer Modern font, so it looks slightly different; the same TeX extensions are loaded and `\( \)` stays the inline delimiter. `<ace>` boxes have no lint markers (Ace's workers are not shipped) |
 
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a

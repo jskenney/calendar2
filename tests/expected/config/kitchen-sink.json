@@ -222,9 +222,7 @@
         "access_log": "logs/access.log",
         "legacy_css": true,
         "legacy_js": [
-            "jquery",
-            "datatables",
-            "chartjs"
+            "auto"
         ],
         "debug": true
     }
