@@ -1,0 +1,54 @@
+/* Cal5 theme.  Milestone 1: tokens and the "installed" page only; the full
+   theme (navbar, calendar views, print) arrives in milestone 7. */
+
+:root {
+  --cal5-bg: #fbfbfa;
+  --cal5-surface: #ffffff;
+  --cal5-text: #1f2328;
+  --cal5-muted: #5b636e;
+  --cal5-accent: #1f5fae;
+  --cal5-border: #d9dde3;
+  --cal5-radius: 10px;
+  --cal5-font: "Raleway", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cal5-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cal5-bg: #15181c;
+    --cal5-surface: #1d2126;
+    --cal5-text: #e6e8eb;
+    --cal5-muted: #a2a9b3;
+    --cal5-accent: #7fb0ff;
+    --cal5-border: #333a43;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cal5-bg);
+  color: var(--cal5-text);
+  font: 16px/1.6 var(--cal5-font);
+}
+
+code { font-family: var(--cal5-mono); font-size: 0.92em; }
+a { color: var(--cal5-accent); }
+
+.cal5-installed {
+  max-width: 40rem;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: var(--cal5-surface);
+  border: 1px solid var(--cal5-border);
+  border-radius: var(--cal5-radius);
+}
+
+.cal5-installed h1 { margin-top: 0; font-weight: 600; }
+.cal5-note { color: var(--cal5-muted); font-size: 0.9rem; }
+
+@media (max-width: 40rem) {
+  .cal5-installed { margin: 1rem; padding: 1.25rem; }
+}

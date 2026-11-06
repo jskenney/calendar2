@@ -1,0 +1,32 @@
+{
+  "description": "The course built by calendar-core's tests/run_tests.php (4.6), as static files. Includes the variant entry files (reveal_past.php, sample_secret.php, ...).",
+  "entry": "calendar.php",
+  "secret": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "password": "testpass",
+  "types": ["class", "lab", "exam", "final-exam"],
+  "markers": {
+    "list": ["ANSWER-ONE", "CLASS-THREE-SECRET", "EXAM-ONE", "EXAM-TWO", "EXTRA-PAGE", "FINAL-CONTENT",
+             "HIDDEN-NESTED", "HOME-PAGE", "HOMEWORK-ONE", "HOST-HIDDEN", "HOST-SHOWN", "INSTRUCTOR-MD-ONLY",
+             "LAB-A", "LAB-B", "LAB-C", "LEGACY-HOMEWORK", "NOT-LISTED-PAGE", "POSTMEET", "SECRET-EXAM-3",
+             "VIRTUAL-EXTRA", "VISIBLE-NESTED", "OUTSIDE-SECRET", "zzz once", "searchable-md-word", "mdcell",
+             "problem 7", "raw notes", "Injected Part", "Root Markdown", "Markdown Lecture"]
+  },
+  "pages": ["home", "extra", "mdpage", "notlisted", "instructor", "error"],
+  "views": ["calendar_display", "calendar_display_alt", "calendar_display_dateless", "calendar_file_selector", "template_navbar"],
+  "searches": ["zzz", "searchable-md-word"],
+  "outside_files": { "secret.txt": "OUTSIDE-SECRET" },
+  "links": { "class/01.Intro/outside.txt": "@outside/secret.txt" },
+  "extra_requests": {
+    "reveal_past.php": ["type=class&event=1", "load=home"],
+    "reveal_future.php": ["type=class&event=1"],
+    "sample_secret.php": ["", "type=class&event=1"],
+    "weak_secret.php": ["load=home"],
+    "debug.php": ["type=class&event=1&debug=1"],
+    "locked.php": ["", "type=class&event=1"],
+    "md_off.php": ["show=calendar_display", "type=class&event=4"],
+    "calendar.php": ["type=class&event=1&answers=yes", "type=class&event=1&who=%22%3E%3Cx%3E",
+                     "type=exam&event=abc", "type=exam&event[]=1", "type=nosuch&event=1",
+                     "type=class&event=02", "type=class&event=2.0", "show=calendar_file_editor",
+                     "load=../calendar", "debug=1&type=class&event=1"]
+  }
+}

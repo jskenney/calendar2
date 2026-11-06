@@ -1,0 +1,29 @@
+# Our First Class always visible
+class_1 1 1 1999
+
+# Normal Opening Times for classes
+project -0
+class -monday
+lab -monday
+capstone -monday
+setup -monday
+
+# Solutions, exams never, everything else 1 week later
+lab/lab-solution +7
+project/lab-solution +7
+project/homework-solution +7
+class/homework-solution +7
+exam 99 99 9999
+
+# Notes - Always Visible
+lab/notes 1 1 1999
+class/notes 1 1 1999
+project/notes 1 1 1999
+exam/notes 1 1 1999
+
+# Instructor and demo Content - Never Visible
+class/instructor 99 99 9999
+lab/instructor 99 99 9999
+project/instructor 99 99 9999
+exam/instructor 99 99 9999
+capstone/instructor 99 99 9999

@@ -1,0 +1,25 @@
+<?php
+  $OVERRIDE = array(9 => array(28 => 'exam'), 11 => array(2 => 'exam', 22 => 'HOLIDAY'), 12 => array(6 => 'Final Exam'));
+  $COMBINE = array();
+  $MONTH_START = 8; $DAY_START = 20; $MONTH_END = 12; $YEAR = 2018;
+  $DOW = array('mon' => 'class', 'wed' => 'lab', 'fri' => 'class');
+  $COURSE = 'TST101';
+  $COURSENAME = 'Test <b>Course</b>';
+  $PAGE_TITLE = "$COURSE <title>";
+  $PAGE_MODIFY = array('q' => 'a"b<c>');
+  $NAVBAR_DROPDOWNS = array('class' => 'glyphicon-apple', 'lab' => 'glyphicon-knight');
+  $WEEKENDS = False;
+  $ACCESS_LOG = 'logs/access.log';
+  $ADMIN = 'testpass';
+  $SECRET = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+  $DEFAULT_TODAYS_LECTURE = False;
+  $ACCESS_FILE = 'virtual/cal4.access';
+  $CLASS_FILE = 'virtual/cal4.virtual';
+  $LOAD_PAGES = array('extra', 'mdpage');
+  $BOX = array(0 => 'title', 1 => 'homework', 2 => 'notes');
+  $HTML = array('title' => 'index.html', 'homework' => 'homework.html');
+  $LINK = array();
+  $PDF = array('title' => 'slides.pdf');
+  $PPT = array();
+  $SRC = array('notes' => 'notes.txt');
+  $IGNORE_A_TAG_WARNING = True;

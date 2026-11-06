@@ -101,3 +101,9 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a
 bug, unless it is added to this table and agreed in a PR.
+
+## Decisions pending
+
+| Found in | v4 behaviour | Decide in |
+|---|---|---|
+| Milestone 1 recording (kitchen-sink) | A `.php` file in an event directory (for example a `<calphp>` script) can be downloaded **as source** by anyone who has its key: `provide_file()` sends it as `application/octet-stream`. That can expose code or credentials in instructor scripts. | Milestone 6: probably refuse to serve `.php` source to students, and add the result to the intentional differences |
