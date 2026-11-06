@@ -75,6 +75,9 @@ final class Requests
     /** Parameters that send a request somewhere other than an event page. */
     private const NOT_EVENT = ['show', 'load', 'search', 'keyword', 'navbaronly', 'debug', 'edit', 'editor'];
 
+    /** v4's calendar views (?show=). */
+    public const CALENDAR_VIEWS = ['calendar_display', 'calendar_display_alt', 'calendar_display_dateless'];
+
     /**
      * Is the request part of a scope?
      *
@@ -90,13 +93,18 @@ final class Requests
         if ($scope === 'all') {
             return true;
         }
-        if ($scope !== 'events') {
+        if (!in_array($scope, ['events', 'calendars'], true)) {
             throw new \InvalidArgumentException("Unknown scope: $scope");
         }
         if (in_array($request['entry'], $fixture->meta['error_entries'] ?? [], true)) {
             return false;
         }
         parse_str($request['query'], $params);
+        if ($scope === 'calendars') {
+            // the calendar views, on their own (?show= together with an event is milestone 9)
+            return in_array($params['show'] ?? null, self::CALENDAR_VIEWS, true)
+                && array_diff(array_keys($params), ['show', 'print', 'answers', 'lock']) === [];
+        }
         foreach (self::NOT_EVENT as $name) {
             if (array_key_exists($name, $params)) {
                 return false;

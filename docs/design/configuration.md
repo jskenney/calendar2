@@ -212,7 +212,7 @@ debug       = no
 | `days.<date>` | `type [time]`, `a + b`, or `holiday` | – | Overrides the weekly schedule for that date |
 | `combine.<type> <n>` | list of types | – | Event-number based (v4 semantics) |
 | `boxes.<box>` | ordered list | see minimal course | Key order = display order |
-| `menus.<type>` | `label [\| icon]` | `class`, `lab` | Icon names: see the icon list (Milestone 7) |
+| `menus.<type>` | `label [\| icon]` | `class`, `lab` | Icon: a Cal5 icon name or a v4 glyphicon name (`docs/design/ui.md`, "Icons") |
 | `instructor_menus.<type>` | same | `[menus]` | |
 | `replace.<name>` | text | – | Built-in values (`event`, `zevent`, `type`, `ctype`, `title`, ...) are always available |
 | `files.access` / `virtual` | path | none | v4 formats accepted unchanged |

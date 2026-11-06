@@ -172,9 +172,9 @@ final class EventPageTest extends TestCase
     {
         $client = new HttpClient($this->kitchenSink());
         $full = $client->get('calendar.php?type=class&event=7');
-        $this->assertContains('class="cal5-nav"', $full->body);
+        $this->assertContains('class="cal5-header"', $full->body);
         $print = $client->get('calendar.php?type=class&event=7&print=1');
-        $this->assertNotContains('class="cal5-nav"', $print->body, 'print: no navbar');
+        $this->assertNotContains('class="cal5-header"', $print->body, 'print: no navbar');
         $this->assertContains('cal5.css', $print->body, 'print: still styled');
         $this->assertContains('KS-class7', $print->body);
         $bare = $client->get('calendar.php?type=class&event=7&nocss=1');

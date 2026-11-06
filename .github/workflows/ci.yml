@@ -51,5 +51,34 @@ jobs:
         run: php tests/compat/compat.php check-structure --impl=cal5
       - name: Cal5 event pages and files match v4
         run: php tests/compat/compat.php check --impl=cal5 --scope=events
+      - name: Cal5 calendar views match v4
+        run: php tests/compat/compat.php check --impl=cal5 --scope=calendars
       - name: Cal5 progress on all pages (informational)
         run: php tests/compat/compat.php check --impl=cal5 --report
+
+  browser:
+    name: Browser check (Chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: dom, mbstring
+          coverage: none
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.63.0
+          npx playwright install --with-deps chromium
+      - name: Pages load without errors, Bootstrap, jQuery or other hosts
+        run: node tests/browser/check.js --screenshots=screenshots
+      - name: Keep the screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          if-no-files-found: ignore

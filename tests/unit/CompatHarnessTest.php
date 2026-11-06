@@ -48,7 +48,7 @@ final class CompatHarnessTest extends TestCase
     public function testIntendedDifferences(): void
     {
         $txt = ['status' => 200, 'kind' => 'download', 'content_type' => 'text/plain', 'disposition' => 'inline', 'sha1' => 'x', 'markers' => ['M']];
-        $page = ['status' => 200, 'kind' => 'page', 'markers' => ['M'], 'keyed_links' => ['k'], 'event_links' => ['e'], 'php_errors' => []];
+        $page = ['status' => 200, 'kind' => 'page', 'markers' => ['M'], 'keyed_links' => ['k'], 'event_links' => ['type=a&event=1'], 'php_errors' => []];
         $this->assertSame([], Runner::compareOne('txt', $txt, $page), '.txt shown as a page with the same text');
         $this->assertSame(1, count(Runner::compareOne('txt', $txt, ['markers' => []] + $page)), 'the text must be there');
 
@@ -58,6 +58,8 @@ final class CompatHarnessTest extends TestCase
         $jpg = ['content_type' => 'image/jpg', 'disposition' => 'inline'] + $mp4;
         $this->assertSame([], Runner::compareOne('jpg', $jpg, ['content_type' => 'image/jpeg'] + $jpg));
         $this->assertSame([$page, $page], IntendedDifferences::apply($page, $page), 'pages are compared unchanged');
+        $dead = ['event_links' => ['type=a&event=1', 'type=holiday']] + $page;
+        $this->assertSame([], Runner::compareOne('dead', $dead, $page), "v4's dead day links (no event number) are not expected");
     }
 
     public function testEventsScope(): void
@@ -74,6 +76,11 @@ final class CompatHarnessTest extends TestCase
         $this->assertFalse($in('type=nosuch&event=1'));
         $this->assertFalse($in('type=class&event=1', 'sample_secret.php'), 'error entries');
         $this->assertTrue(Requests::inScope(['entry' => 'x', 'query' => ''], 'all', $fixture));
+        $calendar = static fn (string $query): bool => Requests::inScope(['entry' => 'calendar.php', 'query' => $query], 'calendars', $fixture);
+        $this->assertTrue($calendar('show=calendar_display') && $calendar('show=calendar_display_alt') && $calendar('show=calendar_display_dateless'));
+        $this->assertTrue($calendar('show=calendar_display&print=1'));
+        $this->assertFalse($calendar('show=calendar_search&search=x'), 'search is milestone 9');
+        $this->assertFalse($calendar('show=calendar_display&type=class&event=1'), 'with an event: milestone 9');
     }
 
     public function testObserverReportsPhpErrors(): void
