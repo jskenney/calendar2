@@ -20,6 +20,7 @@ use Cal5\Config\LegacyVariables;
 use Cal5\Config\LoadResult;
 use Cal5\Http\PageRequest;
 use Cal5\Http\Request;
+use Cal5\View\CalendarPage;
 use Cal5\View\EventPage;
 use Cal5\View\InstalledPage;
 
@@ -140,6 +141,12 @@ final class App
             if ($course !== null && $this->config->ok() && $page->isEvent() && !($locked && !$auth->instructor)) {
                 $policy = AccessPolicy::forCourse($course);
                 (new EventPage($course, $policy, $auth, $request, $session, $csrf, $this->entryName(), 'calendar/', $this->legacyVariables))->handle($page);
+                return;
+            }
+            $view = CalendarPage::viewFor($request->param('show'));
+            if ($course !== null && $this->config->ok() && $view !== null && !$request->sent('type') && !$request->sent('event')
+                && !($locked && !$auth->instructor)) {
+                echo (new CalendarPage($course, AccessPolicy::forCourse($course), $auth, $request, $csrf, $this->entryName(), 'calendar/', $locked))->render($view);
                 return;
             }
         }

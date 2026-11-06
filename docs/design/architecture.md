@@ -34,13 +34,12 @@ calendar2/
 │   ├── Render/              TagPipeline, PageContext, Markdown (converter), HeadingIndex,
 │   │                        CalphpRunner, Tags/ (one class per Cal4 tag)
 │   ├── Http/                Request, PageRequest (type/event/key), Download (streaming, Range)
-│   ├── View/                EventPage, Layout (head + navbar), later: MonthView, ListView, SearchView, StatusView
+│   ├── View/                EventPage, CalendarPage/Model/View, Layout (head + header), Icons; later: SearchView, StatusView
 │   └── Support/             Html escaping, paths, natural sort, …
 ├── public/                  served to browsers as calendar/public/...
 │   ├── css/cal5.css         theme (light/dark, responsive, print)
 │   ├── css/compat.css       Bootstrap/Skeleton classes for legacy course pages
-│   ├── js/cal5.js           menus, login hashing, small helpers (no dependencies)
-│   ├── icons/               SVG sprite
+│   ├── js/cal5.js           menus, login hashing, highlight.js start (no dependencies, < 10 KB)
 │   └── vendor/              mathjax/ (+ its fonts), highlight/, ace/, later legacy/ (jquery, datatables, chartjs)
 ├── images/web-icon.png      kept at the v4 path
 ├── docs/                    design documents, instructor guide, migration guide

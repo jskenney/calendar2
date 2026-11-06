@@ -30,6 +30,11 @@ final class IntendedDifferences
                 ['status' => $got['status'], 'markers' => $got['markers'] ?? [], 'php_errors' => $got['php_errors'] ?? []],
             ];
         }
+        if (($want['kind'] ?? '') === 'page' && isset($want['event_links'])) {
+            // v4's month view linked the instructor's day numbers even on days without
+            // material (?navbaronly=1&type=holiday&event=, a dead link); Cal5 does not
+            $want['event_links'] = array_values(array_filter($want['event_links'], static fn (string $link): bool => str_contains($link, '&event=')));
+        }
         if (($want['kind'] ?? '') === 'download' && ($got['kind'] ?? '') === 'download') {
             if ($want['content_type'] === 'image/jpg') {
                 $want['content_type'] = 'image/jpeg'; // the registered type

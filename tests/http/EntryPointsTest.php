@@ -134,7 +134,7 @@ final class EntryPointsTest extends TestCase
         $client = $this->serve(Fixture::temporaryCourse([], self::CAL5));
         $css = $client->get('calendar/public/css/cal5.css');
         $this->assertSame(200, $css->status);
-        $this->assertContains('--cal5-accent', $css->body);
+        $this->assertContains('--accent:', $css->body);
         $this->assertSame(200, $client->get('calendar/images/web-icon.png')->status, 'v4 icon path still works');
     }
 }

@@ -56,6 +56,7 @@ php tests/compat/compat.php record --v4=.v4 --label="calendar-core <sha>"
 php tests/compat/compat.php check --impl=v4 --v4=.v4      # must always pass
 php tests/compat/compat.php check --impl=cal5 [--report]  # Cal5 vs the recorded v4 results
 php tests/compat/compat.php check --impl=cal5 --scope=events   # event pages and files only
+php tests/compat/compat.php check --impl=cal5 --scope=calendars   # the calendar views only
 php tests/compat/compat.php check --impl=cal5 --fixture=sample
 ```
 
@@ -68,9 +69,11 @@ changes, or when `V4_COMMIT` is moved to a newer calendar-core, and review the d
 - `check --impl=cal5 --scope=events` has been required since milestone 6: every event page
   and file (`?type=T&event=N[&key=K]` with a valid type and number) must match v4. The
   fixture's `error_entries` (entries whose configuration v4 refuses) are left out.
-- The other pages (home and load pages, calendar views, search, the file selector) arrive in
-  milestones 7-9. CI runs the full check with `--report` to print progress, and it becomes
-  required by milestone 9.
+- `check --impl=cal5 --scope=calendars` has been required since milestone 7: the month, list
+  and agenda views (`?show=calendar_display`, `_alt`, `_dateless`) must match v4.
+- The other pages (home and load pages, search, the file selector) arrive in milestone 9.
+  CI runs the full check with `--report` to print progress, and it becomes required by
+  milestone 9.
 
 Text downloads (`text/*`) also record which markers they contain, so that `.txt` files, which
 Cal5 shows as pages, can be compared by their text. `IntendedDifferences.php` holds the
