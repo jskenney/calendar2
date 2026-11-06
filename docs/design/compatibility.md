@@ -102,8 +102,8 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 Any other difference found by the compatibility suite or by `bin/cal5 compare` is treated as a
 bug, unless it is added to this table and agreed in a PR.
 
-## Decisions pending
+## Decisions made
 
-| Found in | v4 behaviour | Decide in |
-|---|---|---|
-| Milestone 1 recording (kitchen-sink) | A `.php` file in an event directory (for example a `<calphp>` script) can be downloaded **as source** by anyone who has its key: `provide_file()` sends it as `application/octet-stream`. That can expose code or credentials in instructor scripts. | Milestone 6: probably refuse to serve `.php` source to students, and add the result to the intentional differences |
+| Found in | Decision |
+|---|---|
+| Milestone 1 recording (kitchen-sink) | v4 let students download the **source** of `.php` files in event directories (for example `<calphp>` scripts). Fixed in calendar-core 4.6.20261106 (jskenney/calendar-core#20): students get nothing, `<calphp>` still runs the script, and the instructor can still download it. Cal5 follows the fixed behaviour, and the recorded v4 results use that commit. |

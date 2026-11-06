@@ -1,6 +1,6 @@
 {
     "fixture": "sample",
-    "recorded_with": "calendar-core bc7b09f7 (4.6.20261105)",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
     "requests": [
         {
             "id": "student calendar.php?",
