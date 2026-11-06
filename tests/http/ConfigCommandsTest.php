@@ -165,6 +165,27 @@ final class ConfigCommandsTest extends TestCase
         $this->assertFalse(is_file("$course/calendar.ini.php"));
     }
 
+    public function testEventsCommand(): void
+    {
+        $course = $this->install('edge-cases');
+        [$code, $out, $err] = self::cal5($course, 'events');
+        $this->assertSame(0, $code);
+        $this->assertContains('lecture        4  2019-01-22  04.Four', $out, 'natural order and dates');
+        $this->assertContains('lab            3  2019-01-15  3.C', $out, 'combined lab');
+        $this->assertContains('homework=homework.pdf title=slides.pdf', $out, 'box files');
+        $this->assertContains('virtual file x.html: there is no lecture 99', $err);
+
+        [$code, $out] = self::cal5($course, 'events --json');
+        $data = json_decode($out, true);
+        $this->assertSame(0, $code);
+        $this->assertSame('2019-01-10', $data['types']['lab'][0]['date'] ?? null);
+        $this->assertSame(['type' => 'studio-time', 'label' => 'studio-time', 'number' => null, 'meeting' => null, 'combined' => true],
+            $data['days']['2019-01-22'][1] ?? null, 'combined entry without material');
+
+        [$code, $out] = self::cal5($this->install('core-tests'), 'events');
+        $this->assertContains('Not on the calendar (students never see these): exam 3 (03.Secret)', $out);
+    }
+
     public function testHashPassword(): void
     {
         [$code, $out] = self::cal5($this->install('sample'), 'hash-password --stdin', "s3cret!\n");

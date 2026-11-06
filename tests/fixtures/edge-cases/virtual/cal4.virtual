@@ -1,0 +1,7 @@
+# a comment line with exactly four words
+index.html	shared/virt-index.html	lab	2
+index.html	shared/virt-index.html	lab	1
+notes.txt	shared/notes.txt	lecture	3
+x.html	shared/x.html	lecture	99
+y.html	missing.html	lab	3
+too few fields

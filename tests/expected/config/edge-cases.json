@@ -1,0 +1,178 @@
+{
+    "course": {
+        "number": "EDGE1",
+        "name": "Edge Cases",
+        "full_name": "",
+        "title": "EDGE1 (Spring 2019)",
+        "timezone": "(server default)"
+    },
+    "semester": {
+        "start": "2019-01-09",
+        "end": "2019-03-31",
+        "weekends": false,
+        "show_from": null,
+        "show_until": null
+    },
+    "schedule": {
+        "tue": [
+            {
+                "type": "lecture",
+                "label": "Lecture",
+                "meeting": null
+            }
+        ],
+        "thu": [
+            {
+                "type": "lab",
+                "label": "lab",
+                "meeting": null
+            }
+        ],
+        "fri": [
+            {
+                "type": "studio-time",
+                "label": "Studio Time",
+                "meeting": null
+            }
+        ]
+    },
+    "days": {
+        "2019-01-08": [
+            {
+                "type": "exam",
+                "label": "exam",
+                "meeting": null
+            }
+        ],
+        "2019-01-17": [
+            {
+                "type": "lecture",
+                "label": "Lecture",
+                "meeting": null
+            }
+        ],
+        "2019-02-14": [
+            {
+                "type": "snow-day",
+                "label": "Snow Day",
+                "meeting": null
+            }
+        ],
+        "2019-03-31": [
+            {
+                "type": "exam",
+                "label": "exam",
+                "meeting": null
+            }
+        ]
+    },
+    "combine": [
+        {
+            "type": "lecture",
+            "number": 2,
+            "add": [
+                "lab",
+                "lab"
+            ]
+        },
+        {
+            "type": "lecture",
+            "number": 4,
+            "add": [
+                "studio-time"
+            ]
+        },
+        {
+            "type": "lab",
+            "number": 1,
+            "add": [
+                "lecture"
+            ]
+        }
+    ],
+    "boxes": [
+        {
+            "name": "title",
+            "candidates": [
+                "index.md",
+                "index.html",
+                "slides.pdf"
+            ]
+        },
+        {
+            "name": "notes",
+            "candidates": [
+                "inline:notes.txt"
+            ]
+        },
+        {
+            "name": "homework",
+            "candidates": [
+                "homework.md",
+                "homework.html",
+                "homework.pdf",
+                "inline:homework.txt"
+            ]
+        }
+    ],
+    "menus": [
+        {
+            "type": "class",
+            "label": "Class",
+            "icon": "blackboard"
+        },
+        {
+            "type": "lab",
+            "label": "Lab",
+            "icon": "knight"
+        }
+    ],
+    "instructor_menus": null,
+    "replace": [],
+    "files": {
+        "access": "virtual/cal4.access",
+        "virtual": "virtual/cal4.virtual",
+        "load_pages": [
+            "home",
+            "policy",
+            "resources"
+        ],
+        "allowed_paths": []
+    },
+    "security": {
+        "password_hash": null,
+        "password": "(set)",
+        "secret_sha1": "c16687e7ca80badc6381badf75384997246f217e",
+        "session_seconds": 43200,
+        "lock_always": false,
+        "lock_file": null
+    },
+    "display": {
+        "start_page": "home",
+        "calendar_view": "month",
+        "markdown_menu_levels": [
+            2
+        ],
+        "heading_warnings": false,
+        "box_pick": "first-by-name",
+        "calendar_boxes": null
+    },
+    "style": {
+        "css": [],
+        "css_by_type": [],
+        "css_calendar": [],
+        "js": [],
+        "js_by_type": []
+    },
+    "features": {
+        "postmeeting": "off",
+        "access_log": null,
+        "legacy_css": true,
+        "legacy_js": [
+            "jquery",
+            "datatables",
+            "chartjs"
+        ],
+        "debug": false
+    }
+}

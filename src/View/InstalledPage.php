@@ -6,6 +6,7 @@ namespace Cal5\View;
 
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LoadResult;
+use Cal5\Course;
 use Cal5\Support\Html;
 use Cal5\Version;
 
@@ -18,6 +19,7 @@ final class InstalledPage
 {
     public function __construct(
         private readonly LoadResult $result,
+        private readonly ?Course $course,
         private readonly bool $libraryRequest,
         private readonly string $assetBase,
     ) {
@@ -53,10 +55,11 @@ final class InstalledPage
                     . '<dt>Weekly schedule</dt><dd>' . Html::escape(self::weekly($config->schedule->weekly)) . '</dd>'
                     . '<dt>Special days</dt><dd>' . count($config->schedule->days) . '</dd>'
                     . '<dt>Boxes</dt><dd>' . Html::escape(implode(', ', array_map(static fn ($b) => $b->name, $config->boxes))) . '</dd>'
+                    . self::contentSummary($this->course)
                     . '</dl>';
             }
             $errors = count($this->result->errors);
-            $warnings = count($this->result->warnings);
+            $warnings = count($this->result->warnings) + count($this->course?->problems() ?? []);
             if ($errors > 0 || $warnings > 0) {
                 $body .= '<p class="cal5-problems">' . $errors . ' error(s) and ' . $warnings . ' warning(s): run '
                     . '<code>php calendar/bin/cal5 check</code> in the course directory to see them.</p>';
@@ -88,6 +91,26 @@ final class InstalledPage
 </html>
 
 HTML;
+    }
+
+    private static function contentSummary(?Course $course): string
+    {
+        if ($course === null) {
+            return '';
+        }
+        $parts = [];
+        $scheduled = 0;
+        foreach ($course->content->types as $type => $events) {
+            $parts[] = count($events) . ' ' . $type;
+            foreach ($events as $event) {
+                if ($course->schedule->dateOf($type, $event->number) !== null) {
+                    $scheduled++;
+                }
+            }
+        }
+        $total = array_sum(array_map('count', $course->content->types));
+        return '<dt>Events</dt><dd>' . Html::escape($parts === [] ? 'none yet' : implode(', ', $parts)) . '</dd>'
+            . '<dt>On the calendar</dt><dd>' . $scheduled . ' of ' . $total . ' events, on ' . count($course->schedule->days) . ' days</dd>';
     }
 
     /** @param array<string, \Cal5\Config\DayPlan> $weekly */

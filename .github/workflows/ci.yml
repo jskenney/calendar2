@@ -41,6 +41,10 @@ jobs:
       - name: Fetch calendar-core (v4) at the pinned commit
         run: tests/compat/fetch-v4.sh
       - name: v4 still matches the recorded results
-        run: php tests/compat/compat.php check --impl=v4 --v4=.v4
-      - name: Cal5 progress (informational)
+        run: |
+          php tests/compat/compat.php check --impl=v4 --v4=.v4
+          php tests/compat/compat.php check-structure --impl=v4 --v4=.v4
+      - name: Cal5 builds the same course structure as v4 (events, dates, boxes, keys)
+        run: php tests/compat/compat.php check-structure --impl=cal5
+      - name: Cal5 progress on pages (informational)
         run: php tests/compat/compat.php check --impl=cal5 --report

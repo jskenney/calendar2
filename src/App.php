@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cal5;
 
 use Cal5\Config\ConfigLoader;
+use Cal5\Course;
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LegacyVariables;
 use Cal5\Config\LoadResult;
@@ -13,9 +14,10 @@ use Cal5\View\InstalledPage;
 /**
  * Request lifecycle (see docs/design/architecture.md).
  *
- * Milestone 2: loads the configuration (calendar.ini.php or a translated v4
- * calendar.php) and shows an "installed" page summarising it.  Later
- * milestones add the remaining steps of the lifecycle.
+ * Milestone 3: loads the configuration (calendar.ini.php or a translated v4
+ * calendar.php), reads the course content and builds the calendar, and shows
+ * an "installed" page summarising them.  Later milestones add the remaining
+ * steps of the lifecycle.
  */
 final class App
 {
@@ -85,8 +87,12 @@ final class App
             header('X-Content-Type-Options: nosniff');
             header("Content-Security-Policy: object-src 'none'; base-uri 'self'");
         }
+        $course = $this->config->config !== null && !$this->isLibraryRequest()
+            ? Course::load($this->courseDir, $this->config->config)
+            : null;
         $page = new InstalledPage(
             result: $this->config,
+            course: $course,
             libraryRequest: $this->isLibraryRequest(),
             assetBase: $this->isLibraryRequest() ? '' : 'calendar/',
         );
