@@ -15,7 +15,8 @@ php tests/run.php http       # end-to-end tests (php -S + fixture courses)
 php tests/run.php Skeleton   # test files whose name contains "Skeleton"
 ```
 
-Only the PHP 8.3 CLI is needed (extensions `dom` and `mbstring`). Any PHP warning, notice or
+Only the PHP 8.3 CLI is needed (extensions `calendar`, `dom` and `mbstring`). Run
+`tests/compat/fetch-v4.sh` once first: some tests switch a course between v4 and Cal5. Any PHP warning, notice or
 deprecation fails a test, both in test code and in pages served by Cal5.
 
 ### Compatibility with v4

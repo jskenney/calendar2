@@ -27,6 +27,10 @@ final class Server
             '-d', 'error_reporting=-1',
             '-d', 'log_errors=0',
             '-d', 'session.save_path=' . $this->sessionDir,
+            // no realpath cache and no OPcache, so a course can be switched (calendar -> v4 / Cal5)
+            // while the server runs; a real server needs a reload after switching (see the migration notes)
+            '-d', 'realpath_cache_size=0',
+            '-d', 'opcache.enable=0',
             '-S', '127.0.0.1:' . $this->port,
             '-t', $docRoot,
         ];

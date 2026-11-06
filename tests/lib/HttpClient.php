@@ -32,6 +32,16 @@ final class HttpClient
         return $this->post($entry, ['password' => $password]);
     }
 
+    public function cookie(string $name): ?string
+    {
+        return $this->cookies[$name] ?? null;
+    }
+
+    public function setCookie(string $name, string $value): void
+    {
+        $this->cookies[$name] = $value;
+    }
+
     /** Value of name="csrf" (or another hidden field) in a form, if present. */
     public static function formValue(Response $response, string $field = 'csrf'): ?string
     {

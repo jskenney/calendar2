@@ -20,6 +20,13 @@ The `calendar -> calendar-core/` symlink and `calendar.php` stay untouched. Roll
 the reverse rename. Courses that use the submodule change its URL instead. The Milestone 10
 migration guide covers both.
 
+**Reload PHP after switching** (`systemctl reload php8.3-fpm`, or reload Apache with
+mod_php). PHP's OPcache reuses the resolved path of `calendar/calendar_main.php`
+(`opcache.revalidate_path` is off by default), and the realpath cache keeps it for up to two
+minutes, so until the reload the old code can keep answering. Logins are not affected:
+instructors stay logged in across the switch in both directions (tested in
+`tests/http/AuthFlowTest.php`).
+
 ## Files and entry points
 
 | v4 | Cal5 |
@@ -53,8 +60,21 @@ students have saved.
 | `debug` | Debug dump (needs `$DEBUG_MODE`) | Same gate |
 | `edit`, `editor`, `preview`, `csrf` | Built-in editor | **Removed.** `edit` is ignored; the page shows normally |
 
-Cookies and sessions: the cookie names (`cal4-<COURSE>`, `cal4-<COURSE>-nonce`) and the
-session keys stay the same, so an instructor's login survives the switch.
+Cookies and sessions: the cookie names (`cal4-<COURSE>`, `cal4-<COURSE>-nonce`), the session
+keys and, for plain-text passwords, v4's token (`sha1(secret . password . course . nonce . session id)`)
+stay the same, so an instructor's login survives the switch in both directions. The login
+accepts what v4's does: the plain password, or `sha256(password . nonce)` (v4's login form,
+with the nonce of the cookie or the session); any other `password` while logged in logs out.
+Added in Cal5:
+- a new session id at login, and session strict mode (no session fixation);
+- constant-time comparisons;
+- a server-side expiry after `session_hours`;
+- rate limiting: 10 failed logins from one address within 15 minutes block logins from it for
+  15 minutes.
+
+Courses that store a `password_hash` log in by posting the password itself (v4's
+challenge-response needs the plain password on the server), and use an HMAC token tied to the
+hash, so changing the password logs everyone out.
 
 ## Content tags
 

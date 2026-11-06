@@ -19,8 +19,11 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, mbstring
+          # calendar: v4 needs it (the login tests switch a course from v4 to Cal5)
+          extensions: calendar, dom, mbstring
           coverage: none
+      - name: Fetch calendar-core (v4) at the pinned commit
+        run: tests/compat/fetch-v4.sh
       - name: Lint
         run: |
           find . -path ./.v4 -prune -o \( -name '*.php' -o -path ./bin/cal5 \) -type f -print0 \
