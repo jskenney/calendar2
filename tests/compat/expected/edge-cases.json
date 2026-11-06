@@ -433,6 +433,25 @@
             }
         },
         {
+            "id": "student calendar.php?key=5f2b084487f0b37482cd4c3466596e6baabf8416&type=lecture&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=5f2b084487f0b37482cd4c3466596e6baabf8416&type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
             "id": "student calendar.php?key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4",
             "role": "student",
             "entry": "calendar.php",
@@ -1340,6 +1359,27 @@
                 "content_type": "application/pdf",
                 "disposition": "inline",
                 "sha1": "9fb20087946a79f8acc6b5a361443d11443520df"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=5f2b084487f0b37482cd4c3466596e6baabf8416&type=lecture&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=5f2b084487f0b37482cd4c3466596e6baabf8416&type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [
+                    "key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
             }
         },
         {
