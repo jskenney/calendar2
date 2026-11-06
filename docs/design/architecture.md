@@ -82,9 +82,10 @@ explicit inputs, so it can be unit tested. The v4 shim is the only place that re
   - `.txt` → escaped text in `<pre class="cal5-text">` (wrapped, monospace) inside the layout.
   - `.pdf` → inline download (the browser's PDF viewer).
   - `.ppt` / `.pptx` and any other type → attachment download, with the correct content type.
-- **Tag pipeline:** an ordered list of `Tag` processors (inject → replace → link rewriting →
-  postmeeting → inst → host → lock → student → ace → url), the same order as v4. Each
-  processor is a small class with its own tests.
+- **Tag pipeline:** an ordered list of `Tag` processors in v4's order: link rewriting →
+  replace → inject / codeinject (these three repeat, up to 5 passes, so injected files are
+  processed too) → postmeeting → inst → host → lock → student → ace → url. Each processor is
+  a small class with its own tests.
 - **Page assets:** MathJax and highlight.js are added to rendered pages. Ace's script tags are
   added only when an `<ace>` tag is found. `compat.css` and legacy JS follow the config.
 
