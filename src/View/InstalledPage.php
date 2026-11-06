@@ -95,7 +95,7 @@ final class InstalledPage
   <main class="cal5-installed" data-cal5-version="{$version}" data-config-source="{$sourceValue}" data-config-state="{$state}" data-instructor="{$instructor}">
     <h1>{$title}</h1>
     {$body}
-    <p class="cal5-note">Cal5 {$version} is installed. This development build does not serve course content yet.</p>
+    <p class="cal5-note">Cal5 {$version} is installed.</p>
   </main>
 </body>
 </html>

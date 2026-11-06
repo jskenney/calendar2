@@ -62,11 +62,14 @@ function fixtureTypes(course) {
 
 /** The pages checked for a course: the three calendar views and up to three events of each type. */
 function pages(course, entry) {
-  const list = ['show=calendar_display', 'show=calendar_display_alt', 'show=calendar_display_dateless'];
+  const list = ['', 'load=home', 'show=calendar_display', 'show=calendar_display_alt', 'show=calendar_display_dateless',
+    'show=calendar_search&search=e', 'show=calendar_keyword', 'show=calendar_file_selector'];
+  const first = fixtureTypes(course)[0];
+  list.push(`navbaronly=1&type=${first}&event=1`, `type=${first}&event=1&as=student`);
   for (const type of fixtureTypes(course)) {
     for (let n = 1; n <= 3; n++) { list.push(`type=${type}&event=${n}`); }
   }
-  return list.map((q) => `${entry}?${q}`);
+  return list.map((q) => (q === '' ? entry : `${entry}?${q}`));
 }
 
 const problems = [];
@@ -149,6 +152,14 @@ function screenshotPlan(entry) {
   plan.push(['login-desktop-light', 'student', 'desktop', 'light', month, 'login']);
   plan.push(['print-event-desktop-light', 'student', 'desktop', 'light', lecture + '&print=1', null]);
   plan.push(['lab-student-desktop-light', 'student', 'desktop', 'light', `${entry}?type=lab&event=9`, null]);
+  // milestone 9: start page, search, keywords, status page, view as a student, guide
+  plan.push(['home-student-desktop-light', 'student', 'desktop', 'light', entry, null]);
+  plan.push(['search-student-desktop-light', 'student', 'desktop', 'light', `${entry}?show=calendar_search&search=rotate`, null]);
+  plan.push(['search-student-phone-dark', 'student', 'phone', 'dark', `${entry}?show=calendar_search&search=rotate`, null]);
+  plan.push(['status-instructor-desktop-light', 'instructor', 'desktop', 'light', `${entry}?navbaronly=1&type=class&event=31`, null]);
+  plan.push(['status-instructor-desktop-dark', 'instructor', 'desktop', 'dark', `${entry}?navbaronly=1&type=class&event=31`, null]);
+  plan.push(['as-student-desktop-light', 'instructor', 'desktop', 'light', `${entry}?type=class&event=31&as=student`, null]);
+  plan.push(['guide-instructor-desktop-light', 'instructor', 'desktop', 'light', `${entry}?load=instructor`, null]);
   return plan;
 }
 

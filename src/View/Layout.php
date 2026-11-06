@@ -39,6 +39,7 @@ final class Layout
     public const PAGE_EVENT = 'event';
     public const PAGE_CALENDAR = 'calendar';
     public const PAGE_OTHER = 'other';
+    public const PAGE_CONTENT = 'content'; // a ?load= page (home, policy, ...): styled like event pages
 
     /**
      * @param array<string, ContentFile> $files the event's files the viewer may see
@@ -65,6 +66,8 @@ final class Layout
         private readonly bool $answersShown = false,
         private readonly string $page = self::PAGE_EVENT,
         private readonly string $title = '',
+        /** Set when the instructor views a page as a student (?as=student): the link back */
+        private readonly ?string $preview = null,
     ) {
     }
 
@@ -75,6 +78,18 @@ final class Layout
         }
         $instructor = $this->auth->instructor ? 'yes' : 'no';
         $header = $mode === self::FULL ? $this->header() : '';
+        $message = match ($this->auth->event) {
+            AuthResult::FAILED => 'The password was not accepted.',
+            AuthResult::BLOCKED => 'Too many failed logins from this address; try again in 15 minutes.',
+            default => null,
+        };
+        if ($message !== null && $mode === self::FULL) {
+            $header .= '<div class="cal5-notice cal5-notice-error" role="alert">' . Icons::svg('circle-alert') . '<span>' . Html::escape($message) . "</span></div>\n";
+        }
+        if ($this->preview !== null && $mode === self::FULL) {
+            $header .= '<div class="cal5-preview" role="status">' . Icons::svg('eye') . '<span>You are seeing this page as a student would now.</span> '
+                . '<a href="' . Html::escape($this->preview) . "\">Back to the instructor's view</a></div>\n";
+        }
         $warnings = '';
         if ($this->auth->instructor && $this->warnings !== []) {
             $warnings = '<div class="cal5-warnings" role="note">' . Icons::svg('circle-alert')
@@ -236,7 +251,7 @@ final class Layout
                 . '<button type="submit" title="Search">' . Icons::svg('search') . "<span class=\"cal5-visually-hidden\">Search</span></button></form>\n";
         }
         $html .= $this->login() . "  </div>\n</div>\n";
-        if ($this->page === self::PAGE_EVENT && !$locked) {
+        if (!$locked) {
             $html .= $this->pageBar();
         }
         return $html . "</header>\n";
@@ -274,13 +289,19 @@ final class Layout
     /** The event's bar: title, sections, the instructor's files, answers, print. */
     private function pageBar(): string
     {
-        if ($this->type === null || $this->event === null) {
-            return '';
-        }
-        $html = "<div class=\"cal5-pagebar\">\n  <div class=\"cal5-pagebar-inner\">\n"
-            . '    <span class="cal5-pagebar-title"><span class="cal5-tag">' . Html::escape(ucwords(str_replace('-', ' ', $this->type)) . ' ' . $this->event) . '</span>'
-            . Html::escape($this->eventName) . "</span>\n";
         $menu = $this->headings?->menu() ?? [];
+        if ($this->type === null || $this->event === null) {
+            // other pages (?load=): a bar only when the page has sections
+            if ($menu === [] || $this->page === self::PAGE_CALENDAR) {
+                return '';
+            }
+            $html = "<div class=\"cal5-pagebar\">\n  <div class=\"cal5-pagebar-inner\">\n"
+                . '    <span class="cal5-pagebar-title">' . Html::escape($this->title) . "</span>\n";
+        } else {
+            $html = "<div class=\"cal5-pagebar\">\n  <div class=\"cal5-pagebar-inner\">\n"
+                . '    <span class="cal5-pagebar-title"><span class="cal5-tag">' . Html::escape(ucwords(str_replace('-', ' ', $this->type)) . ' ' . $this->event) . '</span>'
+                . Html::escape($this->eventName) . "</span>\n";
+        }
         if ($menu !== []) {
             $html .= '    <details class="cal5-menu"><summary>' . Icons::svg('list') . '<span>Sections</span>' . Icons::svg('chevron-down', 'cal5-caret') . "</summary>\n      <ul class=\"cal5-menu-list\">\n";
             foreach ($menu as $anchor => $label) {
@@ -295,9 +316,14 @@ final class Layout
                 $html .= '        <li><a href="' . $this->link('key=' . $file->key . '&type=' . rawurlencode($this->type) . '&event=' . $this->event) . '">'
                     . Html::escape($name) . $state . "</a></li>\n";
             }
+            if ($this->inMenus($this->type)) {
+                // the status page (only for types with a menu, so the links stay those v4 makes)
+                $html .= '        <li class="cal5-menu-extra"><a href="' . $this->link('navbaronly=1&type=' . rawurlencode($this->type) . '&event=' . $this->event) . '">'
+                    . Icons::svg('clock') . " Release status of these files</a></li>\n";
+            }
             $html .= "      </ul></details>\n";
         }
-        if ($this->hasAnswers) {
+        if ($this->hasAnswers && $this->type !== null && $this->event !== null) {
             $link = 'type=' . rawurlencode($this->type) . '&event=' . $this->event . ($this->key !== null ? '&key=' . $this->key : '');
             $html .= $this->answersShown
                 ? '    <a class="cal5-button" href="' . $this->link($link) . '" aria-pressed="true">' . Icons::svg('eye-off') . "<span>Hide answers</span></a>\n"
@@ -307,6 +333,17 @@ final class Layout
         $html .= '    <form method="post" target="_blank" class="cal5-print-form"><input type="hidden" name="print" value="1">'
             . '<button type="submit" class="cal5-button">' . Icons::svg('printer') . "<span>Print</span></button></form>\n";
         return $html . "  </div>\n</div>\n";
+    }
+
+    private function inMenus(?string $type): bool
+    {
+        $menus = $this->auth->instructor && $this->config->instructorMenus !== null ? $this->config->instructorMenus : $this->config->menus;
+        foreach ($menus as $menu) {
+            if ($menu->type === $type) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** For the instructor's file list: why students can not see a file now. */

@@ -66,14 +66,12 @@ changes, or when `V4_COMMIT` is moved to a newer calendar-core, and review the d
 ## Status by milestone
 
 - `check-structure --impl=cal5` has been required since milestone 3.
-- `check --impl=cal5 --scope=events` has been required since milestone 6: every event page
-  and file (`?type=T&event=N[&key=K]` with a valid type and number) must match v4. The
-  fixture's `error_entries` (entries whose configuration v4 refuses) are left out.
-- `check --impl=cal5 --scope=calendars` has been required since milestone 7: the month, list
-  and agenda views (`?show=calendar_display`, `_alt`, `_dateless`) must match v4.
-- The other pages (home and load pages, search, the file selector) arrive in milestone 9.
-  CI runs the full check with `--report` to print progress, and it becomes required by
-  milestone 9.
+- `check --impl=cal5 --scope=events` (event pages and files) since milestone 6, and
+  `--scope=calendars` (the month, list and agenda views) since milestone 7.
+- `check --impl=cal5` (every request of every fixture: start pages, `?load=` pages, search,
+  keyword search, the file selector, invalid requests, locked sites, refused
+  configurations) has been required since milestone 9. The scopes remain useful to look at
+  one part. The fixture's `error_entries` are only left out of the `events` scope.
 
 Text downloads (`text/*`) also record which markers they contain, so that `.txt` files, which
 Cal5 shows as pages, can be compared by their text. `IntendedDifferences.php` holds the

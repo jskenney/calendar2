@@ -12,26 +12,31 @@ use Cal5\Auth\LockCodes;
 use Cal5\Auth\LockMode;
 use Cal5\Auth\PhpSession;
 use Cal5\Auth\RateLimiter;
+use Cal5\Config\ConfigChecks;
 use Cal5\Config\ConfigLoader;
 use Cal5\Content\ContentScanner;
 use Cal5\Course;
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LegacyVariables;
 use Cal5\Config\LoadResult;
-use Cal5\Http\PageRequest;
+use Cal5\Auth\AuthResult;
+use Cal5\Http\AccessLog;
 use Cal5\Http\Request;
-use Cal5\View\CalendarPage;
+use Cal5\Http\Route;
+use Cal5\Http\Router;
+use Cal5\View\DebugView;
 use Cal5\View\EventPage;
 use Cal5\View\InstalledPage;
+use Cal5\View\SitePage;
 
 /**
  * Request lifecycle (see docs/design/architecture.md).
  *
- * Milestone 6: loads the configuration (calendar.ini.php or a translated v4
- * calendar.php), reads the course content, builds the calendar, logs the
- * instructor in (v4 compatible), and serves event pages and their files
- * (View\EventPage).  Other requests still get the "installed" summary page
- * until the home page, calendar views and search arrive (milestones 7-9).
+ * Loads the configuration (calendar.ini.php or a translated v4 calendar.php),
+ * reads the course content, builds the calendar, logs the instructor in (v4
+ * compatible), writes the access log, and lets the Router decide what the request
+ * shows: an event page or file (View\EventPage), or any other page (View\SitePage).
+ * Without a configuration, the set-up page (View\InstalledPage).
  */
 final class App
 {
@@ -118,48 +123,93 @@ final class App
             header('X-Content-Type-Options: nosniff');
             header("Content-Security-Policy: object-src 'none'; base-uri 'self'");
         }
-        $config = $this->config->config;
-        $course = $config !== null && !$this->isLibraryRequest()
-            ? Course::load($this->courseDir, $config)
-            : null;
+        // a configuration that fails a check still shows its error page (Router), with a random secret
+        $config = $this->config->config ?? $this->config->draft;
+        if ($config === null || $this->isLibraryRequest()) {
+            // no configuration (or the library itself): the set-up page
+            echo (new InstalledPage(result: $this->config, course: null, libraryRequest: $this->isLibraryRequest(),
+                assetBase: $this->isLibraryRequest() ? '' : 'calendar/'))->render();
+            return;
+        }
+        $course = Course::load($this->courseDir, $config);
+        $request = Request::fromGlobals();
+        $session = PhpSession::start($request->isHttps());
+        $realAuth = (new InstructorAuth($config, $session, $request, new SystemClock(), RateLimiter::forCourse($this->courseDir)))->handle();
+        foreach ($realAuth->cookies as $cookie) {
+            $cookie->send($request->isHttps());
+        }
+        LockCodes::remember($request, $session);
+        $csrf = Csrf::token($session);
+        $locked = LockMode::locked($config, $this->courseDir);
+        $policy = AccessPolicy::forCourse($course);
+        AccessLog::write($config->features->accessLog, $this->courseDir, $request, $policy->now());
 
-        $auth = null;
-        $csrf = null;
-        $locked = false;
-        if ($config !== null && !$this->isLibraryRequest()) {
-            $request = Request::fromGlobals();
-            $session = PhpSession::start($request->isHttps());
-            $auth = (new InstructorAuth($config, $session, $request, new SystemClock(), RateLimiter::forCourse($this->courseDir)))->handle();
-            foreach ($auth->cookies as $cookie) {
-                $cookie->send($request->isHttps());
-            }
-            LockCodes::remember($request, $session);
-            $csrf = Csrf::token($session);
-            $locked = LockMode::locked($config, $this->courseDir);
-
-            $page = PageRequest::from($request, ContentScanner::componentTypes($config));
-            if ($course !== null && $this->config->ok() && $page->isEvent() && !($locked && !$auth->instructor)) {
-                $policy = AccessPolicy::forCourse($course);
-                (new EventPage($course, $policy, $auth, $request, $session, $csrf, $this->entryName(), 'calendar/', $this->legacyVariables))->handle($page);
-                return;
-            }
-            $view = CalendarPage::viewFor($request->param('show'));
-            if ($course !== null && $this->config->ok() && $view !== null && !$request->sent('type') && !$request->sent('event')
-                && !($locked && !$auth->instructor)) {
-                echo (new CalendarPage($course, AccessPolicy::forCourse($course), $auth, $request, $csrf, $this->entryName(), 'calendar/', $locked))->render($view);
-                return;
-            }
+        // the instructor can look at any page as a student would see it now (?as=student)
+        $auth = $realAuth;
+        $preview = null;
+        if ($realAuth->instructor && $request->param('as') === 'student') {
+            $auth = new AuthResult(false, [], null, null);
+            $preview = $this->withoutParameter($request, 'as');
         }
 
-        $page = new InstalledPage(
-            result: $this->config,
-            course: $course,
-            libraryRequest: $this->isLibraryRequest(),
-            assetBase: $this->isLibraryRequest() ? '' : 'calendar/',
-            auth: $auth,
-            csrf: $csrf,
-            locked: $locked,
+        $route = Router::route(
+            $request,
+            ContentScanner::componentTypes($config),
+            $auth->instructor,
+            $locked,
+            $this->error($policy),
+            $config->display->startPage,
+            static function () use ($course, $policy, $auth, $request, $session, $csrf): ?array {
+                $folder = (new SitePage($course, $policy, $auth, $request, $session, $csrf, '', '', ''))->todaysEvent();
+                return $folder === null ? null : [$folder->type, $folder->number];
+            },
         );
-        echo $page->render();
+
+        // shown to the instructor on every page (v4 showed its configuration warnings the same way)
+        $warnings = array_map('strval', array_merge($this->config->errors,
+            array_filter($this->config->warnings, static fn ($p): bool => $p->message !== ConfigChecks::PLAIN_TEXT_ADVICE),
+            $course->problems()));
+        if (AccessLog::insideWebRoot($config->features->accessLog, $this->courseDir, $request->server('DOCUMENT_ROOT'))) {
+            $warnings[] = 'The access log is inside the web root and may be downloadable; move it outside of the web root.';
+        }
+        $debug = DebugView::enabled($this->config, $realAuth->instructor, $request)
+            ? DebugView::render($course, $policy, $this->config, $request, $session, $route->page, $route->describe())
+            : '';
+
+        if ($route->kind === Route::EVENT) {
+            (new EventPage($course, $policy, $auth, $request, $session, $csrf, $this->entryName(), 'calendar/', $this->legacyVariables,
+                $warnings, $debug, $preview))->handle($route->page);
+            return;
+        }
+        (new SitePage($course, $policy, $auth, $request, $session, $csrf, $this->entryName(), 'calendar/', $this->libraryDir,
+            $locked, $warnings, $debug, $route->replace, $preview))->handle($route->page, $route->load, $route->show);
+    }
+
+    /**
+     * Why the course can not run, as v4's error page says it: the configuration has errors
+     * (for example the published sample secret), or the access file can not be read.
+     *
+     * @return array{0: string, 1: string}|null
+     */
+    private function error(AccessPolicy $policy): ?array
+    {
+        if (!$this->config->ok()) {
+            return ['This course site is not set up correctly.',
+                'The instructor can run "php calendar/bin/cal5 check" in the course directory to see what needs to be fixed.'];
+        }
+        if ($policy->unreadable()) {
+            return ['The release rules can not be read.',
+                'The access file exists but can not be opened, so as a precaution the calendar shows no content until this is corrected.'];
+        }
+        return null;
+    }
+
+    /** The current address without one parameter (the way back from ?as=student). */
+    private function withoutParameter(Request $request, string $name): string
+    {
+        $query = (string) parse_url($request->server('REQUEST_URI'), PHP_URL_QUERY);
+        parse_str($query, $params);
+        unset($params[$name]);
+        return $this->entryName() . ($params === [] ? '' : '?' . http_build_query($params));
     }
 }

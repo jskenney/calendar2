@@ -33,6 +33,15 @@ final class Config
     ) {
     }
 
+    /** The same configuration with another secret (the error page of a refused configuration). */
+    public function withSecret(string $secret): self
+    {
+        $s = $this->security;
+        return new self($this->course, $this->semester, $this->schedule, $this->boxes, $this->menus, $this->instructorMenus,
+            $this->replace, $this->files, new SecuritySettings($s->passwordHash, $s->password, $secret, $s->sessionSeconds, $s->lockAlways, $s->lockFile),
+            $this->display, $this->style, $this->features);
+    }
+
     public function box(string $name): ?Box
     {
         foreach ($this->boxes as $box) {

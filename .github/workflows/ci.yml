@@ -49,12 +49,8 @@ jobs:
           php tests/compat/compat.php check-structure --impl=v4 --v4=.v4
       - name: Cal5 builds the same course structure as v4 (events, dates, boxes, keys)
         run: php tests/compat/compat.php check-structure --impl=cal5
-      - name: Cal5 event pages and files match v4
-        run: php tests/compat/compat.php check --impl=cal5 --scope=events
-      - name: Cal5 calendar views match v4
-        run: php tests/compat/compat.php check --impl=cal5 --scope=calendars
-      - name: Cal5 progress on all pages (informational)
-        run: php tests/compat/compat.php check --impl=cal5 --report
+      - name: Cal5 matches v4 for every request of every fixture
+        run: php tests/compat/compat.php check --impl=cal5
 
   browser:
     name: Browser check (Chromium)

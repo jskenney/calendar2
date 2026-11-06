@@ -46,6 +46,12 @@ final class EventPage
         private readonly string $entry,
         private readonly string $assetBase,
         private readonly array $phpVariables = [],
+        /** @var list<string> configuration warnings, shown to the instructor */
+        private readonly array $configWarnings = [],
+        /** Added after the content (the debug view) */
+        private readonly string $extra = '',
+        /** The instructor's way back from ?as=student */
+        private readonly ?string $preview = null,
     ) {
     }
 
@@ -147,7 +153,7 @@ final class EventPage
         $pipeline = new TagPipeline($this->request->server('SERVER_NAME'), $this->request->server('SERVER_ADDR'));
         $rendered = $pipeline->process($html, $page);
 
-        $warnings = [];
+        $warnings = $instructor ? $this->configWarnings : [];
         if ($instructor) {
             if ($config->display->headingWarnings && $rendered->headings->oldAnchors !== []) {
                 $names = array_map(static fn (array $a): string => $a['tag'] . ' name="' . $a['name'] . '"', $rendered->headings->oldAnchors);
@@ -182,8 +188,9 @@ final class EventPage
             headings: $rendered->headings,
             warnings: $warnings,
             answersShown: $this->request->has('answers'),
+            preview: $this->preview,
         );
-        return $layout->render($navbarOnly ? '' : $rendered->html, $mode);
+        return $layout->render(($navbarOnly ? '' : $rendered->html) . $this->extra, $mode);
     }
 
     /**

@@ -112,7 +112,9 @@ final class IniConfigLoader
         $checks = ConfigChecks::check($config, $this->doc->file);
         $errors = array_merge($this->errors, $checks['errors']);
         $warnings = array_merge($this->warnings, $checks['warnings']);
-        return new LoadResult(ConfigSource::Ini, $errors === [] ? $config : null, $errors, $warnings);
+        // a configuration that was read but fails a check can still show the error page (v4)
+        $draft = $errors !== [] && $this->errors === [] ? $config->withSecret('cal5-refused-' . bin2hex(random_bytes(16))) : null;
+        return new LoadResult(ConfigSource::Ini, $errors === [] ? $config : null, $errors, $warnings, $draft);
     }
 
     // ------------------------------------------------------------ sections
