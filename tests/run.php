@@ -47,6 +47,8 @@ $passed = 0;
 $failed = 0;
 $assertions = 0;
 $start = microtime(true);
+// tests must leave nothing behind in the temporary directory (courses, copies, rate limiter state)
+$temporaryBefore = glob(sys_get_temp_dir() . '/cal5-*') ?: [];
 
 foreach ($files as [$suite, $file]) {
     require_once $file;
@@ -91,5 +93,10 @@ foreach ($files as [$suite, $file]) {
     }
 }
 
+$leftovers = array_values(array_diff(glob(sys_get_temp_dir() . '/cal5-*') ?: [], $temporaryBefore));
+if ($leftovers !== []) {
+    $failed++;
+    echo "\n  FAIL  the tests left files in " . sys_get_temp_dir() . ': ' . implode(', ', array_map('basename', $leftovers)) . "\n";
+}
 printf("\n%d passed, %d failed, %d assertions (%.1fs)\n", $passed, $failed, $assertions, microtime(true) - $start);
 exit($failed === 0 && $passed > 0 ? 0 : 1);
