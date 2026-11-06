@@ -60,6 +60,8 @@ final class CompatHarnessTest extends TestCase
         $this->assertSame([$page, $page], IntendedDifferences::apply($page, $page), 'pages are compared unchanged');
         $dead = ['event_links' => ['type=a&event=1', 'type=holiday']] + $page;
         $this->assertSame([], Runner::compareOne('dead', $dead, $page), "v4's dead day links (no event number) are not expected");
+        $this->assertSame([], Runner::compareOne('v4', $dead, $dead, [], false), 'v4 is compared with its own recording without the rules');
+        $this->assertSame(1, count(Runner::compareOne('v4', $dead, $page, [], false)), 'and must still produce the dead links');
     }
 
     public function testEventsScope(): void
