@@ -69,6 +69,7 @@ final class EntryPointsTest extends TestCase
         $this->assertContains('mon class, wed lab, fri class', $response->body);
         $this->assertContains('7 class, 3 lab, 1 exam, 1 final-exam', $response->body, 'events found');
         $this->assertContains('12 of 12 events, on 13 days', $response->body, 'events on the calendar');
+        $this->assertContains('34 of 38 files now', $response->body, 'files students can see (as v4)');
         $this->assertContains('1 warning(s)', $response->body, 'problems are counted');
         $this->assertNotContains('plain text', $response->body, 'but their text is not shown on the page');
     }

@@ -16,7 +16,8 @@
                         "index.md": {
                             "key": "c5f6d3332b7b754186bc5f533914af0d06a6fca2",
                             "box": "title",
-                            "actual": "exam/1.Mid/index.md"
+                            "actual": "exam/1.Mid/index.md",
+                            "student_visible": true
                         }
                     }
                 }
@@ -34,7 +35,8 @@
                         "index.html": {
                             "key": "c991fae580c9ff6a1aed4a43e0429c007419f479",
                             "box": "title",
-                            "actual": "shared/virt-index.html"
+                            "actual": "shared/virt-index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -51,12 +53,14 @@
                         "notes.txt": {
                             "key": "3cf719b61d91fd078f2608ab471ac23ca9a606e0",
                             "box": "notes",
-                            "actual": "lab/2.B/notes.txt"
+                            "actual": "lab/2.B/notes.txt",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "c991fae580c9ff6a1aed4a43e0429c007419f479",
                             "box": "title",
-                            "actual": "shared/virt-index.html"
+                            "actual": "shared/virt-index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -72,7 +76,8 @@
                         "index.html": {
                             "key": "bcfc602cff0803431713f53cab887d11bc6596cd",
                             "box": "title",
-                            "actual": "lab/3.C/index.html"
+                            "actual": "lab/3.C/index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -88,7 +93,8 @@
                         "index.html": {
                             "key": "6cd5739a9983f16b4fb95e44227c8f6127c245df",
                             "box": "title",
-                            "actual": "lab/4.D/index.html"
+                            "actual": "lab/4.D/index.html",
+                            "student_visible": true
                         }
                     }
                 }
@@ -107,32 +113,38 @@
                         "9": {
                             "key": "97f02b78ab814947f5290fabfb43a23b1398cc89",
                             "box": null,
-                            "actual": "lecture/1.Intro/9"
+                            "actual": "lecture/1.Intro/9",
+                            "student_visible": true
                         },
                         "10": {
                             "key": "5758cd1b1da57c77d63c3e918bab0c078e75668c",
                             "box": null,
-                            "actual": "lecture/1.Intro/10"
+                            "actual": "lecture/1.Intro/10",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "3662807f8a6fd03bda3442b86d42334b8d4f75a9",
                             "box": "title",
-                            "actual": "lecture/1.Intro/index.html"
+                            "actual": "lecture/1.Intro/index.html",
+                            "student_visible": true
                         },
                         "index.md": {
                             "key": "2afa387418d841647455a55a25a551b0a26bfd1a",
                             "box": "title",
-                            "actual": "lecture/1.Intro/index.md"
+                            "actual": "lecture/1.Intro/index.md",
+                            "student_visible": true
                         },
                         "notes.txt": {
                             "key": "ddd48d4df4d995864c42cabf7026ce7938682346",
                             "box": "notes",
-                            "actual": "lecture/1.Intro/notes.txt"
+                            "actual": "lecture/1.Intro/notes.txt",
+                            "student_visible": true
                         },
                         "sub/ok.html": {
                             "key": "8df94597bbaf5e6d98c03c2c8769c48476fdcb04",
                             "box": null,
-                            "actual": "lecture/1.Intro/sub/ok.html"
+                            "actual": "lecture/1.Intro/sub/ok.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -149,17 +161,20 @@
                         "homework.pdf": {
                             "key": "a92397e4be9802253b2645e8331022ebdc180d88",
                             "box": "homework",
-                            "actual": "lecture/2.Two/homework.pdf"
+                            "actual": "lecture/2.Two/homework.pdf",
+                            "student_visible": true
                         },
                         "homework.txt": {
                             "key": "3b5e53bf62f7cb4d8e8b11596d9c05b16129fda2",
                             "box": "homework",
-                            "actual": "lecture/2.Two/homework.txt"
+                            "actual": "lecture/2.Two/homework.txt",
+                            "student_visible": true
                         },
                         "slides.pdf": {
                             "key": "6457a8e9e174aa5b7c29738ee3112d2b50711f08",
                             "box": "title",
-                            "actual": "lecture/2.Two/slides.pdf"
+                            "actual": "lecture/2.Two/slides.pdf",
+                            "student_visible": true
                         }
                     }
                 },
@@ -175,7 +190,8 @@
                         "notes.txt": {
                             "key": "622bf934c5bc64605d5c3afdde259a639b360fef",
                             "box": "notes",
-                            "actual": "shared/notes.txt"
+                            "actual": "shared/notes.txt",
+                            "student_visible": true
                         }
                     }
                 },
@@ -191,7 +207,8 @@
                         "index.html": {
                             "key": "62c9a608c3b012e91d7fb6e62ffd476f20495d60",
                             "box": "title",
-                            "actual": "lecture/04.Four/index.html"
+                            "actual": "lecture/04.Four/index.html",
+                            "student_visible": true
                         }
                     }
                 },
@@ -207,7 +224,8 @@
                         "index.html": {
                             "key": "d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd",
                             "box": "title",
-                            "actual": "lecture/10.Ten/index.html"
+                            "actual": "lecture/10.Ten/index.html",
+                            "student_visible": true
                         }
                     }
                 }

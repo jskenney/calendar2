@@ -8,9 +8,10 @@ use Cal5\Tests\Fixture;
 use RuntimeException;
 
 /**
- * The structure of a course as v4 computes it (milestone 3): every event of
- * every type with its directory, name, calendar date, box files and file
- * keys, plus which events appear on each calendar day.
+ * The structure of a course as v4 computes it (milestones 3 and 4): every
+ * event of every type with its directory, name, calendar date, box files, and
+ * for each file its key and whether a student may see it now, plus which
+ * events appear on each calendar day.
  *
  * fromV4Course() reads it out of v4 (tests/compat/v4-probe.php); the Cal5
  * side is built by Cal5\Course and normalized by Structure::fromCal5().
@@ -52,6 +53,7 @@ final class Structure
     /** @return array<string, mixed> */
     public static function fromCal5(\Cal5\Course $course): array
     {
+        $policy = \Cal5\Access\AccessPolicy::forCourse($course);
         $types = [];
         foreach ($course->content->types as $type => $events) {
             foreach ($events as $event) {
@@ -63,6 +65,7 @@ final class Structure
                         'key' => $file->key,
                         'box' => $file->box,
                         'actual' => self::relative($file->actualPath, $course->directory),
+                        'student_visible' => $policy->visibleToStudents($event, $file),
                     ];
                 }
                 $types[$type][] = [
@@ -114,6 +117,7 @@ final class Structure
                         'key' => (string) $info['key'],
                         'box' => ($info['category'] ?? '') === '' ? null : (string) $info['category'],
                         'actual' => self::relative((string) $info['actual'], $courseDir),
+                        'student_visible' => $dump['student_visible'][$type][$number][$name] ?? null,
                     ];
                 }
                 $types[(string) $type][] = [

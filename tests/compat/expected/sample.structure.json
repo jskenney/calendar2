@@ -16,12 +16,14 @@
                         "class01.html": {
                             "key": "24bbf9dee4ac03e280b796a1c14b0215ef523cb5",
                             "box": null,
-                            "actual": "class/01.Intro/class01.html"
+                            "actual": "class/01.Intro/class01.html",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "91be9a42cb7cdec30c921cbb799edde2ad391bf0",
                             "box": "title",
-                            "actual": "class/01.Intro/class01.html"
+                            "actual": "class/01.Intro/class01.html",
+                            "student_visible": true
                         }
                     }
                 }
@@ -40,22 +42,26 @@
                         "example.py": {
                             "key": "5f004fd66c971a9c2e9bf5cffbd6cf2d6dee53d8",
                             "box": null,
-                            "actual": "lab/01.First Lab/example.py"
+                            "actual": "lab/01.First Lab/example.py",
+                            "student_visible": true
                         },
                         "index.html": {
                             "key": "8fc3af3359c28be7a4c769936502dd507bab450a",
                             "box": "title",
-                            "actual": "lab/01.First Lab/lab01.html"
+                            "actual": "lab/01.First Lab/lab01.html",
+                            "student_visible": true
                         },
                         "lab01.html": {
                             "key": "c9a52a33b9183dc366f79ebf3199202b3cd2d15c",
                             "box": null,
-                            "actual": "lab/01.First Lab/lab01.html"
+                            "actual": "lab/01.First Lab/lab01.html",
+                            "student_visible": true
                         },
                         "notes.txt": {
                             "key": "aee874a62f59e9568ba02a6b1032eb07635edee4",
                             "box": "notes",
-                            "actual": "lab/01.First Lab/notes.txt"
+                            "actual": "lab/01.First Lab/notes.txt",
+                            "student_visible": true
                         }
                     }
                 }

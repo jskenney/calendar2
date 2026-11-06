@@ -33,7 +33,9 @@ form). They cover:
 Pages are not the only thing compared. `Structure.php` reads what v4 **computes** for a course
 by running it once from the command line as the instructor (`v4-probe.php`): every event's
 directory, name and calendar date, the file that fills each box, each file's box and key, and
-the events on every calendar day. Cal5's `Course` is reduced to the same form.
+the events on every calendar day. Since milestone 4 it also records, for every file, whether a
+student may see it (v4's own `get_file_security()`, called as v4 calls it when serving).
+Cal5's `Course` and `AccessPolicy` are reduced to the same form.
 `expected/<fixture>.structure.json` holds v4's result and is recorded together with the
 requests.
 

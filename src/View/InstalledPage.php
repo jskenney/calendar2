@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cal5\View;
 
+use Cal5\Access\AccessPolicy;
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LoadResult;
 use Cal5\Course;
@@ -59,7 +60,8 @@ final class InstalledPage
                     . '</dl>';
             }
             $errors = count($this->result->errors);
-            $warnings = count($this->result->warnings) + count($this->course?->problems() ?? []);
+            $warnings = count($this->result->warnings) + count($this->course?->problems() ?? [])
+                + ($this->course !== null ? count(AccessPolicy::forCourse($this->course)->problems()) : 0);
             if ($errors > 0 || $warnings > 0) {
                 $body .= '<p class="cal5-problems">' . $errors . ' error(s) and ' . $warnings . ' warning(s): run '
                     . '<code>php calendar/bin/cal5 check</code> in the course directory to see them.</p>';
@@ -109,8 +111,22 @@ HTML;
             }
         }
         $total = array_sum(array_map('count', $course->content->types));
+        $policy = AccessPolicy::forCourse($course);
+        $files = 0;
+        $visible = 0;
+        foreach ($course->content->types as $events) {
+            foreach ($events as $event) {
+                foreach ($event->files as $file) {
+                    $files++;
+                    if ($policy->visibleToStudents($event, $file)) {
+                        $visible++;
+                    }
+                }
+            }
+        }
         return '<dt>Events</dt><dd>' . Html::escape($parts === [] ? 'none yet' : implode(', ', $parts)) . '</dd>'
-            . '<dt>On the calendar</dt><dd>' . $scheduled . ' of ' . $total . ' events, on ' . count($course->schedule->days) . ' days</dd>';
+            . '<dt>On the calendar</dt><dd>' . $scheduled . ' of ' . $total . ' events, on ' . count($course->schedule->days) . ' days</dd>'
+            . '<dt>Students can see</dt><dd>' . $visible . ' of ' . $files . ' files now</dd>';
     }
 
     /** @param array<string, \Cal5\Config\DayPlan> $weekly */
