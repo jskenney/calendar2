@@ -13,11 +13,16 @@ declare(strict_types=1);
  *   php tests/compat/compat.php check --impl=cal5 [--fixture=NAME] [--report]
  *       Compare an implementation with the stored results.  --report prints a
  *       summary and always exits 0 (used while Cal5 is still being built).
+ *
+ *   php tests/compat/compat.php check-structure --impl=v4|cal5 [--v4=PATH] [--fixture=NAME]
+ *       Compare the course structure (events, dates, names, boxes, file keys)
+ *       with expected/NAME.structure.json (recorded together with "record").
  */
 
 require_once __DIR__ . '/../lib/autoload.php';
 
 use Cal5\Tests\Compat\Runner;
+use Cal5\Tests\Compat\Structure;
 use Cal5\Tests\Fixture;
 
 // (getopt() stops at the first non-option argument, so parse by hand)
@@ -36,8 +41,8 @@ $impl = (string) ($options['impl'] ?? ($command === 'record' ? 'v4' : 'cal5'));
 $v4 = isset($options['v4']) ? (string) $options['v4'] : null;
 $report = isset($options['report']);
 
-if (!in_array($command, ['record', 'check'], true) || !in_array($impl, ['v4', 'cal5'], true)) {
-    fwrite(STDERR, "Usage: compat.php record --v4=PATH | check --impl=v4|cal5 [--v4=PATH] [--fixture=NAME] [--report]\n");
+if (!in_array($command, ['record', 'check', 'check-structure'], true) || !in_array($impl, ['v4', 'cal5'], true)) {
+    fwrite(STDERR, "Usage: compat.php record --v4=PATH | check|check-structure --impl=v4|cal5 [--v4=PATH] [--fixture=NAME] [--report]\n");
     exit(2);
 }
 if ($impl === 'v4' && ($v4 === null || !is_file($v4 . '/calendar_main.php'))) {
@@ -49,6 +54,34 @@ $implementationDir = $impl === 'v4' ? (string) $v4 : dirname(__DIR__, 2);
 $exit = 0;
 foreach ($fixtures as $name) {
     $fixture = Fixture::load($name);
+    $structureFile = __DIR__ . "/expected/$name.structure.json";
+
+    if ($command === 'check-structure') {
+        $expected = json_decode((string) @file_get_contents($structureFile), true);
+        if (!is_array($expected)) {
+            fwrite(STDERR, "No expected structure for $name (run record first)\n");
+            $exit = 1;
+            continue;
+        }
+        $course = $fixture->install($implementationDir);
+        try {
+            $actual = $impl === 'v4' ? Structure::fromV4Course($course, $fixture) : Structure::fromCal5Course($course, $fixture);
+        } finally {
+            Fixture::remove($course);
+        }
+        $differences = Structure::compare($expected['structure'], $actual);
+        $events = array_sum(array_map('count', $expected['structure']['types']));
+        printf("%-14s %s: structure %s (%d events, %d calendar days)\n", $name, $impl,
+            $differences === [] ? 'matches' : count($differences) . ' differences', $events, count($expected['structure']['days']));
+        foreach (array_slice($differences, 0, 40) as $difference) {
+            echo "  - $difference\n";
+        }
+        if ($differences !== []) {
+            $exit = 1;
+        }
+        continue;
+    }
+
     $results = Runner::run($fixture, $implementationDir);
     $expectedFile = __DIR__ . "/expected/$name.json";
 
@@ -59,7 +92,15 @@ foreach ($fixtures as $name) {
             $data['requests'][] = ['id' => $id] + $result['request'] + ['observation' => $result['observation']];
         }
         file_put_contents($expectedFile, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
-        echo "recorded $name: " . count($results) . " requests -> tests/compat/expected/$name.json\n";
+        $course = $fixture->install($implementationDir);
+        try {
+            $structure = Structure::fromV4Course($course, $fixture);
+        } finally {
+            Fixture::remove($course);
+        }
+        file_put_contents($structureFile, json_encode(['fixture' => $name, 'recorded_with' => $label, 'structure' => $structure],
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+        echo "recorded $name: " . count($results) . " requests -> tests/compat/expected/$name.json (+ structure)\n";
         continue;
     }
 
@@ -74,7 +115,7 @@ foreach ($fixtures as $name) {
         $expected[$request['id']] = $request['observation'];
     }
     $actual = array_map(static fn (array $r): array => $r['observation'], $results);
-    $differences = Runner::compare($expected, $actual);
+    $differences = Runner::compare($expected, $actual, $fixture->meta['known_v4_warnings'] ?? []);
 
     $matching = 0;
     foreach ($expected as $id => $want) {

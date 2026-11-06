@@ -1,0 +1,448 @@
+{
+    "fixture": "kitchen-sink",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "structure": {
+        "types": {
+            "class": [
+                {
+                    "number": 1,
+                    "dir": "01.Welcome",
+                    "name": "Welcome",
+                    "date": "2018-08-20",
+                    "boxes": {
+                        "homework": "homework.html",
+                        "homework-solution": "answers.html",
+                        "instructor": "instructor.html",
+                        "notes": "notes.txt",
+                        "slides": "deck.ppt",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "answers.html": {
+                            "key": "1d2a391431253e7556d6d99ba41f6540fb6a1cc0",
+                            "box": "homework-solution",
+                            "actual": "class/01.Welcome/answers.html"
+                        },
+                        "clip.mp4": {
+                            "key": "406aa746e4da6e46c4e970836faddbd220c1082e",
+                            "box": null,
+                            "actual": "class/01.Welcome/clip.mp4"
+                        },
+                        "code.py": {
+                            "key": "6d2c520b3125119a4160f1ba871615242bab991a",
+                            "box": null,
+                            "actual": "class/01.Welcome/code.py"
+                        },
+                        "common.html": {
+                            "key": "9a4142a8ba98c19d7f8b9dea349de907658ac521",
+                            "box": null,
+                            "actual": "shared/common.html"
+                        },
+                        "data.zip": {
+                            "key": "b57dc76560b14e45befaf3c8e16c257808de3d0d",
+                            "box": null,
+                            "actual": "class/01.Welcome/data.zip"
+                        },
+                        "deck.ppt": {
+                            "key": "1b3877b0c6d0cfdd80c73178df8ec498259eceb6",
+                            "box": "slides",
+                            "actual": "class/01.Welcome/deck.ppt"
+                        },
+                        "handout.pdf": {
+                            "key": "0f63e606eef066ca13ef28eea6ed4e41732d297f",
+                            "box": null,
+                            "actual": "class/01.Welcome/handout.pdf"
+                        },
+                        "hello.php": {
+                            "key": "6793cede4d060eec8f9505dfa403a891aad5c1dc",
+                            "box": null,
+                            "actual": "class/01.Welcome/hello.php"
+                        },
+                        "homework.html": {
+                            "key": "c49a925c3e2e51f10470ea21e107fd27a6c8707d",
+                            "box": "homework",
+                            "actual": "class/01.Welcome/homework.html"
+                        },
+                        "index.html": {
+                            "key": "98441475dffe8b31823f539e019f98116f398fbe",
+                            "box": "title",
+                            "actual": "class/01.Welcome/index.html"
+                        },
+                        "instructor.html": {
+                            "key": "0a12f9fecbf5a2172d63ef40084e0f60b4149739",
+                            "box": "instructor",
+                            "actual": "class/01.Welcome/instructor.html"
+                        },
+                        "notes.txt": {
+                            "key": "078666ac2831b9c98d2b363a7bb0a981c1761ebc",
+                            "box": "notes",
+                            "actual": "class/01.Welcome/notes.txt"
+                        },
+                        "part.html": {
+                            "key": "69099de051f171967a6687222c35c99b9f6305fa",
+                            "box": null,
+                            "actual": "class/01.Welcome/part.html"
+                        },
+                        "pic.png": {
+                            "key": "d1e5a7790741c0811f8e9ff30696c2689f147809",
+                            "box": null,
+                            "actual": "class/01.Welcome/pic.png"
+                        },
+                        "readme.txt": {
+                            "key": "c6d5066bf159b95d9af6f899b8161a11c2a30234",
+                            "box": null,
+                            "actual": "class/01.Welcome/readme.txt"
+                        },
+                        "slides.pptx": {
+                            "key": "55b00663268dc517bb598f9cdeb6796208f1a927",
+                            "box": "title",
+                            "actual": "class/01.Welcome/slides.pptx"
+                        },
+                        "sub/nested.html": {
+                            "key": "793790e41893de25d0c71b1f7b07cfdd6b7f9996",
+                            "box": null,
+                            "actual": "class/01.Welcome/sub/nested.html"
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Markdown",
+                    "name": "Markdown",
+                    "date": "2018-08-24",
+                    "boxes": {
+                        "notes": "notes.md",
+                        "reading": "reading.pdf",
+                        "title": "index.md"
+                    },
+                    "files": {
+                        "index.md": {
+                            "key": "1b868d047e3b3240b184a4026164c058a1a289e7",
+                            "box": "title",
+                            "actual": "class/02.Markdown/index.md"
+                        },
+                        "notes.md": {
+                            "key": "33e4a565665b727c3759a5b5f75c2031d5077541",
+                            "box": "notes",
+                            "actual": "class/02.Markdown/notes.md"
+                        },
+                        "reading.pdf": {
+                            "key": "ad65d239091bba997a475af0eab0a8d1d05012e9",
+                            "box": "reading",
+                            "actual": "class/02.Markdown/reading.pdf"
+                        },
+                        "syllabus.pdf": {
+                            "key": "0b4056bc13f3153b9556e9f1a659b3505e4547ef",
+                            "box": null,
+                            "actual": "docs/syllabus.pdf"
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Links",
+                    "name": "Links",
+                    "date": "2018-08-27",
+                    "boxes": {
+                        "homework": "homework.pdf",
+                        "reading": "lreading.html",
+                        "title": "lindex.html"
+                    },
+                    "files": {
+                        "homework.pdf": {
+                            "key": "afd4f765186c9f6b6e64b0d894203f132a222d9a",
+                            "box": "homework",
+                            "actual": "class/03.Links/homework.pdf"
+                        },
+                        "homework.txt": {
+                            "key": "83c149995ce17c3b9b811b25541a895cf4212d0a",
+                            "box": "homework",
+                            "actual": "class/03.Links/homework.txt"
+                        },
+                        "lindex.html": {
+                            "key": "dc4e625d87495f665177097241e52cea29b55da5",
+                            "box": "title",
+                            "actual": "class/03.Links/lindex.html"
+                        },
+                        "lreading.html": {
+                            "key": "542898dd6fb217c995f4d30ffb70b00e6fb4bef8",
+                            "box": "reading",
+                            "actual": "class/03.Links/lreading.html"
+                        }
+                    }
+                },
+                {
+                    "number": 4,
+                    "dir": "04.Slides",
+                    "name": "Slides",
+                    "date": "2018-08-31",
+                    "boxes": {
+                        "title": "slides.pdf"
+                    },
+                    "files": {
+                        "slides.pdf": {
+                            "key": "fafd19a54d0f53dd47c389ab8734e63d74a46326",
+                            "box": "title",
+                            "actual": "class/04.Slides/slides.pdf"
+                        },
+                        "slides.pptx": {
+                            "key": "0a3558e6968a2ef3579f9fbbeb2bbe48ba1d3464",
+                            "box": "title",
+                            "actual": "class/04.Slides/slides.pptx"
+                        }
+                    }
+                },
+                {
+                    "number": 5,
+                    "dir": "05.Future",
+                    "name": "Future",
+                    "date": "2018-09-07",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "004fd3d10d85fd20648d5bbcfc12acb6c24790a2",
+                            "box": "title",
+                            "actual": "class/05.Future/index.html"
+                        }
+                    }
+                },
+                {
+                    "number": 6,
+                    "dir": "06.Hidden",
+                    "name": "Hidden",
+                    "date": "2018-09-10",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "fe47b656ae98562b9923c2c6baa688354fff8e69",
+                            "box": "title",
+                            "actual": "class/06.Hidden/index.html"
+                        }
+                    }
+                },
+                {
+                    "number": 7,
+                    "dir": "07.Plain",
+                    "name": "Plain",
+                    "date": "2018-09-14",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "c37d07384542dcf2d8cdc184dbb6dcb65a8026f7",
+                            "box": "title",
+                            "actual": "class/07.Plain/index.html"
+                        }
+                    }
+                }
+            ],
+            "exam": [
+                {
+                    "number": 1,
+                    "dir": "01.Midterm",
+                    "name": "Midterm",
+                    "date": "2018-09-28",
+                    "boxes": {
+                        "notes": "notes.txt",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "aab15ab3b456c5e39c55423e31d448e309d85950",
+                            "box": "title",
+                            "actual": "exam/01.Midterm/index.html"
+                        },
+                        "notes.txt": {
+                            "key": "92db0e190ae0bd1b1f5cd3cf4609018adb104ee0",
+                            "box": "notes",
+                            "actual": "exam/01.Midterm/notes.txt"
+                        }
+                    }
+                }
+            ],
+            "final-exam": [
+                {
+                    "number": 1,
+                    "dir": "01.Final",
+                    "name": "Final",
+                    "date": "2018-12-14",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "76438a210f966570f99eb6c1c91ff68875daf1b7",
+                            "box": "title",
+                            "actual": "final-exam/01.Final/index.html"
+                        }
+                    }
+                }
+            ],
+            "lab": [
+                {
+                    "number": 1,
+                    "dir": "01.Setup",
+                    "name": "Setup",
+                    "date": "2018-08-22",
+                    "boxes": {
+                        "notes": "notes.txt",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "f37e8279a860a95878f99337d7dd6c9070758880",
+                            "box": "title",
+                            "actual": "lab/01.Setup/index.html"
+                        },
+                        "notes.txt": {
+                            "key": "141b2229b03aa28fb09e03a0867ec10262669eab",
+                            "box": "notes",
+                            "actual": "lab/01.Setup/notes.txt"
+                        }
+                    }
+                },
+                {
+                    "number": 2,
+                    "dir": "02.Loops",
+                    "name": "Loops",
+                    "date": "2018-08-27",
+                    "boxes": {
+                        "notes": "notes.txt",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "96e10d9a97841d766f3adb943b665fa33e1fd53d",
+                            "box": "title",
+                            "actual": "lab/02.Loops/index.html"
+                        },
+                        "notes.txt": {
+                            "key": "282954471b408d59dd64df04219a2df1e12df363",
+                            "box": "notes",
+                            "actual": "lab/02.Loops/notes.txt"
+                        }
+                    }
+                },
+                {
+                    "number": 3,
+                    "dir": "03.Combined",
+                    "name": "Combined",
+                    "date": "2018-08-29",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "index.html": {
+                            "key": "3aa7dface55b2b14d77d08c767572762f4a4595c",
+                            "box": "title",
+                            "actual": "lab/03.Combined/index.html"
+                        }
+                    }
+                }
+            ]
+        },
+        "days": {
+            "2018-08-20": [
+                {
+                    "type": "class",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-22": [
+                {
+                    "type": "lab",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-24": [
+                {
+                    "type": "class",
+                    "number": 2,
+                    "combined": false
+                }
+            ],
+            "2018-08-27": [
+                {
+                    "type": "class",
+                    "number": 3,
+                    "combined": false
+                },
+                {
+                    "type": "lab",
+                    "number": 2,
+                    "combined": true
+                }
+            ],
+            "2018-08-29": [
+                {
+                    "type": "lab",
+                    "number": 3,
+                    "combined": false
+                }
+            ],
+            "2018-08-31": [
+                {
+                    "type": "class",
+                    "number": 4,
+                    "combined": false
+                }
+            ],
+            "2018-09-03": [
+                {
+                    "type": "holiday",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-09-07": [
+                {
+                    "type": "class",
+                    "number": 5,
+                    "combined": false
+                }
+            ],
+            "2018-09-10": [
+                {
+                    "type": "class",
+                    "number": 6,
+                    "combined": false
+                }
+            ],
+            "2018-09-14": [
+                {
+                    "type": "class",
+                    "number": 7,
+                    "combined": false
+                }
+            ],
+            "2018-09-28": [
+                {
+                    "type": "exam",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-10-08": [
+                {
+                    "type": "monday-schedule",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-12-14": [
+                {
+                    "type": "final-exam",
+                    "number": 1,
+                    "combined": false
+                }
+            ]
+        }
+    }
+}

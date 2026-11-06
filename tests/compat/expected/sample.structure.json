@@ -1,0 +1,151 @@
+{
+    "fixture": "sample",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "structure": {
+        "types": {
+            "class": [
+                {
+                    "number": 1,
+                    "dir": "01.Intro",
+                    "name": "Intro",
+                    "date": "2018-08-20",
+                    "boxes": {
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "class01.html": {
+                            "key": "24bbf9dee4ac03e280b796a1c14b0215ef523cb5",
+                            "box": null,
+                            "actual": "class/01.Intro/class01.html"
+                        },
+                        "index.html": {
+                            "key": "91be9a42cb7cdec30c921cbb799edde2ad391bf0",
+                            "box": "title",
+                            "actual": "class/01.Intro/class01.html"
+                        }
+                    }
+                }
+            ],
+            "lab": [
+                {
+                    "number": 1,
+                    "dir": "01.First Lab",
+                    "name": "First Lab",
+                    "date": "2018-08-22",
+                    "boxes": {
+                        "notes": "notes.txt",
+                        "title": "index.html"
+                    },
+                    "files": {
+                        "example.py": {
+                            "key": "5f004fd66c971a9c2e9bf5cffbd6cf2d6dee53d8",
+                            "box": null,
+                            "actual": "lab/01.First Lab/example.py"
+                        },
+                        "index.html": {
+                            "key": "8fc3af3359c28be7a4c769936502dd507bab450a",
+                            "box": "title",
+                            "actual": "lab/01.First Lab/lab01.html"
+                        },
+                        "lab01.html": {
+                            "key": "c9a52a33b9183dc366f79ebf3199202b3cd2d15c",
+                            "box": null,
+                            "actual": "lab/01.First Lab/lab01.html"
+                        },
+                        "notes.txt": {
+                            "key": "aee874a62f59e9568ba02a6b1032eb07635edee4",
+                            "box": "notes",
+                            "actual": "lab/01.First Lab/notes.txt"
+                        }
+                    }
+                }
+            ]
+        },
+        "days": {
+            "2018-08-20": [
+                {
+                    "type": "class",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-08-22": [
+                {
+                    "type": "lab",
+                    "number": 1,
+                    "combined": false
+                }
+            ],
+            "2018-09-03": [
+                {
+                    "type": "holiday",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-09-04": [
+                {
+                    "type": "monday-schedule",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-09-28": [
+                {
+                    "type": "exam",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-10-08": [
+                {
+                    "type": "holiday",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-11-02": [
+                {
+                    "type": "exam",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-11-12": [
+                {
+                    "type": "holiday",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-11-21": [
+                {
+                    "type": "friday-schedule",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-11-22": [
+                {
+                    "type": "holiday",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-12-06": [
+                {
+                    "type": "final-class",
+                    "number": null,
+                    "combined": false
+                }
+            ],
+            "2018-12-18": [
+                {
+                    "type": "final-exam",
+                    "number": null,
+                    "combined": false
+                }
+            ]
+        }
+    }
+}

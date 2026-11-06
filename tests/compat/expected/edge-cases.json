@@ -1,0 +1,1819 @@
+{
+    "fixture": "edge-cases",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
+    "requests": [
+        {
+            "id": "student calendar.php?",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?load=home",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "load=home",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?show=calendar_display",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "show=calendar_display",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab2-notes",
+                    "EDGE-lecture1-notes",
+                    "EDGE-virtual-notes"
+                ],
+                "keyed_links": [
+                    "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=1",
+                    "type=lecture&event=2",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?show=calendar_display_alt",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "show=calendar_display_alt",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab2-notes",
+                    "EDGE-lecture1-notes",
+                    "EDGE-virtual-notes"
+                ],
+                "keyed_links": [
+                    "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2"
+                ],
+                "event_links": [
+                    "type=exam&event=1",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=1",
+                    "type=lecture&event=2",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5"
+                ],
+                "php_errors": [
+                    "Warning: Undefined array key \"name\" in calendar_display_alt.php on line 93"
+                ]
+            }
+        },
+        {
+            "id": "student calendar.php?show=calendar_search&search=EDGE",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "show=calendar_search&search=EDGE",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=exam&event=1",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "9fb20087946a79f8acc6b5a361443d11443520df"
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture4-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=5",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture10-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lecture&event=6",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=6",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755"
+            }
+        },
+        {
+            "id": "student calendar.php?key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13"
+            }
+        },
+        {
+            "id": "student calendar.php?key=897db54ec59021c8d90ea023026681513de2fe2b&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=897db54ec59021c8d90ea023026681513de2fe2b&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-md"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1"
+            }
+        },
+        {
+            "id": "student calendar.php?key=afb4e06533df7b6ec401c11fc97f43727280fc93&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=afb4e06533df7b6ec401c11fc97f43727280fc93&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-sub-ok"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "186c5d948a033632662e30cd1913404094f6d7fc"
+            }
+        },
+        {
+            "id": "student calendar.php?key=3b5e53bf62f7cb4d8e8b11596d9c05b16129fda2&type=lecture&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=3b5e53bf62f7cb4d8e8b11596d9c05b16129fda2&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a"
+            }
+        },
+        {
+            "id": "student calendar.php?key=6457a8e9e174aa5b7c29738ee3112d2b50711f08&type=lecture&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=6457a8e9e174aa5b7c29738ee3112d2b50711f08&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "9fb20087946a79f8acc6b5a361443d11443520df"
+            }
+        },
+        {
+            "id": "student calendar.php?key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture4-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture10-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=3b16ce2cbef859cd25463cf030f90a63d35a6c96&type=lecture&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=3b16ce2cbef859cd25463cf030f90a63d35a6c96&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab4-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=lab&event=5",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=lab&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=6d15882d4fdcfd18a9f493c0d0395d892874ae7d&type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=6d15882d4fdcfd18a9f493c0d0395d892874ae7d&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44"
+            }
+        },
+        {
+            "id": "student calendar.php?key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab4-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-exam1-md"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=exam&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-exam1-md"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=studio-time&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=studio-time&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?type=snow-day&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "type=snow-day&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff"
+            }
+        },
+        {
+            "id": "student calendar.php?key=02c6b2de6c0e7d7ed987a99fbee6e0beb00562a6&type=lecture&event=99",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=02c6b2de6c0e7d7ed987a99fbee6e0beb00562a6&type=lecture&event=99",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "student calendar.php?key=3f9340f01611efdb0b5d460a22b0dacb153cee15&type=lab&event=3",
+            "role": "student",
+            "entry": "calendar.php",
+            "query": "key=3f9340f01611efdb0b5d460a22b0dacb153cee15&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?load=home",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "load=home",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-home"
+                ],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?show=calendar_display",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "show=calendar_display",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab2-notes",
+                    "EDGE-lecture1-notes",
+                    "EDGE-virtual-notes"
+                ],
+                "keyed_links": [
+                    "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=1",
+                    "type=lecture&event=2",
+                    "type=lecture&event=3",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5",
+                    "type=snow-day"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?show=calendar_display_alt",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "show=calendar_display_alt",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab2-notes",
+                    "EDGE-lecture1-notes",
+                    "EDGE-virtual-notes"
+                ],
+                "keyed_links": [
+                    "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2"
+                ],
+                "event_links": [
+                    "type=exam&event=1",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=1",
+                    "type=lecture&event=2",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5"
+                ],
+                "php_errors": [
+                    "Warning: Undefined array key \"name\" in calendar_display_alt.php on line 93"
+                ]
+            }
+        },
+        {
+            "id": "instructor calendar.php?show=calendar_search&search=EDGE",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "show=calendar_search&search=EDGE",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=exam&event=1",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4",
+                    "type=lecture&event=4",
+                    "type=lecture&event=5"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "9fb20087946a79f8acc6b5a361443d11443520df"
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [
+                    "key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture4-index"
+                ],
+                "keyed_links": [
+                    "key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=5",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture10-index"
+                ],
+                "keyed_links": [
+                    "key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lecture&event=6",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lecture&event=6",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "603e24504a0d3dda0d5a38a1a6cb2bd8c61e1755"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "e06fb2309b5beaba8e77ebcbb3a5370a5c54be13"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=897db54ec59021c8d90ea023026681513de2fe2b&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=897db54ec59021c8d90ea023026681513de2fe2b&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-md"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "a516df66ed8fd5a31ae31b9307a6a1e155b673a1"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=afb4e06533df7b6ec401c11fc97f43727280fc93&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=afb4e06533df7b6ec401c11fc97f43727280fc93&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-sub-ok"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=a92397e4be9802253b2645e8331022ebdc180d88&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "186c5d948a033632662e30cd1913404094f6d7fc"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=3b5e53bf62f7cb4d8e8b11596d9c05b16129fda2&type=lecture&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=3b5e53bf62f7cb4d8e8b11596d9c05b16129fda2&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "1da1b646cdb182bf72d3d5cda0dd00643ef28a3a"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=6457a8e9e174aa5b7c29738ee3112d2b50711f08&type=lecture&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=6457a8e9e174aa5b7c29738ee3112d2b50711f08&type=lecture&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "application/pdf",
+                "disposition": "inline",
+                "sha1": "9fb20087946a79f8acc6b5a361443d11443520df"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture4-index"
+                ],
+                "keyed_links": [
+                    "key=62c9a608c3b012e91d7fb6e62ffd476f20495d60&type=lecture&event=4"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture10-index"
+                ],
+                "keyed_links": [
+                    "key=d15bff92c1d6adba4ca952a9e251b2fd22a0b0fd&type=lecture&event=5"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=3b16ce2cbef859cd25463cf030f90a63d35a6c96&type=lecture&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=3b16ce2cbef859cd25463cf030f90a63d35a6c96&type=lecture&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lecture1-index-html"
+                ],
+                "keyed_links": [
+                    "key=2afa387418d841647455a55a25a551b0a26bfd1a&type=lecture&event=1",
+                    "key=3662807f8a6fd03bda3442b86d42334b8d4f75a9&type=lecture&event=1",
+                    "key=5758cd1b1da57c77d63c3e918bab0c078e75668c&type=lecture&event=1",
+                    "key=8df94597bbaf5e6d98c03c2c8769c48476fdcb04&type=lecture&event=1",
+                    "key=97f02b78ab814947f5290fabfb43a23b1398cc89&type=lecture&event=1",
+                    "key=ddd48d4df4d995864c42cabf7026ce7938682346&type=lecture&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [
+                    "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [
+                    "key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+                    "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [
+                    "key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab4-index"
+                ],
+                "keyed_links": [
+                    "key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=lab&event=5",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=lab&event=5",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=6d15882d4fdcfd18a9f493c0d0395d892874ae7d&type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=6d15882d4fdcfd18a9f493c0d0395d892874ae7d&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [
+                    "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "9c6a45c3b301f1f499aff91f107031e15cebea44"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [
+                    "key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab4-index"
+                ],
+                "keyed_links": [
+                    "key=6cd5739a9983f16b4fb95e44227c8f6127c245df&type=lab&event=4"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-exam1-md"
+                ],
+                "keyed_links": [
+                    "key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=exam&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=exam&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-exam1-md"
+                ],
+                "keyed_links": [
+                    "key=c5f6d3332b7b754186bc5f533914af0d06a6fca2&type=exam&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=studio-time&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=studio-time&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?type=snow-day&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "type=snow-day&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [
+                    "key=3cf719b61d91fd078f2608ab471ac23ca9a606e0&type=lab&event=2",
+                    "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=2"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-virtual-index"
+                ],
+                "keyed_links": [
+                    "key=c991fae580c9ff6a1aed4a43e0429c007419f479&type=lab&event=1"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=622bf934c5bc64605d5c3afdde259a639b360fef&type=lecture&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "download",
+                "content_type": "text/plain",
+                "disposition": "inline",
+                "sha1": "ca4e2e20fd4e144d317bd9c4782cadc21a7b8cff"
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=02c6b2de6c0e7d7ed987a99fbee6e0beb00562a6&type=lecture&event=99",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=02c6b2de6c0e7d7ed987a99fbee6e0beb00562a6&type=lecture&event=99",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        },
+        {
+            "id": "instructor calendar.php?key=3f9340f01611efdb0b5d460a22b0dacb153cee15&type=lab&event=3",
+            "role": "instructor",
+            "entry": "calendar.php",
+            "query": "key=3f9340f01611efdb0b5d460a22b0dacb153cee15&type=lab&event=3",
+            "observation": {
+                "status": 200,
+                "kind": "page",
+                "markers": [
+                    "EDGE-lab3-index"
+                ],
+                "keyed_links": [
+                    "key=bcfc602cff0803431713f53cab887d11bc6596cd&type=lab&event=3"
+                ],
+                "event_links": [
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3",
+                    "type=lab&event=4"
+                ],
+                "php_errors": []
+            }
+        }
+    ]
+}

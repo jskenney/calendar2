@@ -1,0 +1,37 @@
+{
+  "description": "Edge cases for the scanner and schedule: chained and empty-type $COMBINE rules, overrides before the start / on a Sunday / on an invalid date, natural sort with 04. among 1.-10., an empty event directory, a type directory without events, files named 9 and 10, hidden and symlinked subdirectories, a symlink outside the course, and virtual files that replace, miss an event or miss their file.",
+  "entry": "calendar.php",
+  "secret": "abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdef1234",
+  "password": "edgepass",
+  "types": [
+    "lecture",
+    "lab",
+    "exam",
+    "studio-time",
+    "snow-day"
+  ],
+  "markers": {
+    "pattern": "EDGE-[A-Za-z0-9-]+"
+  },
+  "pages": [
+    "home"
+  ],
+  "views": [
+    "calendar_display",
+    "calendar_display_alt"
+  ],
+  "searches": [
+    "EDGE"
+  ],
+  "outside_files": {
+    "secret.txt": "EDGE-outside-secret"
+  },
+  "links": {
+    "lecture/1.Intro/outside.txt": "@outside/secret.txt"
+  },
+  "extra_requests": {},
+  "known_v4_warnings": [
+    "Undefined array key \"name\""
+  ],
+  "known_v4_warnings_note": "v4 bug: calendar_display_alt.php reads the name of a combined event that has no material (studio-time)"
+}

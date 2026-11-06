@@ -45,7 +45,11 @@ final class Observer
             'markers' => $this->markers($response->body),
             'keyed_links' => $links['keyed'],
             'event_links' => $links['event'],
-            'php_errors' => array_map(static fn (string $e): string => substr($e, 0, 120), $response->phpErrors()),
+            // file paths are reduced to file names so recordings do not depend on where they were made
+            'php_errors' => array_map(
+                static fn (string $e): string => substr((string) preg_replace('#(?:/[^/\s]+)+/([^/\s]+\.php)#', '$1', $e), 0, 120),
+                $response->phpErrors(),
+            ),
         ];
     }
 

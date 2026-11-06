@@ -42,9 +42,10 @@ final class Runner
      *
      * @param array<string, array<string, mixed>> $expected id => observation
      * @param array<string, array<string, mixed>> $actual id => observation
+     * @param list<string> $knownWarnings PHP errors containing these texts are ignored (known v4 bugs)
      * @return list<string>
      */
-    public static function compare(array $expected, array $actual): array
+    public static function compare(array $expected, array $actual, array $knownWarnings = []): array
     {
         $differences = [];
         foreach ($expected as $id => $want) {
@@ -56,6 +57,21 @@ final class Runner
             foreach (array_unique(array_merge(array_keys($want), array_keys($got))) as $field) {
                 $a = $want[$field] ?? null;
                 $b = $got[$field] ?? null;
+                if ($field === 'php_errors') {
+                    // Only the implementation under test must be free of PHP errors (v4 has known warnings)
+                    $b = array_values(array_filter((array) $b, static function (string $error) use ($knownWarnings): bool {
+                        foreach ($knownWarnings as $known) {
+                            if (str_contains($error, $known)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }));
+                    if ($b !== []) {
+                        $differences[] = "$id: PHP errors " . self::short($b);
+                    }
+                    continue;
+                }
                 if ($a !== $b) {
                     $differences[] = "$id: $field expected " . self::short($a) . ', got ' . self::short($b);
                 }

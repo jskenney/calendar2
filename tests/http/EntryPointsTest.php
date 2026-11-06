@@ -67,6 +67,8 @@ final class EntryPointsTest extends TestCase
         $response = $this->serve(Fixture::load('kitchen-sink')->install(self::CAL5))->get('calendar.php');
         $this->assertContains('2018-08-20 to 2018-12-31', $response->body);
         $this->assertContains('mon class, wed lab, fri class', $response->body);
+        $this->assertContains('7 class, 3 lab, 1 exam, 1 final-exam', $response->body, 'events found');
+        $this->assertContains('12 of 12 events, on 13 days', $response->body, 'events on the calendar');
         $this->assertContains('1 warning(s)', $response->body, 'problems are counted');
         $this->assertNotContains('plain text', $response->body, 'but their text is not shown on the page');
     }

@@ -74,6 +74,31 @@ index.php (new)    ─┴─> Cal5\App::run()
 Unlike v4, nothing runs at include time with global variables. Each step is a class with
 explicit inputs, so it can be unit tested. The v4 shim is the only place that reads globals.
 
+## Content and schedule (milestone 3)
+
+`Cal5\Course::load()` reads a course in two steps.
+
+**`ContentScanner`** finds the events and files, following v4 exactly:
+- **Event directories** of every type named in the schedule, in natural order (`1.`, `2.`,
+  `10.`). Each event is named after the first `.`.
+- **Files** below each event directory are sorted. Any path with a hidden part (`.x`) is
+  skipped. Symlinks are resolved and must stay in the course or `files.allowed_paths`.
+- **Virtual files** are added after the real ones, replacing a real file of the same name in
+  place.
+- **Boxes** are filled by `display.box_pick`. v4 configs use `first-by-name`: the first file, in
+  that order, that belongs to the box.
+- **Keys** use v4's formulas (`Cal5\Content\FileKey`).
+
+**`Schedule`** walks every date of the semester, so a semester can cross into the next year.
+`[days]` replaces the weekly plan for its date. v4's numbering rules apply:
+- a scheduled day advances its type's counter only if that type has event directories;
+- the day shows the event with that number if it exists;
+- dated days always show;
+- `[combine]` rules fire on "type N" and advance the added types' counters even when those types
+  have no material.
+
+`tests/compat check-structure` compares all of this with v4 for every fixture course.
+
 ## Rendering
 
 - The renderer is chosen by **file extension**:

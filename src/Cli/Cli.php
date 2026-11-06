@@ -46,6 +46,7 @@ final class Cli
                 'help', '--help', '-h' => $this->help(),
                 'translate' => $this->translate($options, $arguments),
                 'check' => $this->check($options),
+                'events' => $this->events($options),
                 'hash-password' => $this->hashPassword($options),
                 default => $this->fail("Unknown command: $command\nRun: php calendar/bin/cal5 help", 2),
             };
@@ -73,6 +74,9 @@ Commands:
                  --hash-password stores the password as a hash.
   check [--json] [--course DIR]
                  Validate the course configuration and summarise it.
+  events [--json] [--course DIR]
+                 List every event: its directory, calendar date and the
+                 file that fills each box (and content problems).
   hash-password [--stdin]
                  Print a password hash for [security] password_hash.
   version        Print the Cal5 version
@@ -191,6 +195,79 @@ TXT);
         }
         $this->say($result->ok() ? 'OK' : 'NOT OK: the course can not run until the errors are fixed.');
         return $result->ok() ? 0 : 1;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function events(array $options): int
+    {
+        $courseDir = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        $result = $this->loadCourseConfig($courseDir);
+        if ($result->config === null) {
+            $this->problems($result);
+            return $this->fail('The configuration has errors (run: php calendar/bin/cal5 check).', 1);
+        }
+        $course = \Cal5\Course::load($courseDir, $result->config);
+
+        if (isset($options['json'])) {
+            $types = [];
+            foreach ($course->content->types as $type => $events) {
+                foreach ($events as $event) {
+                    $types[$type][] = [
+                        'number' => $event->number,
+                        'directory' => $event->directory,
+                        'name' => $event->name,
+                        'date' => $course->schedule->dateOf($type, $event->number),
+                        'boxes' => $event->boxes,
+                        'files' => array_keys($event->files),
+                    ];
+                }
+            }
+            $days = [];
+            foreach ($course->schedule->days as $date => $day) {
+                foreach ($day->entries as $entry) {
+                    $days[$date][] = ['type' => $entry->type, 'label' => $entry->label, 'number' => $entry->number,
+                        'meeting' => $entry->meeting !== null ? (string) $entry->meeting : null, 'combined' => $entry->combined];
+                }
+            }
+            $data = ['types' => $types, 'days' => $days, 'problems' => array_map('strval', $course->problems())];
+            fwrite($this->out, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            return 0;
+        }
+
+        $unscheduled = [];
+        foreach ($course->content->types as $type => $events) {
+            foreach ($events as $event) {
+                $date = $course->schedule->dateOf($type, $event->number);
+                if ($date === null) {
+                    $unscheduled[] = "$type {$event->number} ({$event->directory})";
+                }
+                $boxes = [];
+                foreach ($event->boxes as $box => $file) {
+                    $boxes[] = "$box=$file";
+                }
+                $this->say(sprintf('%-12s %3d  %-10s  %-28s %s', $type, $event->number, $date ?? '-', $event->directory, implode(' ', $boxes)));
+            }
+        }
+        if ($unscheduled !== []) {
+            $this->say('');
+            $this->say('Not on the calendar (students never see these): ' . implode(', ', $unscheduled));
+        }
+        foreach ($course->problems() as $problem) {
+            fwrite($this->err, 'warning: ' . $problem . "\n");
+        }
+        return 0;
+    }
+
+    private function loadCourseConfig(string $courseDir): LoadResult
+    {
+        if (!is_dir($courseDir)) {
+            throw new RuntimeException("$courseDir is not a directory");
+        }
+        $globals = [];
+        if (!is_file($courseDir . '/' . ConfigLoader::INI_FILE) && is_file($courseDir . '/calendar.php')) {
+            $globals = LegacyCapture::run($courseDir . '/calendar.php');
+        }
+        return ConfigLoader::forCourse($courseDir, $globals);
     }
 
     /** @param array<string, string|true> $options */

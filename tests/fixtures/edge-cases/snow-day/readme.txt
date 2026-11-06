@@ -1,0 +1,1 @@
+not an event: no subdirectories

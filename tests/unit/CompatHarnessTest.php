@@ -67,6 +67,26 @@ final class CompatHarnessTest extends TestCase
         $this->assertSame([['class', 1, 'extra.html', 'shared docs/extra file.html']], Requests::virtualFiles(Fixture::load('core-tests')));
     }
 
+    public function testCompareOnlyCountsPhpErrorsOfTheImplementationUnderTest(): void
+    {
+        $expected = ['a' => ['status' => 200, 'php_errors' => ['Warning: v4 bug']]];
+        $this->assertSame([], Runner::compare($expected, ['a' => ['status' => 200, 'php_errors' => []]]), 'fewer warnings than v4 is fine');
+        $this->assertSame(1, count(Runner::compare($expected, ['a' => ['status' => 200, 'php_errors' => ['Warning: new']]])));
+    }
+
+    public function testStructureCompareFindsDifferences(): void
+    {
+        $a = ['types' => ['class' => [['number' => 1, 'date' => '2018-08-20', 'files' => ['x' => ['key' => 'k']]]]]];
+        $b = ['types' => ['class' => [['number' => 1, 'date' => '2018-08-21', 'files' => ['y' => ['key' => 'k']]]]]];
+        $differences = \Cal5\Tests\Compat\Structure::compare($a, $b);
+        $this->assertSame([
+            'types.class.0.date: expected "2018-08-20", got "2018-08-21"',
+            'types.class.0.files.x: missing (expected {"key":"k"})',
+            'types.class.0.files.y: unexpected {"key":"k"}',
+        ], $differences);
+        $this->assertSame([], \Cal5\Tests\Compat\Structure::compare($a, $a));
+    }
+
     public function testCompareFindsDifferences(): void
     {
         $expected = ['a' => ['status' => 200, 'markers' => ['X']], 'b' => ['status' => 200]];
@@ -89,15 +109,24 @@ final class CompatHarnessTest extends TestCase
             $recorded = array_column($data['requests'], 'id');
             $generated = array_column(Requests::forFixture(Fixture::load($name)), 'id');
             $this->assertSame($generated, $recorded, "expected/$name.json matches the generated requests");
+            $known = Fixture::load($name)->meta['known_v4_warnings'] ?? [];
             foreach ($data['requests'] as $request) {
-                $this->assertSame([], $request['observation']['php_errors'] ?? [], "v4 printed no PHP errors for {$request['id']}");
+                $errors = array_values(array_filter($request['observation']['php_errors'] ?? [], static function (string $error) use ($known): bool {
+                    foreach ($known as $pattern) {
+                        if (str_contains($error, $pattern)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }));
+                $this->assertSame([], $errors, "v4 printed no unexpected PHP errors for {$request['id']}");
             }
         }
     }
 
     public function testFixtureMetadata(): void
     {
-        $this->assertSame(['core-tests', 'kitchen-sink', 'sample'], Fixture::names());
+        $this->assertSame(['core-tests', 'edge-cases', 'kitchen-sink', 'sample'], Fixture::names());
         foreach (Fixture::names() as $name) {
             $meta = Fixture::load($name)->meta;
             foreach (['description', 'entry', 'secret', 'password', 'types', 'markers'] as $field) {

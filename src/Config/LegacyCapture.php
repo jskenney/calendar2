@@ -7,9 +7,11 @@ namespace Cal5\Config;
 use RuntimeException;
 
 /**
- * Runs a v4 course's calendar.php (for the command line tools) and returns the
- * variables it sets, without running the calendar: calendar_main.php hands the
- * variables over and returns early while a capture is active.
+ * Runs a v4 course's calendar.php (for the command line tools and tests) and
+ * returns the variables it sets, without running the calendar: while a capture
+ * is active, calendar_main.php returns early.  The variables are read from the
+ * scope calendar.php ran in, so this also works when calendar_main.php was
+ * already loaded once in this process (require_once then skips it).
  */
 final class LegacyCapture
 {
@@ -38,17 +40,16 @@ final class LegacyCapture
         chdir($course);
         ob_start();
         try {
-            (static function (string $cal5CaptureFile): void {
+            $variables = (static function (string $cal5CaptureFile): array {
                 require $cal5CaptureFile;
+                return get_defined_vars();
             })($file);
         } finally {
             ob_end_clean();
             chdir($cwd);
             self::$capturing = false;
         }
-        if (self::$captured === null) {
-            throw new RuntimeException('calendar.php did not load calendar/calendar_main.php');
-        }
-        return self::$captured;
+        unset($variables['cal5CaptureFile'], $variables['cal5GlobalVariables']);
+        return $variables;
     }
 }
