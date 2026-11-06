@@ -52,3 +52,9 @@ a { color: var(--cal5-accent); }
 @media (max-width: 40rem) {
   .cal5-installed { margin: 1rem; padding: 1.25rem; }
 }
+
+.cal5-summary { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 1rem; margin: 1rem 0; }
+.cal5-summary dt { color: var(--cal5-muted); }
+.cal5-summary dd { margin: 0; }
+.cal5-problems { color: #b3261e; }
+@media (prefers-color-scheme: dark) { .cal5-problems { color: #ffb4ab; } }

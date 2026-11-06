@@ -20,6 +20,9 @@ final class LegacyVariables
         'REVEALHOUR', 'SECRET', 'SRC', 'WEEKENDS', 'YEAR',
     ];
 
+    /** Only used by v4's unrelated template_navbar.php; ignored without a warning. */
+    public const IGNORED = ['NAVBAR', 'NAVBAR_TITLE', 'NAVBAR_TITLE_URL', 'GLOBALS'];
+
     /** Variables that every working v4 configuration sets. */
     public const REQUIRED = ['COURSE', 'DOW', 'YEAR', 'MONTH_START', 'MONTH_END'];
 
@@ -38,6 +41,25 @@ final class LegacyVariables
             }
         }
         return $found;
+    }
+
+    /**
+     * Upper-case globals that are not v4 settings (likely typos or custom variables).
+     *
+     * @param array<string, mixed> $globals
+     * @return list<string>
+     */
+    public static function unknown(array $globals): array
+    {
+        $unknown = [];
+        foreach (array_keys($globals) as $name) {
+            if (is_string($name) && preg_match('/^[A-Z][A-Z0-9_]*$/', $name)
+                && !in_array($name, self::NAMES, true) && !in_array($name, self::IGNORED, true)) {
+                $unknown[] = $name;
+            }
+        }
+        sort($unknown);
+        return $unknown;
     }
 
     /** @param array<string, mixed> $variables output of extract() */

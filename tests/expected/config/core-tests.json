@@ -1,0 +1,157 @@
+{
+    "course": {
+        "number": "TST101",
+        "name": "Test <b>Course</b>",
+        "full_name": "",
+        "title": "TST101 <title>",
+        "timezone": "(server default)"
+    },
+    "semester": {
+        "start": "2018-08-20",
+        "end": "2018-12-31",
+        "weekends": false,
+        "show_from": null,
+        "show_until": null
+    },
+    "schedule": {
+        "mon": [
+            {
+                "type": "class",
+                "label": "class",
+                "meeting": null
+            }
+        ],
+        "wed": [
+            {
+                "type": "lab",
+                "label": "lab",
+                "meeting": null
+            }
+        ],
+        "fri": [
+            {
+                "type": "class",
+                "label": "class",
+                "meeting": null
+            }
+        ]
+    },
+    "days": {
+        "2018-09-28": [
+            {
+                "type": "exam",
+                "label": "exam",
+                "meeting": null
+            }
+        ],
+        "2018-11-02": [
+            {
+                "type": "exam",
+                "label": "exam",
+                "meeting": null
+            }
+        ],
+        "2018-11-22": [
+            {
+                "type": "holiday",
+                "label": "HOLIDAY",
+                "meeting": null
+            }
+        ],
+        "2018-12-06": [
+            {
+                "type": "final-exam",
+                "label": "Final Exam",
+                "meeting": null
+            }
+        ]
+    },
+    "combine": [],
+    "boxes": [
+        {
+            "name": "title",
+            "candidates": [
+                "index.md",
+                "index.html",
+                "slides.pdf"
+            ]
+        },
+        {
+            "name": "homework",
+            "candidates": [
+                "homework.md",
+                "homework.html"
+            ]
+        },
+        {
+            "name": "notes",
+            "candidates": [
+                "inline:notes.txt"
+            ]
+        }
+    ],
+    "menus": [
+        {
+            "type": "class",
+            "label": "Class",
+            "icon": "apple"
+        },
+        {
+            "type": "lab",
+            "label": "Lab",
+            "icon": "knight"
+        }
+    ],
+    "instructor_menus": null,
+    "replace": {
+        "q": "a\"b<c>"
+    },
+    "files": {
+        "access": "virtual/cal4.access",
+        "virtual": "virtual/cal4.virtual",
+        "load_pages": [
+            "home",
+            "policy",
+            "resources",
+            "extra",
+            "mdpage"
+        ],
+        "allowed_paths": []
+    },
+    "security": {
+        "password_hash": null,
+        "password": "(set)",
+        "secret_sha1": "ce4303f6b22257d9c9cf314ef1dee4707c6e1c13",
+        "session_seconds": 43200,
+        "lock_always": false,
+        "lock_file": null
+    },
+    "display": {
+        "start_page": "home",
+        "calendar_view": "month",
+        "markdown_menu_levels": [
+            2
+        ],
+        "heading_warnings": false,
+        "box_pick": "first-by-name",
+        "calendar_boxes": null
+    },
+    "style": {
+        "css": [],
+        "css_by_type": [],
+        "css_calendar": [],
+        "js": [],
+        "js_by_type": []
+    },
+    "features": {
+        "postmeeting": "off",
+        "access_log": "logs/access.log",
+        "legacy_css": true,
+        "legacy_js": [
+            "jquery",
+            "datatables",
+            "chartjs"
+        ],
+        "debug": false
+    }
+}

@@ -29,6 +29,16 @@ php tests/compat/compat.php check --impl=cal5           # strict: lists every di
 
 See `tests/compat/README.md` for how the comparison works and how to re-record results.
 
+### Snapshots
+
+`tests/expected/config/<fixture>.json` holds the translated configuration of each fixture
+course. After an intended change to the translation, regenerate the snapshots and review the
+diff:
+
+```bash
+CAL5_UPDATE_SNAPSHOTS=1 php tests/run.php ConfigCommands
+```
+
 ## Coding standards
 
 - `declare(strict_types=1);` in every PHP file under `src/` and `tests/`.

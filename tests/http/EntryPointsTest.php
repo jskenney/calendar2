@@ -47,6 +47,7 @@ final class EntryPointsTest extends TestCase
             $response = $client->get('calendar.php');
             $this->assertSame(200, $response->status, "$name status");
             $this->assertContains('data-config-source="legacy"', $response->body, "$name: v4 configuration detected");
+            $this->assertContains('data-config-state="ok"', $response->body, "$name: v4 configuration translated without errors");
             $this->assertNoPhpErrors($response, $name);
             $this->assertSame('nosniff', $response->header('X-Content-Type-Options'), "$name nosniff");
         }
@@ -59,6 +60,29 @@ final class EntryPointsTest extends TestCase
         $this->assertContains('SI123 Applied Something', $response->body);
         $this->assertNotContains((string) $fixture->meta['secret'], $response->body);
         $this->assertNotContains((string) $fixture->meta['password'], $response->body);
+    }
+
+    public function testInstalledPageSummarisesTheConfiguration(): void
+    {
+        $response = $this->serve(Fixture::load('kitchen-sink')->install(self::CAL5))->get('calendar.php');
+        $this->assertContains('2018-08-20 to 2018-12-31', $response->body);
+        $this->assertContains('mon class, wed lab, fri class', $response->body);
+        $this->assertContains('1 warning(s)', $response->body, 'problems are counted');
+        $this->assertNotContains('plain text', $response->body, 'but their text is not shown on the page');
+    }
+
+    public function testBrokenConfigurationShowsNoDetails(): void
+    {
+        $course = Fixture::load('sample')->install(self::CAL5);
+        $file = "$course/calendar.php";
+        file_put_contents($file, (string) preg_replace("/\\\$SECRET = '[^']*';/",
+            "\\\$SECRET = 'A really long phrase that should be impossible to guess, you dont need to remember this...';",
+            (string) file_get_contents($file)));
+        $response = $this->serve($course)->get('calendar.php');
+        $this->assertContains('data-config-state="error"', $response->body);
+        $this->assertContains('Configuration problem', $response->body);
+        $this->assertNotContains('sample value', $response->body);
+        $this->assertNoPhpErrors($response);
     }
 
     public function testCourseNameIsEscaped(): void
@@ -76,6 +100,7 @@ final class EntryPointsTest extends TestCase
         $response = $client->get('index.php');
         $this->assertSame(200, $response->status);
         $this->assertContains('data-config-source="ini"', $response->body);
+        $this->assertContains('data-config-state="error"', $response->body, 'semester dates are missing');
         $this->assertNoPhpErrors($response);
 
         // The guard line keeps the configuration (and its secret) private
