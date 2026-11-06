@@ -1,6 +1,6 @@
 {
     "fixture": "kitchen-sink",
-    "recorded_with": "calendar-core bc7b09f7 (4.6.20261105)",
+    "recorded_with": "calendar-core 5dd9018e (4.6.20261106)",
     "requests": [
         {
             "id": "student calendar.php?",
@@ -744,10 +744,20 @@
             "query": "key=6793cede4d060eec8f9505dfa403a891aad5c1dc&type=class&event=1",
             "observation": {
                 "status": 200,
-                "kind": "download",
-                "content_type": "application/octet-stream",
-                "disposition": "attachment",
-                "sha1": "0737971e70c5d159250665a98403fd74fe1e0aa7"
+                "kind": "page",
+                "markers": [],
+                "keyed_links": [],
+                "event_links": [
+                    "type=class&event=1",
+                    "type=class&event=2",
+                    "type=class&event=3",
+                    "type=class&event=4",
+                    "type=class&event=7",
+                    "type=lab&event=1",
+                    "type=lab&event=2",
+                    "type=lab&event=3"
+                ],
+                "php_errors": []
             }
         },
         {
