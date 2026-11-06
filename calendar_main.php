@@ -11,4 +11,11 @@
 
 $cal5GlobalVariables = get_defined_vars();
 require_once __DIR__ . '/src/autoload.php';
+
+// "bin/cal5 translate" and "check" only want the settings, not the calendar
+if (\Cal5\Config\LegacyCapture::$capturing) {
+    \Cal5\Config\LegacyCapture::$captured = $cal5GlobalVariables;
+    return;
+}
+
 \Cal5\App::fromLegacyGlobals($cal5GlobalVariables, (string) getcwd(), __DIR__)->run();

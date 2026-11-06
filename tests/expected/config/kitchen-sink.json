@@ -1,0 +1,231 @@
+{
+    "course": {
+        "number": "KS101",
+        "name": "Kitchen Sink & Co",
+        "full_name": "KS101: Kitchen Sink & Co (Fall 2018)",
+        "title": "KS101 (Fall 2018)",
+        "timezone": "(server default)"
+    },
+    "semester": {
+        "start": "2018-08-20",
+        "end": "2018-12-31",
+        "weekends": false,
+        "show_from": "2018-08-20",
+        "show_until": "2018-12-14"
+    },
+    "schedule": {
+        "mon": [
+            {
+                "type": "class",
+                "label": "class",
+                "meeting": null
+            }
+        ],
+        "wed": [
+            {
+                "type": "lab",
+                "label": "lab",
+                "meeting": null
+            }
+        ],
+        "fri": [
+            {
+                "type": "class",
+                "label": "class",
+                "meeting": null
+            }
+        ]
+    },
+    "days": {
+        "2018-09-03": [
+            {
+                "type": "holiday",
+                "label": "HOLIDAY",
+                "meeting": null
+            }
+        ],
+        "2018-09-28": [
+            {
+                "type": "exam",
+                "label": "Exam",
+                "meeting": null
+            }
+        ],
+        "2018-10-08": [
+            {
+                "type": "monday-schedule",
+                "label": "monday schedule",
+                "meeting": null
+            }
+        ],
+        "2018-12-14": [
+            {
+                "type": "final-exam",
+                "label": "Final Exam",
+                "meeting": null
+            }
+        ]
+    },
+    "combine": [
+        {
+            "type": "class",
+            "number": 3,
+            "add": [
+                "lab"
+            ]
+        }
+    ],
+    "boxes": [
+        {
+            "name": "title",
+            "candidates": [
+                "index.md",
+                "index.html",
+                "lindex.html",
+                "slides.pdf",
+                "slides.pptx"
+            ]
+        },
+        {
+            "name": "instructor",
+            "candidates": [
+                "instructor.html"
+            ]
+        },
+        {
+            "name": "reading",
+            "candidates": [
+                "reading.html",
+                "lreading.html",
+                "reading.pdf"
+            ]
+        },
+        {
+            "name": "notes",
+            "candidates": [
+                "notes.md",
+                "inline:notes.txt"
+            ]
+        },
+        {
+            "name": "homework",
+            "candidates": [
+                "homework.html",
+                "homework.pdf",
+                "inline:homework.txt"
+            ]
+        },
+        {
+            "name": "homework-solution",
+            "candidates": [
+                "answers.html"
+            ]
+        },
+        {
+            "name": "slides",
+            "candidates": [
+                "deck.ppt"
+            ]
+        }
+    ],
+    "menus": [
+        {
+            "type": "class",
+            "label": "Class",
+            "icon": "apple"
+        },
+        {
+            "type": "lab",
+            "label": "Lab",
+            "icon": "knight"
+        }
+    ],
+    "instructor_menus": [
+        {
+            "type": "class",
+            "label": "Class",
+            "icon": "apple"
+        },
+        {
+            "type": "lab",
+            "label": "Lab",
+            "icon": "knight"
+        },
+        {
+            "type": "exam",
+            "label": "Exam",
+            "icon": "hourglass"
+        },
+        {
+            "type": "final-exam",
+            "label": "Final Exam",
+            "icon": "education"
+        }
+    ],
+    "replace": {
+        "classyear": "19",
+        "server": "ks.example.edu",
+        "on": "KS-replace-on"
+    },
+    "files": {
+        "access": "virtual/cal4.access",
+        "virtual": "virtual/cal4.virtual",
+        "load_pages": [
+            "home",
+            "policy",
+            "resources",
+            "syllabus"
+        ],
+        "allowed_paths": [
+            "shared"
+        ]
+    },
+    "security": {
+        "password_hash": null,
+        "password": "(set)",
+        "secret_sha1": "1d687aba9d95a9e6742236ea63347087e957ece7",
+        "session_seconds": 3600,
+        "lock_always": false,
+        "lock_file": "LOCKED"
+    },
+    "display": {
+        "start_page": "home",
+        "calendar_view": "list",
+        "markdown_menu_levels": [
+            2,
+            3
+        ],
+        "heading_warnings": false,
+        "box_pick": "first-by-name",
+        "calendar_boxes": null
+    },
+    "style": {
+        "css": [],
+        "css_by_type": {
+            "class": [
+                "docs/class.css",
+                "docs/missing.css"
+            ]
+        },
+        "css_calendar": [
+            "docs/cal.css"
+        ],
+        "js": [],
+        "js_by_type": {
+            "lab": [
+                "docs/lab.js"
+            ]
+        }
+    },
+    "features": {
+        "postmeeting": "12:00",
+        "access_log": "logs/access.log",
+        "legacy_css": true,
+        "legacy_js": [
+            "jquery",
+            "datatables",
+            "chartjs"
+        ],
+        "debug": true
+    }
+}

@@ -83,9 +83,12 @@ on them, for example `<table class="table">`, `<div class="row"><div class="six 
 glyphicons, or inline `$(...)` scripts. The plan for those pages:
 
 - **`compat.css`** (Milestone 8) covers the Bootstrap/Skeleton classes course content
-  commonly uses. It is on automatically for v4 configs (`features.legacy_css = auto`).
+  commonly uses (`features.legacy_css`).
 - **`features.legacy_js`** loads jQuery / DataTables / Chart.js for courses whose pages need
-  them. It is off by default.
+  them.
+- **v4 courses (translated configs)** get both turned on, because v4 loaded all of them on
+  every page, so their pages keep working unchanged. New `calendar.ini.php` courses get
+  neither unless they ask. The Cal5 theme itself never depends on them.
 - **`bin/cal5 audit`** reports exactly which of these a course uses, before it switches.
 
 ## Intentional differences
@@ -94,7 +97,7 @@ glyphicons, or inline `$(...)` scripts. The plan for those pages:
 |---|---|---|
 | Built-in editor | Removed | Not used; it was also the largest security risk (calendar-core C-4) |
 | Layout and styles | New theme | A goal of the rebuild |
-| Bootstrap / jQuery | Not loaded by default | A goal of the rebuild; see compat options above |
+| Bootstrap / jQuery | Not used by the Cal5 theme; loaded only through the compatibility options (on for translated v4 configs) | A goal of the rebuild; see compat options above |
 | Year-crossing semesters | Supported | v4 could not show them |
 | Release times | Minute precision and ranges available | New feature; v4 rules unchanged |
 | Downloads | Streamed with `Range` support | Large files and video seeking work |

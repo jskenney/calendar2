@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace Cal5\View;
 
 use Cal5\Config\ConfigSource;
+use Cal5\Config\LoadResult;
 use Cal5\Support\Html;
 use Cal5\Version;
 
 /**
- * Milestone 1 placeholder page: confirms Cal5 is installed and which kind of
- * configuration it found.  Never shows passwords, secrets or file paths.
+ * Placeholder page until course pages exist (milestone 6): confirms Cal5 is
+ * installed and summarises the configuration it loaded.  It shows counts of
+ * problems, not their text, and never shows passwords, secrets or file paths.
  */
 final class InstalledPage
 {
     public function __construct(
-        private readonly ConfigSource $source,
+        private readonly LoadResult $result,
         private readonly bool $libraryRequest,
-        private readonly string $course,
-        private readonly string $courseName,
-        private readonly int $settingsFound,
         private readonly string $assetBase,
     ) {
     }
@@ -29,32 +28,44 @@ final class InstalledPage
         $version = Html::escape(Version::VERSION);
         $css = Html::escape($this->assetBase . 'public/css/cal5.css');
         $icon = Html::escape($this->assetBase . 'images/web-icon.png');
+        $source = $this->result->source;
+        $config = $this->result->config;
 
         if ($this->libraryRequest) {
             $title = 'Cal5 library';
             $body = '<p>This directory is the Cal5 library. Courses use it through their own '
                 . '<code>calendar.php</code> (v4 courses) or <code>index.php</code> (new courses).</p>';
+        } elseif ($source === ConfigSource::None) {
+            $title = 'Set up this course';
+            $body = '<p>No configuration was found. Create <code>calendar.ini.php</code> in the course '
+                . 'directory, or keep using a v4 <code>calendar.php</code>.</p>';
         } else {
-            [$title, $body] = match ($this->source) {
-                ConfigSource::Legacy => [
-                    trim($this->course . ' ' . $this->courseName),
-                    '<p>Found a <strong>v4 configuration</strong> (<code>calendar.php</code>, '
-                    . $this->settingsFound . ' settings). It will be translated automatically.</p>',
-                ],
-                ConfigSource::Ini => [
-                    'Cal5 course',
-                    '<p>Found <code>calendar.ini.php</code>.</p>',
-                ],
-                ConfigSource::None => [
-                    'Set up this course',
-                    '<p>No configuration was found. Create <code>calendar.ini.php</code> in the course '
-                    . 'directory, or keep using a v4 <code>calendar.php</code>.</p>',
-                ],
-            };
+            $from = $source === ConfigSource::Legacy
+                ? 'a <strong>v4 configuration</strong> (<code>calendar.php</code>), translated automatically'
+                : '<code>calendar.ini.php</code>';
+            $title = $config !== null
+                ? trim($config->course->number . ' ' . $config->course->name)
+                : 'Configuration problem';
+            $body = "<p>Configuration: $from.</p>";
+            if ($config !== null) {
+                $body .= '<dl class="cal5-summary">'
+                    . '<dt>Semester</dt><dd>' . Html::escape($config->semester->start . ' to ' . $config->semester->end) . '</dd>'
+                    . '<dt>Weekly schedule</dt><dd>' . Html::escape(self::weekly($config->schedule->weekly)) . '</dd>'
+                    . '<dt>Special days</dt><dd>' . count($config->schedule->days) . '</dd>'
+                    . '<dt>Boxes</dt><dd>' . Html::escape(implode(', ', array_map(static fn ($b) => $b->name, $config->boxes))) . '</dd>'
+                    . '</dl>';
+            }
+            $errors = count($this->result->errors);
+            $warnings = count($this->result->warnings);
+            if ($errors > 0 || $warnings > 0) {
+                $body .= '<p class="cal5-problems">' . $errors . ' error(s) and ' . $warnings . ' warning(s): run '
+                    . '<code>php calendar/bin/cal5 check</code> in the course directory to see them.</p>';
+            }
         }
 
         $title = Html::escape($title);
-        $source = Html::escape($this->source->value);
+        $sourceValue = Html::escape($source->value);
+        $state = $config !== null ? 'ok' : ($source === ConfigSource::None ? 'none' : 'error');
 
         return <<<HTML
 <!DOCTYPE html>
@@ -68,15 +79,24 @@ final class InstalledPage
   <link rel="stylesheet" href="{$css}">
 </head>
 <body>
-  <main class="cal5-installed" data-cal5-version="{$version}" data-config-source="{$source}">
+  <main class="cal5-installed" data-cal5-version="{$version}" data-config-source="{$sourceValue}" data-config-state="{$state}">
     <h1>{$title}</h1>
     {$body}
-    <p class="cal5-note">Cal5 {$version} is installed. This development build (milestone 1)
-    does not serve course content yet.</p>
+    <p class="cal5-note">Cal5 {$version} is installed. This development build does not serve course content yet.</p>
   </main>
 </body>
 </html>
 
 HTML;
+    }
+
+    /** @param array<string, \Cal5\Config\DayPlan> $weekly */
+    private static function weekly(array $weekly): string
+    {
+        $parts = [];
+        foreach ($weekly as $day => $plan) {
+            $parts[] = $day . ' ' . $plan;
+        }
+        return $parts === [] ? 'none' : implode(', ', $parts);
     }
 }

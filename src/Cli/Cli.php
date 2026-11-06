@@ -1,0 +1,268 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Cal5\Cli;
+
+use Cal5\Config\ConfigLoader;
+use Cal5\Config\ConfigSource;
+use Cal5\Config\IniWriter;
+use Cal5\Config\LegacyCapture;
+use Cal5\Config\LoadResult;
+use Cal5\Config\Problem;
+use Cal5\Version;
+use RuntimeException;
+
+/** The bin/cal5 command line tool. */
+final class Cli
+{
+    /** @var resource */
+    private $out;
+    /** @var resource */
+    private $err;
+    /** @var resource */
+    private $in;
+
+    /**
+     * @param resource|null $out
+     * @param resource|null $err
+     * @param resource|null $in
+     */
+    public function __construct($out = null, $err = null, $in = null)
+    {
+        $this->out = $out ?? STDOUT;
+        $this->err = $err ?? STDERR;
+        $this->in = $in ?? STDIN;
+    }
+
+    /** @param list<string> $argv */
+    public function main(array $argv): int
+    {
+        $command = $argv[1] ?? 'help';
+        [$options, $arguments] = self::parse(array_slice($argv, 2));
+        try {
+            return match ($command) {
+                'version', '--version' => $this->version(),
+                'help', '--help', '-h' => $this->help(),
+                'translate' => $this->translate($options, $arguments),
+                'check' => $this->check($options),
+                'hash-password' => $this->hashPassword($options),
+                default => $this->fail("Unknown command: $command\nRun: php calendar/bin/cal5 help", 2),
+            };
+        } catch (RuntimeException $e) {
+            return $this->fail($e->getMessage(), 1);
+        }
+    }
+
+    private function version(): int
+    {
+        $this->say('Cal5 ' . Version::VERSION);
+        return 0;
+    }
+
+    private function help(): int
+    {
+        $this->say(<<<TXT
+Usage (run in the course directory): php calendar/bin/cal5 <command> [options]
+
+Commands:
+  translate [calendar.php] [-o FILE] [--force] [--hash-password]
+                 Write calendar.ini.php from a v4 calendar.php.  Once it
+                 exists, calendar.ini.php is used instead of calendar.php
+                 (delete it to go back).  -o - prints it instead.
+                 --hash-password stores the password as a hash.
+  check [--json] [--course DIR]
+                 Validate the course configuration and summarise it.
+  hash-password [--stdin]
+                 Print a password hash for [security] password_hash.
+  version        Print the Cal5 version
+  help           Show this help
+
+Planned (see MILESTONES.md):
+  audit          Report legacy CSS/JS used by a course's pages      (milestone 8)
+  compare        Compare a course under v4 and Cal5                 (milestone 10)
+TXT);
+        return 0;
+    }
+
+    /**
+     * @param array<string, string|true> $options
+     * @param list<string> $arguments
+     */
+    private function translate(array $options, array $arguments): int
+    {
+        $source = $arguments[0] ?? 'calendar.php';
+        $result = \Cal5\Config\LegacyTranslator::translate(LegacyCapture::run($source));
+        $this->problems($result);
+        if (!$result->ok() || $result->config === null) {
+            return $this->fail('Not translated: fix the errors above first.', 1);
+        }
+
+        $hash = null;
+        if (isset($options['hash-password'])) {
+            $password = $result->config->security->password;
+            if ($password === null) {
+                return $this->fail('--hash-password: calendar.php has no $ADMIN password', 1);
+            }
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $writer = new IniWriter();
+        $ini = $writer->write($result->config, $hash);
+        foreach ($writer->problems() as $problem) {
+            fwrite($this->err, "warning: $problem\n");
+        }
+
+        $target = is_string($options['o'] ?? null) ? (string) $options['o'] : dirname($source) . '/' . ConfigLoader::INI_FILE;
+        if ($target === '-') {
+            fwrite($this->out, $ini);
+            return 0;
+        }
+        if (is_file($target) && !isset($options['force'])) {
+            return $this->fail("$target already exists (use --force to replace it)", 1);
+        }
+        if (file_put_contents($target, $ini) === false) {
+            return $this->fail("Could not write $target", 1);
+        }
+        @chmod($target, 0640);
+        $this->say("Wrote $target.");
+        $this->say('The course now uses it instead of calendar.php; delete it to go back.');
+        if ($hash === null && $result->config->security->password !== null) {
+            $this->say('The password is stored as plain text, as in calendar.php (use --hash-password to store a hash).');
+        }
+        return 0;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function check(array $options): int
+    {
+        $course = is_string($options['course'] ?? null) ? (string) $options['course'] : '.';
+        if (!is_dir($course)) {
+            return $this->fail("$course is not a directory", 1);
+        }
+        $globals = [];
+        if (is_file($course . '/calendar.php')) {
+            if (is_file($course . '/' . ConfigLoader::INI_FILE)) {
+                // Only needed for the "calendar.php is ignored" notice
+                try {
+                    $globals = LegacyCapture::run($course . '/calendar.php');
+                } catch (RuntimeException) {
+                    $globals = [];
+                }
+            } else {
+                $globals = LegacyCapture::run($course . '/calendar.php');
+            }
+        }
+        $result = ConfigLoader::forCourse($course, $globals);
+
+        if (isset($options['json'])) {
+            $data = [
+                'source' => $result->source->value,
+                'ok' => $result->ok(),
+                'errors' => array_map('strval', $result->errors),
+                'warnings' => array_map('strval', $result->warnings),
+                'config' => $result->config?->toArray(),
+            ];
+            fwrite($this->out, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+            return $result->ok() ? 0 : 1;
+        }
+
+        if ($result->source === ConfigSource::None) {
+            return $this->fail('No configuration found (calendar.ini.php or a v4 calendar.php).', 1);
+        }
+        $this->say('Configuration: ' . ($result->source === ConfigSource::Ini ? 'calendar.ini.php' : 'calendar.php (v4, translated)'));
+        $this->problems($result);
+        $config = $result->config;
+        if ($config !== null) {
+            $this->say('Course:    ' . trim($config->course->number . ' ' . $config->course->name) . " ({$config->course->timezone})");
+            $this->say("Semester:  {$config->semester->start} to {$config->semester->end}" . ($config->semester->weekends ? ' (with weekends)' : ''));
+            foreach ($config->schedule->weekly as $day => $plan) {
+                $this->say("Weekly:    $day = $plan");
+            }
+            foreach ($config->schedule->days as $date => $plan) {
+                $this->say("Day:       $date = $plan");
+            }
+            foreach ($config->boxes as $box) {
+                $this->say("Box:       {$box->name} = " . implode(', ', array_map('strval', $box->candidates)));
+            }
+            $this->say('Login:     ' . ($config->security->loginEnabled()
+                ? ($config->security->passwordHash !== null ? 'password hash' : 'plain-text password')
+                : 'disabled'));
+        }
+        $this->say($result->ok() ? 'OK' : 'NOT OK: the course can not run until the errors are fixed.');
+        return $result->ok() ? 0 : 1;
+    }
+
+    /** @param array<string, string|true> $options */
+    private function hashPassword(array $options): int
+    {
+        if (isset($options['stdin'])) {
+            $password = rtrim((string) fgets($this->in), "\r\n");
+        } else {
+            $tty = function_exists('posix_isatty') && posix_isatty($this->in);
+            fwrite($this->err, 'Password: ');
+            if ($tty) {
+                shell_exec('stty -echo');
+            }
+            $password = rtrim((string) fgets($this->in), "\r\n");
+            if ($tty) {
+                shell_exec('stty echo');
+                fwrite($this->err, "\n");
+            }
+        }
+        if ($password === '') {
+            return $this->fail('The password is empty.', 1);
+        }
+        $this->say(password_hash($password, PASSWORD_DEFAULT));
+        return 0;
+    }
+
+    private function problems(LoadResult $result): void
+    {
+        foreach ($result->errors as $problem) {
+            fwrite($this->err, 'error: ' . self::describe($problem) . "\n");
+        }
+        foreach ($result->warnings as $problem) {
+            fwrite($this->err, 'warning: ' . self::describe($problem) . "\n");
+        }
+    }
+
+    private static function describe(Problem $problem): string
+    {
+        return (string) $problem;
+    }
+
+    private function say(string $text): void
+    {
+        fwrite($this->out, $text . "\n");
+    }
+
+    private function fail(string $message, int $code): int
+    {
+        fwrite($this->err, $message . "\n");
+        return $code;
+    }
+
+    /**
+     * --name, --name=value, -o value
+     *
+     * @param list<string> $args
+     * @return array{0: array<string, string|true>, 1: list<string>}
+     */
+    private static function parse(array $args): array
+    {
+        $options = [];
+        $arguments = [];
+        for ($i = 0; $i < count($args); $i++) {
+            $arg = $args[$i];
+            if (preg_match('/^--([a-z0-9-]+)(?:=(.*))?$/', $arg, $m)) {
+                $options[$m[1]] = $m[2] ?? true;
+            } elseif ($arg === '-o' && isset($args[$i + 1])) {
+                $options['o'] = $args[++$i];
+            } else {
+                $arguments[] = $arg;
+            }
+        }
+        return [$options, $arguments];
+    }
+}

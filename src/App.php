@@ -4,28 +4,27 @@ declare(strict_types=1);
 
 namespace Cal5;
 
+use Cal5\Config\ConfigLoader;
 use Cal5\Config\ConfigSource;
 use Cal5\Config\LegacyVariables;
+use Cal5\Config\LoadResult;
 use Cal5\View\InstalledPage;
 
 /**
  * Request lifecycle (see docs/design/architecture.md).
  *
- * Milestone 1: only works out where the configuration comes from and shows an
- * "installed" page.  Later milestones add each step of the lifecycle.
+ * Milestone 2: loads the configuration (calendar.ini.php or a translated v4
+ * calendar.php) and shows an "installed" page summarising it.  Later
+ * milestones add the remaining steps of the lifecycle.
  */
 final class App
 {
-    public const INI_FILE = 'calendar.ini.php';
+    public const INI_FILE = ConfigLoader::INI_FILE;
 
-    /**
-     * @param array<string, mixed> $legacyVariables v4 variables, if any
-     */
     private function __construct(
         private readonly string $courseDir,
         private readonly string $libraryDir,
-        private readonly ConfigSource $source,
-        private readonly array $legacyVariables,
+        private readonly LoadResult $config,
     ) {
     }
 
@@ -37,14 +36,17 @@ final class App
      */
     public static function fromLegacyGlobals(array $globals, string $courseDir, string $libraryDir): self
     {
-        $legacy = LegacyVariables::extract($globals);
-        return new self($courseDir, $libraryDir, self::detect($courseDir, $legacy), $legacy);
+        return new self($courseDir, $libraryDir, ConfigLoader::forCourse($courseDir, $globals));
     }
 
     /** Entry from index.php (new courses). */
     public static function fromEntry(string $courseDir, string $libraryDir): self
     {
-        return new self($courseDir, $libraryDir, self::detect($courseDir, []), []);
+        $library = realpath($libraryDir);
+        $result = ($library !== false && realpath($courseDir) === $library)
+            ? new LoadResult(ConfigSource::None, null, [], [])
+            : ConfigLoader::forCourse($courseDir);
+        return new self($courseDir, $libraryDir, $result);
     }
 
     /**
@@ -63,9 +65,9 @@ final class App
         return ConfigSource::None;
     }
 
-    public function source(): ConfigSource
+    public function configuration(): LoadResult
     {
-        return $this->source;
+        return $this->config;
     }
 
     /** True when the library directory itself was requested (not a course). */
@@ -84,11 +86,8 @@ final class App
             header("Content-Security-Policy: object-src 'none'; base-uri 'self'");
         }
         $page = new InstalledPage(
-            source: $this->source,
+            result: $this->config,
             libraryRequest: $this->isLibraryRequest(),
-            course: is_string($this->legacyVariables['COURSE'] ?? null) ? $this->legacyVariables['COURSE'] : '',
-            courseName: is_string($this->legacyVariables['COURSENAME'] ?? null) ? $this->legacyVariables['COURSENAME'] : '',
-            settingsFound: count($this->legacyVariables),
             assetBase: $this->isLibraryRequest() ? '' : 'calendar/',
         );
         echo $page->render();

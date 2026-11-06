@@ -52,7 +52,9 @@ punctuation characters in keys and `${...}` in values specially. Instructors nat
 keys like `on` in `[replace]`. Cal5 therefore uses its own small reader (`IniReader`, Milestone 2):
 
 - `[section]` headers; `key = value` lines.
-- Comments start with `;` or `#`, on their own line or after a value (outside quotes).
+- Comments start with `;` or `#` on their own line. After a value (outside quotes), `;` or `#`
+  following a space starts a comment. A value may itself start with `#` (`#fff`, `C#`), but a
+  value that starts with `;` is a comment.
 - Quotes around values are optional. Use them to keep leading/trailing spaces or a `;`/`#`.
 - Keys are any text up to the first `=`. Keys are case-insensitive. No reserved words.
 - Repeated keys in a section are allowed where a list makes sense (for example `css`).
@@ -177,6 +179,7 @@ start_page            = home        ; home | today (today's lecture, v4 $DEFAULT
 calendar_view         = month       ; month | list | agenda
 markdown_menu_levels  = 2           ; heading levels listed in the section menu
 heading_warnings      = no          ; warn about old <a name> anchors (v4 $IGNORE_A_TAG_WARNING)
+box_pick              = listed      ; listed | first-by-name (v4: the file whose name sorts first wins)
 
 [style]
 ; Extra stylesheets: for every page, per type, and for the calendar
@@ -186,9 +189,9 @@ css.calendar = docs/calendar.css
 js.lab       = docs/lab-helpers.js
 
 [features]
-postmeeting = end            ; when <postmeeting> appears: "end" of the meeting, or a time such as 13:00
+postmeeting = end            ; when <postmeeting> appears: end (of the meeting), a time such as 13:00, or off (always shown)
 access_log  = /var/log/cal5/si460.log
-legacy_css  = auto           ; auto | yes | no (Bootstrap/Skeleton class support for course pages)
+legacy_css  = no             ; yes: Bootstrap/Skeleton class support for course pages (milestone 8)
 legacy_js   =                ; jquery, datatables, chartjs (only if course pages need them)
 debug       = no
 ```
@@ -218,13 +221,22 @@ debug       = no
 | `security.password_hash` | hash | – | `bin/cal5 hash-password` |
 | `security.password` | text | – | Plain text (v4 style); warning shown |
 | `security.secret` | text ≥ 32 chars | **required** | The sample value from the v4 shell is refused |
-| `security.session_hours` | number | 12 | v4 `$LOGON_TIME` |
+| `security.session_hours` | number | 12 | v4 `$LOGON_TIME`; decimals allowed (1.5) |
 | `security.lock` | bool or path | no | |
-| `display.*` | | see example | |
+| `display.start_page` | `home` \| `today` | home | |
+| `display.calendar_view` | `month` \| `list` \| `agenda` | month | |
+| `display.markdown_menu_levels` | list of 1-6 | 2 | |
+| `display.heading_warnings` | bool | no | |
+| `display.box_pick` | `listed` \| `first-by-name` | listed | How a box chooses among its candidates: the first one listed that exists, or (v4 rule) the existing file whose name sorts first |
+| `display.calendar_boxes` | list | every box | Boxes shown on the calendar, in order; other boxes still exist (for example `title` for the event page) |
 | `style.css[.<type>\|.calendar]`, `style.js[.<type>]` | path list | – | |
-| `features.*` | | see example | |
+| `features.postmeeting` | `end` \| `HH:MM` \| `off` | end | `off` = content always shown (v4 without `$REVEALHOUR`) |
+| `features.access_log` | path | none | |
+| `features.legacy_css` | bool | no | |
+| `features.legacy_js` | list of `jquery`, `datatables`, `chartjs` | none | |
+| `features.debug` | bool | no | |
 
-Box candidates are tried **in the order listed**. Old courses that relied on v4's rule ("the
+Box candidates are tried **in the order listed** (`box_pick = listed`). Old courses that relied on v4's rule ("the
 file whose name sorts first wins") keep that rule through the translator (see below).
 
 ## Translating a v4 `calendar.php`
@@ -249,7 +261,7 @@ result as a commented `calendar.ini.php` for courses that want to switch formats
 | `$OVERRIDE` | `[days]` | `month/day` in `$YEAR` → ISO dates; duplicate keys keep v4's "last wins" |
 | `$COMBINE` | `[combine]` | Kept event-number based (exact v4 semantics) |
 | `$BOX` | `[boxes]` key order | |
-| `$HTML`, `$LINK`, `$PDF`, `$PPT`, `$SRC`, `$MD` | `[boxes]` candidates | `$SRC` entries become `inline:`. Without `$MD`, `.md` twins of `$HTML` are added (calendar-core 4.6 behaviour). The box is marked `pick = first-by-name`, which reproduces v4's "first file in sorted order wins" |
+| `$HTML`, `$LINK`, `$PDF`, `$PPT`, `$SRC`, `$MD` | `[boxes]` candidates | `$SRC` entries become `inline:`. Without `$MD`, `.md` twins of `$HTML` are added (calendar-core 4.6 behaviour). Sets `display.box_pick = first-by-name`, which reproduces v4's "first file in sorted order wins". Boxes in the category arrays but not in `$BOX` are kept (not shown on the calendar: `display.calendar_boxes`). If a file name appears in two arrays, the later array wins (v4 order: MD, HTML, LINK, PDF, PPT, SRC) |
 | `$NAVBAR_DROPDOWNS` | `[menus]` | Glyphicon names → closest Cal5 icon; unknown names → no icon |
 | `$NAVBAR_DROPDOWNS_INSTRUCTOR` | `[instructor_menus]` | |
 | `$PAGE_MODIFY` | `[replace]` | |
@@ -268,10 +280,10 @@ result as a commented `calendar.ini.php` for courses that want to switch formats
 | `$CUSTOMCSS` | `style.css.<type>` | |
 | `$CUSTOMJS` | `style.js.<type>` | |
 | `$CUSTOMCSS_CAL` | `style.css.calendar` | |
-| `$REVEALHOUR` | `features.postmeeting = HH:00` | |
+| `$REVEALHOUR` | `features.postmeeting = HH:00` | Without `$REVEALHOUR`, `postmeeting = off`: v4 leaves `<postmeeting>` content visible |
 | `$ACCESS_LOG` | `features.access_log` | |
 | `$DEBUG_MODE` | `features.debug` | |
-| *(any v4 config)* | `features.legacy_css = auto` | `auto` means **on** for translated configs and **off** for new ones |
+| *(any v4 config)* | `features.legacy_css = yes`, `features.legacy_js = jquery, datatables, chartjs` | v4 loaded all of these on every page, so translated courses keep them (exact drop-in). Courses that move to `calendar.ini.php` can turn them off; the milestone 8 audit tool shows which ones a course needs |
 | `$NAVBAR`, `$NAVBAR_TITLE`, `$NAVBAR_TITLE_URL` | – | Only used by v4's unrelated `template_navbar.php`; ignored |
 
 Unknown upper-case globals are listed in an instructor-only notice, so a typo or a

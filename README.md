@@ -12,8 +12,15 @@ This repository is being built one milestone at a time. See `MILESTONES.md` (on 
 
 ## Status
 
-Milestone 1 (skeleton and test harness): Cal5 installs and detects a course's configuration
-(`calendar.ini.php`, or a v4 `calendar.php`), but does not serve course content yet.
+Milestone 2 (configuration): Cal5 reads `calendar.ini.php` or translates a v4 `calendar.php`,
+validates it, and shows a summary page. It does not serve course content yet. For a course,
+run these from its directory:
+
+```bash
+php calendar/bin/cal5 check        # validate and summarise the configuration
+php calendar/bin/cal5 translate    # write calendar.ini.php from a v4 calendar.php
+php calendar/bin/cal5 hash-password
+```
 
 ## Development
 
