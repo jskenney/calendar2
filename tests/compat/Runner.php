@@ -45,7 +45,7 @@ final class Runner
      * @param list<string> $knownWarnings PHP errors containing these texts are ignored (known v4 bugs)
      * @return list<string>
      */
-    public static function compare(array $expected, array $actual, array $knownWarnings = []): array
+    public static function compare(array $expected, array $actual, array $knownWarnings = [], bool $intended = true): array
     {
         $differences = [];
         foreach ($expected as $id => $want) {
@@ -53,7 +53,7 @@ final class Runner
                 $differences[] = "$id: not requested";
                 continue;
             }
-            array_push($differences, ...self::compareOne((string) $id, $want, $actual[$id], $knownWarnings));
+            array_push($differences, ...self::compareOne((string) $id, $want, $actual[$id], $knownWarnings, $intended));
         }
         foreach (array_diff(array_keys($actual), array_keys($expected)) as $id) {
             $differences[] = "$id: no expected result recorded (run record)";
@@ -69,10 +69,13 @@ final class Runner
      * @param list<string> $knownWarnings
      * @return list<string>
      */
-    public static function compareOne(string $id, array $want, array $got, array $knownWarnings = []): array
+    public static function compareOne(string $id, array $want, array $got, array $knownWarnings = [], bool $intended = true): array
     {
         $differences = [];
-        [$want, $got] = IntendedDifferences::apply($want, $got);
+        if ($intended) {
+            // only for Cal5: v4 is compared with its own recording as it is
+            [$want, $got] = IntendedDifferences::apply($want, $got);
+        }
         foreach (array_unique(array_merge(array_keys($want), array_keys($got))) as $field) {
             $a = $want[$field] ?? null;
             $b = $got[$field] ?? null;

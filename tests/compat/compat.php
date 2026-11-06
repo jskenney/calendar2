@@ -126,11 +126,12 @@ foreach ($fixtures as $name) {
             $actual[$id] = $result['observation'];
         }
     }
-    $differences = Runner::compare($expected, $actual, $fixture->meta['known_v4_warnings'] ?? []);
+    $intended = $impl === 'cal5'; // the intended differences apply to Cal5 only
+    $differences = Runner::compare($expected, $actual, $fixture->meta['known_v4_warnings'] ?? [], $intended);
 
     $matching = 0;
     foreach ($expected as $id => $want) {
-        if (isset($actual[$id]) && Runner::compareOne($id, $want, $actual[$id], $fixture->meta['known_v4_warnings'] ?? []) === []) {
+        if (isset($actual[$id]) && Runner::compareOne($id, $want, $actual[$id], $fixture->meta['known_v4_warnings'] ?? [], $intended) === []) {
             $matching++;
         }
     }
