@@ -42,7 +42,8 @@ final class Response
     /** @return list<string> PHP warnings, notices, deprecations and errors printed in the body */
     public function phpErrors(): array
     {
-        $pattern = '#(?:<b>)?(Warning|Notice|Deprecated|Fatal error|Parse error|Uncaught [A-Za-z\\\\]+)(?:</b>)?:\s*(.{0,160})#';
+        // The whole message up to the end of its line (callers shorten it after removing paths)
+        $pattern = '#(?:<b>)?(Warning|Notice|Deprecated|Fatal error|Parse error|Uncaught [A-Za-z\\\\]+)(?:</b>)?:\s*([^\r\n]{0,1000}?)(?:<br\s*/?>|\r|\n|$)#';
         if (!preg_match_all($pattern, $this->body, $matches, PREG_SET_ORDER)) {
             return [];
         }
