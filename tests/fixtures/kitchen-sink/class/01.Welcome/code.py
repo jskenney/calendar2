@@ -1,0 +1,1 @@
+print("KS-class1-codeinject <tag>")

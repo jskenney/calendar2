@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/*
+ * Cal5 command line tool.  Milestone 1 provides "version" and "help";
+ * translate / check / hash-password arrive in milestone 2.
+ */
+
+require_once dirname(__DIR__) . '/src/autoload.php';
+
+$command = $argv[1] ?? 'help';
+
+switch ($command) {
+    case 'version':
+    case '--version':
+        fwrite(STDOUT, 'Cal5 ' . \Cal5\Version::VERSION . PHP_EOL);
+        exit(0);
+
+    case 'help':
+    case '--help':
+    case '-h':
+        fwrite(STDOUT, <<<TXT
+Usage: php bin/cal5 <command>
+
+Commands:
+  version        Print the Cal5 version
+  help           Show this help
+
+Planned (see MILESTONES.md):
+  translate      Write calendar.ini.php from a v4 calendar.php      (milestone 2)
+  check          Validate a configuration                          (milestone 2)
+  hash-password  Print a password hash for calendar.ini.php        (milestone 2)
+  audit          Report legacy CSS/JS used by a course's pages      (milestone 8)
+  compare        Compare a course under v4 and Cal5                 (milestone 10)
+
+TXT);
+        exit(0);
+
+    default:
+        fwrite(STDERR, "Unknown command: {$command}\nRun: php bin/cal5 help\n");
+        exit(2);
+}

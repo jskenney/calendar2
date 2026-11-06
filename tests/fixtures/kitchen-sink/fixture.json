@@ -1,0 +1,17 @@
+{
+  "description": "Sets every v4 variable and uses every v4 tag, box type and release-rule form. Every piece of content carries a KS-* marker.",
+  "entry": "calendar.php",
+  "secret": "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210",
+  "password": "kitchenpass",
+  "types": ["class", "lab", "exam", "final-exam", "holiday", "monday-schedule"],
+  "markers": { "pattern": "KS-[A-Za-z0-9-]+" },
+  "pages": ["home", "policy", "resources", "syllabus", "notlisted", "instructor"],
+  "views": ["calendar_display", "calendar_display_alt", "calendar_display_dateless", "calendar_file_selector", "calendar_keyword"],
+  "searches": ["KS-class1", "markdown"],
+  "extra_requests": {
+    "calendar.php": ["type=class&event=1&answers=yes", "type=class&event=1&lock=opensesame",
+                     "type=class&event=1&who=KS-url-value", "type=class&event=1&debug=1",
+                     "type=class&event=1&print=1", "type=class&event=1&nocss=1",
+                     "show=calendar_keyword&keyword=tags"]
+  }
+}

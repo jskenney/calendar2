@@ -1,0 +1,1 @@
+<?php echo "KS-class1-calphp-ran";

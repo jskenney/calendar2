@@ -1,0 +1,12 @@
+{
+  "description": "The v4 sample course from the calendar repo (2018 version of calendar.php). Content is verbatim apart from SAMPLE-* marker lines and a fixed secret.",
+  "entry": "calendar.php",
+  "secret": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+  "password": "mypassword",
+  "types": ["class", "lab", "exam", "final-exam", "final-class", "holiday"],
+  "markers": { "pattern": "SAMPLE-[A-Za-z0-9-]+" },
+  "pages": ["home", "policy", "resources", "instructor", "notlisted", "error"],
+  "views": ["calendar_display", "calendar_display_alt", "calendar_display_dateless", "calendar_file_selector"],
+  "searches": ["lab", "Intro"],
+  "extra_requests": {}
+}

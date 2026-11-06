@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Tests (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.3', '8.4']
+    # PHP 8.3 is the supported version; 8.4 is an early warning only.
+    continue-on-error: ${{ matrix.php == '8.4' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, mbstring
+          coverage: none
+      - name: Lint
+        run: |
+          find . -path ./.v4 -prune -o \( -name '*.php' -o -path ./bin/cal5 \) -type f -print0 \
+            | xargs -0 -n1 php -l > /dev/null
+      - name: Tests
+        run: php tests/run.php
+
+  compatibility:
+    name: Compatibility with v4
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: calendar, dom, mbstring
+          coverage: none
+      - name: Fetch calendar-core (v4) at the pinned commit
+        run: tests/compat/fetch-v4.sh
+      - name: v4 still matches the recorded results
+        run: php tests/compat/compat.php check --impl=v4 --v4=.v4
+      - name: Cal5 progress (informational)
+        run: php tests/compat/compat.php check --impl=cal5 --report
