@@ -12,11 +12,15 @@ This repository is being built one milestone at a time. See `MILESTONES.md` (on 
 
 ## Status
 
-Milestone 5 (login): Cal5 reads the configuration (`calendar.ini.php`, or a translated
+Milestone 6 (rendering): Cal5 reads the configuration (`calendar.ini.php`, or a translated
 v4 `calendar.php`), finds every event and file, builds the calendar, decides what students
-may see exactly as v4 does, and logs the instructor in with v4's password and login flow
-(a v4 login carries over when a course switches). It adds release times to the minute, re-lock ranges, and
-meeting-relative rules (`docs/design/access-rules.md`). It does not serve course pages yet.
+may see exactly as v4 does, logs the instructor in with v4's password and login flow, and
+**serves event pages and their files**: `.html`, `.md` and `.txt` pages with every Cal4 tag,
+MathJax and highlight.js, and `.pdf`, `.ppt`, `.pptx` and other files as downloads (streamed,
+with `Range` support). Every event page and file of the test courses matches v4. It adds
+release times to the minute, re-lock ranges, and meeting-relative rules
+(`docs/design/access-rules.md`). The home page, calendar views and search arrive in later
+milestones; until then those URLs show a summary page.
 For a course, run these from its directory:
 
 ```bash
@@ -32,7 +36,8 @@ php calendar/bin/cal5 hash-password
 ```bash
 php tests/run.php                                        # tests (PHP 8.3, no dependencies)
 tests/compat/fetch-v4.sh                                 # fetch v4 for the compatibility runner
-php tests/compat/compat.php check --impl=cal5 --report   # Cal5 progress against v4
+php tests/compat/compat.php check --impl=cal5 --scope=events  # event pages and files: must match v4
+php tests/compat/compat.php check --impl=cal5 --report   # Cal5 progress against v4 (all pages)
 ```
 
 See `CONTRIBUTING.md` for the workflow and coding standards.

@@ -13,6 +13,8 @@ declare(strict_types=1);
  *   php tests/compat/compat.php check --impl=cal5 [--fixture=NAME] [--report]
  *       Compare an implementation with the stored results.  --report prints a
  *       summary and always exits 0 (used while Cal5 is still being built).
+ *       --scope=events compares only event pages and their files (see
+ *       Requests::inScope); --scope=all (the default) compares everything.
  *
  *   php tests/compat/compat.php check-structure --impl=v4|cal5 [--v4=PATH] [--fixture=NAME]
  *       Compare the course structure (events, dates, names, boxes, file keys)
@@ -21,6 +23,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../lib/autoload.php';
 
+use Cal5\Tests\Compat\Requests;
 use Cal5\Tests\Compat\Runner;
 use Cal5\Tests\Compat\Structure;
 use Cal5\Tests\Fixture;
@@ -40,9 +43,10 @@ $fixtures = isset($options['fixture']) ? [(string) $options['fixture']] : Fixtur
 $impl = (string) ($options['impl'] ?? ($command === 'record' ? 'v4' : 'cal5'));
 $v4 = isset($options['v4']) ? (string) $options['v4'] : null;
 $report = isset($options['report']);
+$scope = (string) ($options['scope'] ?? 'all');
 
 if (!in_array($command, ['record', 'check', 'check-structure'], true) || !in_array($impl, ['v4', 'cal5'], true)) {
-    fwrite(STDERR, "Usage: compat.php record --v4=PATH | check|check-structure --impl=v4|cal5 [--v4=PATH] [--fixture=NAME] [--report]\n");
+    fwrite(STDERR, "Usage: compat.php record --v4=PATH | check|check-structure --impl=v4|cal5 [--v4=PATH] [--fixture=NAME] [--report] [--scope=all|events]\n");
     exit(2);
 }
 if ($impl === 'v4' && ($v4 === null || !is_file($v4 . '/calendar_main.php'))) {
@@ -112,9 +116,16 @@ foreach ($fixtures as $name) {
     }
     $expected = [];
     foreach ($stored['requests'] as $request) {
-        $expected[$request['id']] = $request['observation'];
+        if (Requests::inScope($request, $scope, $fixture)) {
+            $expected[$request['id']] = $request['observation'];
+        }
     }
-    $actual = array_map(static fn (array $r): array => $r['observation'], $results);
+    $actual = [];
+    foreach ($results as $id => $result) {
+        if (Requests::inScope($result['request'], $scope, $fixture)) {
+            $actual[$id] = $result['observation'];
+        }
+    }
     $differences = Runner::compare($expected, $actual, $fixture->meta['known_v4_warnings'] ?? []);
 
     $matching = 0;
@@ -123,7 +134,7 @@ foreach ($fixtures as $name) {
             $matching++;
         }
     }
-    printf("%-14s %s: %d/%d requests match\n", $name, $impl, $matching, count($expected));
+    printf("%-14s %s: %d/%d requests match%s\n", $name, $impl, $matching, count($expected), $scope === 'all' ? '' : " (scope: $scope)");
     if ($differences !== [] && !$report) {
         foreach (array_slice($differences, 0, 40) as $difference) {
             echo "  - $difference\n";

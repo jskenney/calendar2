@@ -856,7 +856,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "68cbda125313b26a719d5b9f93ebf2cc8afc72e8"
+                "sha1": "68cbda125313b26a719d5b9f93ebf2cc8afc72e8",
+                "markers": [
+                    "KS-class1-notes-inline"
+                ]
             }
         },
         {
@@ -907,7 +910,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "63648a6331546588d65390f71455a90829cd3cb8"
+                "sha1": "63648a6331546588d65390f71455a90829cd3cb8",
+                "markers": [
+                    "KS-class1-readme-text"
+                ]
             }
         },
         {
@@ -1036,7 +1042,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "219c48f6d04731ca01357013453b72cc4e367b3e"
+                "sha1": "219c48f6d04731ca01357013453b72cc4e367b3e",
+                "markers": [
+                    "KS-class3-homework-txt"
+                ]
             }
         },
         {
@@ -1319,7 +1328,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "c430621200d5edcc2f17e4294867b2b39a6c6c02"
+                "sha1": "c430621200d5edcc2f17e4294867b2b39a6c6c02",
+                "markers": [
+                    "KS-lab1-notes"
+                ]
             }
         },
         {
@@ -1357,7 +1369,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "a52ff5c420b671079046b226e8908098bebee161"
+                "sha1": "a52ff5c420b671079046b226e8908098bebee161",
+                "markers": [
+                    "KS-lab2-notes"
+                ]
             }
         },
         {
@@ -1464,7 +1479,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "aec1076ba62944e58a10a83facf79b08afa12fe4"
+                "sha1": "aec1076ba62944e58a10a83facf79b08afa12fe4",
+                "markers": [
+                    "KS-exam1-notes"
+                ]
             }
         },
         {
@@ -2921,7 +2939,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "68cbda125313b26a719d5b9f93ebf2cc8afc72e8"
+                "sha1": "68cbda125313b26a719d5b9f93ebf2cc8afc72e8",
+                "markers": [
+                    "KS-class1-notes-inline"
+                ]
             }
         },
         {
@@ -2994,7 +3015,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "63648a6331546588d65390f71455a90829cd3cb8"
+                "sha1": "63648a6331546588d65390f71455a90829cd3cb8",
+                "markers": [
+                    "KS-class1-readme-text"
+                ]
             }
         },
         {
@@ -3162,7 +3186,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "219c48f6d04731ca01357013453b72cc4e367b3e"
+                "sha1": "219c48f6d04731ca01357013453b72cc4e367b3e",
+                "markers": [
+                    "KS-class3-homework-txt"
+                ]
             }
         },
         {
@@ -3516,7 +3543,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "c430621200d5edcc2f17e4294867b2b39a6c6c02"
+                "sha1": "c430621200d5edcc2f17e4294867b2b39a6c6c02",
+                "markers": [
+                    "KS-lab1-notes"
+                ]
             }
         },
         {
@@ -3561,7 +3591,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "a52ff5c420b671079046b226e8908098bebee161"
+                "sha1": "a52ff5c420b671079046b226e8908098bebee161",
+                "markers": [
+                    "KS-lab2-notes"
+                ]
             }
         },
         {
@@ -3696,7 +3729,10 @@
                 "kind": "download",
                 "content_type": "text/plain",
                 "disposition": "inline",
-                "sha1": "aec1076ba62944e58a10a83facf79b08afa12fe4"
+                "sha1": "aec1076ba62944e58a10a83facf79b08afa12fe4",
+                "markers": [
+                    "KS-exam1-notes"
+                ]
             }
         },
         {

@@ -42,6 +42,25 @@ final class Request
         return $this->param($name) !== null;
     }
 
+    /** Was the parameter sent at all, in any form (string or array)? */
+    public function sent(string $name): bool
+    {
+        return array_key_exists($name, $this->post) || array_key_exists($name, $this->query);
+    }
+
+    /** A request header, such as "Range". */
+    public function header(string $name): ?string
+    {
+        $value = $this->server['HTTP_' . strtoupper(str_replace('-', '_', $name))] ?? null;
+        return is_string($value) ? $value : null;
+    }
+
+    public function server(string $name): string
+    {
+        $value = $this->server[$name] ?? '';
+        return is_string($value) ? $value : '';
+    }
+
     public function postParam(string $name): ?string
     {
         $value = $this->post[$name] ?? null;

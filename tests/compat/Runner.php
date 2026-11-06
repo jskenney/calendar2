@@ -72,6 +72,7 @@ final class Runner
     public static function compareOne(string $id, array $want, array $got, array $knownWarnings = []): array
     {
         $differences = [];
+        [$want, $got] = IntendedDifferences::apply($want, $got);
         foreach (array_unique(array_merge(array_keys($want), array_keys($got))) as $field) {
             $a = $want[$field] ?? null;
             $b = $got[$field] ?? null;

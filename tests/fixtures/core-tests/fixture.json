@@ -1,6 +1,7 @@
 {
   "description": "The course built by calendar-core's tests/run_tests.php (4.6), as static files. Includes the variant entry files (reveal_past.php, sample_secret.php, ...).",
   "entry": "calendar.php",
+  "error_entries": ["sample_secret.php"],
   "secret": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
   "password": "testpass",
   "types": ["class", "lab", "exam", "final-exam"],
