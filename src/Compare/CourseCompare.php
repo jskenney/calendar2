@@ -94,6 +94,8 @@ final class CourseCompare
                 $server->stop();
             }
             if (!$this->keep) {
+                // the Cal5 copy's login rate limiter keeps its state outside the course
+                self::remove(\Cal5\Auth\RateLimiter::directoryFor("{$this->work}/cal5/course"));
                 self::remove($this->work);
             }
         }

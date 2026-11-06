@@ -32,6 +32,12 @@ final class RoutingTest extends TestCase
             $server->stop();
         }
         foreach ($this->courses as $course) {
+            // the login rate limiter keeps failed logins outside the course
+            $limits = \Cal5\Auth\RateLimiter::directoryFor($course);
+            foreach (glob($limits . '/*') ?: [] as $file) {
+                unlink($file);
+            }
+            @rmdir($limits);
             Fixture::remove($course);
         }
         $this->servers = [];

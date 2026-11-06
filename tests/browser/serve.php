@@ -34,4 +34,9 @@ while (!feof(STDIN)) {
     fgets(STDIN);
 }
 $server->stop();
+$limits = \Cal5\Auth\RateLimiter::directoryFor($course); // the login rate limiter's state, outside the course
+foreach (glob($limits . '/*') ?: [] as $file) {
+    unlink($file);
+}
+@rmdir($limits);
 Fixture::remove($course);
