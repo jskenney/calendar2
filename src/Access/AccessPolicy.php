@@ -59,9 +59,13 @@ final class AccessPolicy
         return $this->rules->problems;
     }
 
+    /**
+     * The time now, in the course's time zone: release rules compare moments, but "today"
+     * (the calendar, today's lecture) is the course's date, not the server's.
+     */
     public function now(): DateTimeImmutable
     {
-        return $this->clock->now();
+        return $this->clock->now()->setTimezone($this->timezone);
     }
 
     public function context(EventFolder $event): EventContext

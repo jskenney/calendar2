@@ -6,12 +6,18 @@ on:
 
 jobs:
   tests:
-    name: Tests (PHP ${{ matrix.php }})
+    name: Tests (PHP ${{ matrix.php }}, server time zone ${{ matrix.timezone }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.3', '8.4']
+        # The test courses use America/New_York; a server in UTC+14 has another date for 19
+        # hours of the day, so code that uses the server's date instead of the course's fails.
+        include:
+          - php: '8.3'
+            timezone: Pacific/Kiritimati
+          - php: '8.4'
+            timezone: UTC
     # PHP 8.3 is the supported version; 8.4 is an early warning only.
     continue-on-error: ${{ matrix.php == '8.4' }}
     steps:
@@ -21,6 +27,7 @@ jobs:
           php-version: ${{ matrix.php }}
           # calendar: v4 needs it (the login tests switch a course from v4 to Cal5)
           extensions: calendar, dom, mbstring
+          ini-values: date.timezone=${{ matrix.timezone }}
           coverage: none
       - name: Fetch calendar-core (v4) at the pinned commit
         run: tests/compat/fetch-v4.sh
