@@ -96,6 +96,16 @@ final class AccessTest extends TestCase
 
     private const WEEKLY = "[semester]\nstart = 2026-09-14\nend = 2026-12-18\n[schedule]\nmon = class 08:00-08:50\n";
 
+    public function testTodayIsTheCourseDate(): void
+    {
+        // 00:30 UTC on Saturday 7 November is still Friday 6 November in New York (UTC-5)
+        $course = $this->course('', "[semester]\nstart = 2026-11-02\nend = 2026-11-13\n[schedule]\nmon = class\nwed = class\nfri = class\n", 6);
+        $policy = AccessPolicy::forCourse($course, FixedClock::at('2026-11-07 00:30', 'UTC'));
+        $this->assertSame('2026-11-06 19:30 America/New_York', $policy->now()->format('Y-m-d H:i e'), 'now, in the course time zone');
+        $this->assertSame('2026-11-06', (new \Cal5\View\CalendarModel($course, $policy, false))->today, "the calendar's today");
+        $this->assertSame('2026-11-06', $policy->now()->format('Y-m-d'));
+    }
+
     public function testExactMinute(): void
     {
         $course = $this->course("class/title 2026-09-14 13:30\n", self::WEEKLY);
